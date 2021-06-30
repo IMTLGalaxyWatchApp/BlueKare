@@ -21,9 +21,6 @@ import edu.imtl.BlueKare.Activity.Search.SearchActivity;
 import edu.imtl.BlueKare.Activity.login.LoginActivity;
 import edu.imtl.BlueKare.R;
 
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;

@@ -105,7 +105,8 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         app:maxImageSize="35dp"
-        app:tint="@color/colorWhite" />
+        app:tint="@color/colorWhite"
+        android:contentDescription="@string/fab" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -2,6 +2,7 @@ package edu.imtl.BlueKare.Activity.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,10 +43,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
-                if (mFirebaseUser != null) {
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                } else
-                    Toast.makeText(LoginActivity.this, "Please Login", Toast.LENGTH_SHORT).show();
+                if (mFirebaseUser!=null) {
+                    if(mFirebaseUser.isEmailVerified()) startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                }
             }
         };
 
@@ -66,11 +66,22 @@ public class LoginActivity extends AppCompatActivity {
                     mFirebaseAuth.signInWithEmailAndPassword(email, pswrd).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (!task.isSuccessful()) {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                                if(user.isEmailVerified()){ // 그리고 그때 그 계정이 실제로 존재하는 계정인지
+                                    Log.d("login", "signInWithEmail:success" + user.getEmail());
+                                    Toast.makeText(LoginActivity.this, "signInWithEmail:success.", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(LoginActivity.this , MainActivity.class);
+                                    startActivity(i);
+                                    finish();
+                                }else{
+                                    Toast.makeText(LoginActivity.this, "인증이 되지 않은 이메일입니다 해당 이메일 주소에서 링크를 클릭해주세요", Toast.LENGTH_SHORT).show();
+                                    loginbtn.setEnabled(true);
+                                }
+
+                            } else {
                                 Toast.makeText(LoginActivity.this, "Login Failed, Try again!", Toast.LENGTH_SHORT).show();
                                 loginbtn.setEnabled(true);
-                            } else {
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             }
                         }
                     });

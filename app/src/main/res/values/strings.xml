@@ -27,4 +27,8 @@
     <string name="user_email">user@user.com</string>
     <string name="team_name">Team Name</string>
     <string name="fab">FloatingActionButton</string>
+    <string name="patient_name">이름</string>
+    <string name="patient_sex">성별</string>
+    <string name="patient_age">나이</string>
+    <string name="patient_address">거주지</string>
 </resources>

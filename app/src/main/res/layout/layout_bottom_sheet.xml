@@ -3,142 +3,84 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottomSheetContainer"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/bottom_sheet"
     android:elevation="5dp"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="15dp">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:rotation="90"
-            app:srcCompat="@drawable/ic_arrow_left" />
-
-        <TextView
-            android:id="@+id/moreinfobottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="더보기"
-            android:textAlignment="center"
-            android:textColor="@color/colorBlack"
-            android:textSize="15sp" />
-
-    </LinearLayout>
-
     <TextView
-        android:id="@+id/treeAlertText"
+        android:paddingTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="측정이 완료되었어요!"
+        android:text="피험자 정보 기입"
         android:textAlignment="center"
         android:textColor="#8FC838"
         android:textSize="36sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/treeTextsub"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="변경사항을 기입해주세요"
+        android:text="A. 기초정보 평가"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:paddingBottom="10dp"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:visibility="gone">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/bottomnameask"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:padding="15dp"
-            android:text="이름"
+            android:text="@string/patient_name"
             android:textAlignment="textStart"
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/bottomname"
+            android:id="@+id/patient_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/et_custom"
-            android:hint="이름"
+            android:hint="@string/patient_name"
             android:inputType="textPersonName"
             android:padding="15dp"
-            android:textSize="15sp" />
-
+            android:textSize="15sp"
+            android:autofillHints="username" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/bottomnearbylmask"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:padding="15dp"
-            android:text="위치명"
-            android:textAlignment="textStart"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/bottomnearbylm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/et_custom"
-            android:hint="위치명"
-            android:inputType="textPersonName"
-            android:padding="15dp"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/bottomspeciesask"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
-            android:padding="15dp"
-            android:text="수종"
+            android:text="@string/patient_sex"
             android:textAlignment="textStart"
             android:textSize="18sp"
-
             />
 
 
         <Spinner
-            android:id="@+id/bottomspecies"
+            android:id="@+id/patient_sex"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
@@ -152,93 +94,64 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/bottomdbhask"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:padding="15dp"
-            android:text="DBH(cm)"
+            android:text="@string/patient_age"
             android:textAlignment="textStart"
             android:textSize="16sp" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
             <EditText
-                android:id="@+id/bottomdbh"
+                android:id="@+id/patient_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/et_custom"
-                android:hint="DBH"
+                android:hint="@string/patient_age"
                 android:inputType="numberDecimal"
                 android:padding="15dp"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:autofillHints="" />
 
-            <Button
-                android:id="@+id/bottomdbhmeasure"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:layout_alignEnd="@id/bottomdbh"
-                android:layout_marginEnd="5dp"
-                android:text="측정" />
-        </RelativeLayout>
     </LinearLayout>
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/bottomheightask"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:padding="15dp"
-            android:text="높이(m)"
+            android:text="@string/patient_address"
             android:textAlignment="textStart"
             android:textSize="18sp" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/bottomheight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/et_custom"
-                android:hint="높이"
-                android:inputType="numberDecimal"
-                android:padding="15dp"
-                android:textSize="15sp" />
-
-            <Button
-                android:id="@+id/bottomheightmeasure"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:layout_alignEnd="@id/bottomheight"
-                android:layout_marginEnd="5dp"
-                android:text="측정" />
-
-        </RelativeLayout>
+        <EditText
+            android:id="@+id/patient_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/et_custom"
+            android:hint="@string/patient_address"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:textSize="15sp"
+            android:autofillHints="" />
     </LinearLayout>
 
 
@@ -251,7 +164,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
         android:padding="15dp"
-        android:text="확인"
+        android:text="다음"
         android:textAlignment="center"
         android:textSize="24sp" />
 </LinearLayout>

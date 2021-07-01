@@ -1,6 +1,5 @@
 package edu.imtl.BlueKare.Activity;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,11 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import edu.imtl.BlueKare.Activity.AR.ArActivity;
-import edu.imtl.BlueKare.Activity.MainPackage.fragment2_test;
-import edu.imtl.BlueKare.Activity.MainPackage.fragment3;
-import edu.imtl.BlueKare.Activity.Search.SearchActivity;
-import edu.imtl.BlueKare.Activity.login.LoginActivity;
+import edu.imtl.BlueKare.Activity.Download.Fragment_download;
+import edu.imtl.BlueKare.Activity.MainMenu.Fragment_main;
+import edu.imtl.BlueKare.Activity.Record.Fragment_record;
+import edu.imtl.BlueKare.Activity.Login.LoginActivity;
 import edu.imtl.BlueKare.R;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -50,27 +48,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawerlayout);
+        drawerLayout = findViewById(R.id.drawerlayout);
         setNavigationViewListener();
 
         //AR 버튼
-        btn = findViewById(R.id.arbutton);
-        btn.setOnClickListener(view -> {
-            Intent intentAr = new Intent(MainActivity.this, ArActivity.class);
-            try {
-                startActivity(intentAr);
-                finish();
-            } catch (ActivityNotFoundException e) {
-                System.out.println("error");
-            }
-        });
+//        btn = findViewById(R.id.arbutton);
+//        btn.setOnClickListener(view -> {
+//            Intent intentAr = new Intent(MainActivity.this, ArActivity.class);
+//            try {
+//                startActivity(intentAr);
+//                finish();
+//            } catch (ActivityNotFoundException e) {
+//                System.out.println("error");
+//            }
+//        });
         mFirebaseAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         userID= Objects.requireNonNull(mFirebaseAuth.getCurrentUser()).getUid();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationlayout);
+        NavigationView navigationView = findViewById(R.id.navigationlayout);
         View headerView = navigationView.getHeaderView(0);
-        museremail=(TextView) headerView.findViewById(R.id.userdraweremail);
-        musername=(TextView) headerView.findViewById(R.id.userdrawername);
+        museremail= headerView.findViewById(R.id.userdraweremail);
+        musername= headerView.findViewById(R.id.userdrawername);
 
 
 
@@ -90,19 +88,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawerlayout);
+        drawerLayout = findViewById(R.id.drawerlayout);
 
         findViewById(R.id.menu).setOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
 
-        //search
-        mSearchBtn = (ImageButton) findViewById(R.id.search_go_btn);
-        mSearchBtn.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this , SearchActivity.class));
-            finish();
-        });
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment2_test()).commit();
-            navigationView.setCheckedItem(R.id.fragment2_test_nav);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_main()).commit();
+            navigationView.setCheckedItem(R.id.Main_Menu_nav);
         }
     }
 
@@ -110,22 +102,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
+            case R.id.Main_Menu_nav: {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_main()).commit();
+                break;
+            }
+            case R.id.Record_nav: {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_record()).commit();
+                break;
+            }
+            case R.id.Download_nav: {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_download()).commit();
+                break;
+            }
             case R.id.Logout: {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(MainActivity.this , LoginActivity.class));
                 this.finish();
-                break;
-            }
-            case R.id.fragment2_test_nav: {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment2_test()).commit();
-                break;
-            }
-            case R.id.fragment3_nav: {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment3()).commit();
-                break;
-            }
-            case R.id.History_nav: {
-                startActivity(new Intent(MainActivity.this , SearchActivity.class));
                 break;
             }
         }
@@ -137,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawerlayout);
+        drawerLayout = findViewById(R.id.drawerlayout);
         if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
@@ -153,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void setNavigationViewListener() {
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationlayout);
+        NavigationView navigationView = findViewById(R.id.navigationlayout);
         navigationView.setNavigationItemSelectedListener(this);
     }
 }

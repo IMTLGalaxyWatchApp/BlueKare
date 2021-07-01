@@ -40,7 +40,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/bottom_sheet"
             android:orientation="vertical"
-            android:paddingTop="20dp">
+            android:paddingTop="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,22 +48,22 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:padding="15dp"
                     android:text="@string/patient_name"
                     android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:autoSizeTextType="uniform" />
 
                 <EditText
                     android:id="@+id/patient_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:autofillHints="username"
                     android:background="@drawable/et_custom"
@@ -79,23 +79,23 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:padding="15dp"
                     android:text="@string/patient_sex"
                     android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:autoSizeTextType="uniform" />
 
 
                 <Spinner
                     android:id="@+id/patient_sex"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/et_custom"
                     android:padding="15dp"
@@ -109,22 +109,22 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:padding="15dp"
                     android:text="@string/patient_age"
                     android:textAlignment="textStart"
-                    android:textSize="16sp" />
+                    android:autoSizeTextType="uniform" />
 
                 <EditText
                     android:id="@+id/patient_age"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:autofillHints=""
                     android:background="@drawable/et_custom"
@@ -141,22 +141,22 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:padding="15dp"
                     android:text="@string/patient_address"
                     android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:autoSizeTextType="uniform" />
 
                 <EditText
                     android:id="@+id/patient_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:autofillHints=""
                     android:background="@drawable/et_custom"
@@ -172,26 +172,24 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:padding="15dp"
-                    android:text="@string/patient_address"
+                    android:text="@string/patient_socialstatus"
                     android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:autoSizeTextType="uniform" />
 
-                <EditText
+                <Spinner
+                    android:id="@+id/patient_socialstatus"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
-                    android:autofillHints=""
                     android:background="@drawable/et_custom"
-                    android:hint="@string/patient_address"
-                    android:inputType="textPersonName"
                     android:padding="15dp"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -202,26 +200,24 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:padding="15dp"
-                    android:text="@string/patient_address"
+                    android:text="@string/patient_job"
                     android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:autoSizeTextType="uniform" />
 
-                <EditText
+                <Spinner
+                    android:id="@+id/patient_job"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
-                    android:autofillHints=""
                     android:background="@drawable/et_custom"
-                    android:hint="@string/patient_address"
-                    android:inputType="textPersonName"
                     android:padding="15dp"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -232,26 +228,24 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:padding="15dp"
-                    android:text="@string/patient_address"
+                    android:text="@string/patient_marriage"
                     android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:autoSizeTextType="uniform" />
 
-                <EditText
+                <Spinner
+                    android:id="@+id/patient_marriage"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
-                    android:autofillHints=""
                     android:background="@drawable/et_custom"
-                    android:hint="@string/patient_address"
-                    android:inputType="textPersonName"
                     android:padding="15dp"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -262,26 +256,24 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:padding="15dp"
-                    android:text="@string/patient_address"
+                    android:text="@string/patient_education"
                     android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:autoSizeTextType="uniform" />
 
-                <EditText
+                <Spinner
+                    android:id="@+id/patient_education"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
-                    android:autofillHints=""
                     android:background="@drawable/et_custom"
-                    android:hint="@string/patient_address"
-                    android:inputType="textPersonName"
                     android:padding="15dp"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -292,216 +284,37 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:padding="15dp"
-                    android:text="@string/patient_address"
+                    android:text="@string/patient_education_total"
                     android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:autoSizeTextType="uniform" />
 
                 <EditText
+                    android:id="@+id/patient_education_total"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:autofillHints=""
                     android:background="@drawable/et_custom"
-                    android:hint="@string/patient_address"
-                    android:inputType="textPersonName"
+                    android:hint="@string/patient_age"
+                    android:inputType="numberDecimal"
                     android:padding="15dp"
                     android:textSize="15sp" />
+
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:padding="15dp"
-                    android:text="@string/patient_address"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:autofillHints=""
-                    android:background="@drawable/et_custom"
-                    android:hint="@string/patient_address"
-                    android:inputType="textPersonName"
-                    android:padding="15dp"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:padding="15dp"
-                    android:text="@string/patient_address"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:autofillHints=""
-                    android:background="@drawable/et_custom"
-                    android:hint="@string/patient_address"
-                    android:inputType="textPersonName"
-                    android:padding="15dp"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:padding="15dp"
-                    android:text="@string/patient_address"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:autofillHints=""
-                    android:background="@drawable/et_custom"
-                    android:hint="@string/patient_address"
-                    android:inputType="textPersonName"
-                    android:padding="15dp"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:padding="15dp"
-                    android:text="@string/patient_address"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:autofillHints=""
-                    android:background="@drawable/et_custom"
-                    android:hint="@string/patient_address"
-                    android:inputType="textPersonName"
-                    android:padding="15dp"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:padding="15dp"
-                    android:text="@string/patient_address"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:autofillHints=""
-                    android:background="@drawable/et_custom"
-                    android:hint="@string/patient_address"
-                    android:inputType="textPersonName"
-                    android:padding="15dp"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:padding="15dp"
-                    android:text="@string/patient_address"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:autofillHints=""
-                    android:background="@drawable/et_custom"
-                    android:hint="@string/patient_address"
-                    android:inputType="textPersonName"
-                    android:padding="15dp"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
             <Button
                 android:id="@+id/confirmBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:layout_marginBottom="10dp"
                 android:padding="15dp"
                 android:text="다음"

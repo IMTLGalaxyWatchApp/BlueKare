@@ -31,4 +31,9 @@
     <string name="patient_sex">성별</string>
     <string name="patient_age">나이</string>
     <string name="patient_address">거주지</string>
+    <string name="patient_socialstatus">사회경제상태</string>
+    <string name="patient_job">현재 직업</string>
+    <string name="patient_marriage">결혼 상태</string>
+    <string name="patient_education">교육 정도</string>
+    <string name="patient_education_total">총 교육 연한(년)</string>
 </resources>

@@ -1,6 +1,7 @@
 package edu.imtl.BlueKare.Activity.Login;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -81,8 +82,15 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             registerbtn.setEnabled(false);
                             if (!task.isSuccessful()) {
-                                Toast.makeText(RegisterActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                                try{
+                                    task.getResult();
+                                }catch (Exception e) {
+                                    e.printStackTrace();
+                                    Log.d("Fail_register_email",e.getMessage());
+                                    Toast.makeText(RegisterActivity.this, "이미 존재하는 이메일입니다.", Toast.LENGTH_LONG).show();
+                                }
                                 registerbtn.setEnabled(true);
+
                             } else {
                                 FirebaseUser user = mFirebaseAuth.getCurrentUser();
                                 userID = Objects.requireNonNull(user).getUid();
@@ -102,7 +110,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     users.set(user).addOnSuccessListener(aVoid -> {
                                     });*/
 
-                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+
 
                             }
                         }
@@ -125,9 +133,12 @@ public class RegisterActivity extends AppCompatActivity {
         user.sendEmailVerification().addOnCompleteListener(this, new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(RegisterActivity.this , "확인 이메일을 보냈습니다 확인부탁드립니다" , Toast.LENGTH_LONG).show();
-                }else{
+                if (task.isSuccessful()) {
+                    Log.d(TAG, "Email sent.");
+                    Toast.makeText(RegisterActivity.this, "이메일 인증을 진행해주세요.", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                }
+                else{
                     Toast.makeText(RegisterActivity.this, "메일 발송에 실패했습니다" + user.getEmail() + "입니다", Toast.LENGTH_SHORT).show();
                     try {
                         task.getResult();
@@ -140,6 +151,9 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+
+
+
 
     }
 

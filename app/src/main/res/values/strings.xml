@@ -35,4 +35,34 @@
     <string name="patient_marriage">결혼 상태</string>
     <string name="patient_education">교육 정도</string>
     <string name="patient_education_total">총 교육 연한(년)</string>
+    <string name="record_questionb_1">총 삽화 횟수(현재 삽화 포함)</string>
+    <string name="record_questionb_2">현재의 우울증삽화가 시작된 시기</string>
+    <string name="record_questionb_3">첫 번째 우울증삽화가 시작된 시기</string>
+    <string name="record_questionb_4">과거 삽화 시 정신병적 증상(환청, 피해의식) 동반</string>
+    <string name="record_questionb_5">자살에 대해서 심각한 고민을 해 본 적이 있습니까? (자살사고)</string>
+    <string name="record_questionb_6">자살에 대해서 구체적인 계획을 세워 본 적이 있습니까? (자살계획)</string>
+    <string name="record_questionb_7">자살 시도를 한 적이 있습니까?</string>
+    <string name="record_questionb_8">계절성 변화</string>
+    <string name="record_questionb_9">생리 전 증후군</string>
+    <string name="record_questionc_1">가족이나 친척의 정신과 병력</string>
+    <string name="record_questionc_2_1_1">1) 환자와의 관계</string>
+    <string name="record_questionc_2_1_2">1) 진단명</string>
+    <string name="record_questionc_2_1_3">1) 치료유무</string>
+    <string name="record_questionc_2_2_1">2) 환자와의 관계</string>
+    <string name="record_questionc_2_2_2">2) 진단명</string>
+    <string name="record_questionc_2_2_3">2) 치료유무</string>
+    <string name="record_questionc_2_3_1">3) 환자와의 관계</string>
+    <string name="record_questionc_2_3_2">3) 진단명</string>
+    <string name="record_questionc_2_3_3">3) 치료유무</string>
+    <string name="record_questiond_1">과거 또는 현재 내외과적 질환 유무 / Surgical history</string>
+    <string name="record_questiond_2_1_1">1) 진단명</string>
+    <string name="record_questiond_2_1_2">1) 진단연도</string>
+    <string name="record_questiond_2_1_3">1) 소견</string>
+    <string name="record_questiond_2_2_1">2) 진단명</string>
+    <string name="record_questiond_2_2_2">2) 진단연도</string>
+    <string name="record_questiond_2_2_3">2) 소견</string>
+    <string name="record_questiond_2_3_1">3) 진단명</string>
+    <string name="record_questiond_2_3_2">3) 진단연도</string>
+    <string name="record_questiond_2_3_3">3) 소견</string>
+
 </resources>

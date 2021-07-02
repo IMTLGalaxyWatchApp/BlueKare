@@ -19,6 +19,6 @@ public class SplashActivity extends AppCompatActivity {
             Intent i = new Intent(SplashActivity.this, LoginActivity.class);
             startActivity(i);
             finish();
-        }, 3*1000); // wait for 5 seconds
+        }, 2*1000); // wait for 5 seconds
     }
 }

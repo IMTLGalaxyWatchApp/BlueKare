@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="30dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="피험자 정보 기입"
+        android:textAlignment="center"
+        android:textColor="#8FC838"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="C.\t정신과적 가족력 평가(4촌까지)"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:autoSizeTextType="uniform"
+            android:padding="15dp"
+            android:text="@string/record_questionc_1"
+            android:textAlignment="textStart" />
+
+        <Spinner
+            android:id="@+id/record_questionc_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/et_custom"
+            android:padding="15dp"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:autoSizeTextType="uniform"
+            android:padding="15dp"
+            android:text="@string/record_questionc_2_1_1"
+            android:textAlignment="textStart" />
+
+        <EditText
+            android:id="@+id/record_questionc_2_1_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:autofillHints=""
+            android:background="@drawable/et_custom"
+            android:hint="@string/record_questionc_2_1_1"
+            android:inputType="numberDecimal"
+            android:padding="15dp"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:autoSizeTextType="uniform"
+            android:padding="15dp"
+            android:text="@string/record_questionc_2_1_2"
+            android:textAlignment="textStart" />
+
+        <EditText
+            android:id="@+id/record_questionc_2_1_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:autofillHints=""
+            android:background="@drawable/et_custom"
+            android:hint="@string/record_questionc_2_1_2"
+            android:inputType="numberDecimal"
+            android:padding="15dp"
+            android:textSize="15sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:autoSizeTextType="uniform"
+            android:padding="15dp"
+            android:text="@string/record_questionc_2_1_3"
+            android:textAlignment="textStart" />
+
+        <Spinner
+            android:id="@+id/record_questionc_2_1_3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/et_custom"
+            android:padding="15dp"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:autoSizeTextType="uniform"
+            android:padding="15dp"
+            android:text="@string/record_questionc_2_2_1"
+            android:textAlignment="textStart" />
+
+        <EditText
+            android:id="@+id/record_questionc_2_2_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:autofillHints=""
+            android:background="@drawable/et_custom"
+            android:hint="@string/record_questionc_2_2_1"
+            android:inputType="numberDecimal"
+            android:padding="15dp"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:autoSizeTextType="uniform"
+            android:padding="15dp"
+            android:text="@string/record_questionc_2_2_2"
+            android:textAlignment="textStart" />
+
+        <EditText
+            android:id="@+id/record_questionc_2_2_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:autofillHints=""
+            android:background="@drawable/et_custom"
+            android:hint="@string/record_questionc_2_2_2"
+            android:inputType="numberDecimal"
+            android:padding="15dp"
+            android:textSize="15sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:autoSizeTextType="uniform"
+            android:padding="15dp"
+            android:text="@string/record_questionc_2_2_3"
+            android:textAlignment="textStart" />
+
+        <Spinner
+            android:id="@+id/record_questionc_2_2_3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/et_custom"
+            android:padding="15dp"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:autoSizeTextType="uniform"
+            android:padding="15dp"
+            android:text="@string/record_questionc_2_3_1"
+            android:textAlignment="textStart" />
+
+        <EditText
+            android:id="@+id/record_questionc_2_3_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:autofillHints=""
+            android:background="@drawable/et_custom"
+            android:hint="@string/record_questionc_2_3_1"
+            android:inputType="numberDecimal"
+            android:padding="15dp"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:autoSizeTextType="uniform"
+            android:padding="15dp"
+            android:text="@string/record_questionc_2_3_2"
+            android:textAlignment="textStart" />
+
+        <EditText
+            android:id="@+id/record_questionc_2_3_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:autofillHints=""
+            android:background="@drawable/et_custom"
+            android:hint="@string/record_questionc_2_3_2"
+            android:inputType="numberDecimal"
+            android:padding="15dp"
+            android:textSize="15sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:autoSizeTextType="uniform"
+            android:padding="15dp"
+            android:text="@string/record_questionc_2_3_3"
+            android:textAlignment="textStart" />
+
+        <Spinner
+            android:id="@+id/record_questionc_2_3_3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/et_custom"
+            android:padding="15dp"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/nextButtonC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:padding="15dp"
+        android:text="다음"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

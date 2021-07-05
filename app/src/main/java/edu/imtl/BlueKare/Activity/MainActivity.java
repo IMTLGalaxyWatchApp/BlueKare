@@ -1,6 +1,8 @@
 package edu.imtl.BlueKare.Activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,6 +44,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private long lastTimeBackPressed;;
 
 
+    private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
+
+    // Requesting permission to RECORD_AUDIO
+    private boolean permissionToRecordAccepted = false;
+    private String [] permissions = {Manifest.permission.RECORD_AUDIO};
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case REQUEST_RECORD_AUDIO_PERMISSION:
+                permissionToRecordAccepted  = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                break;
+        }
+        if (!permissionToRecordAccepted ) finish();
+
+    }
+
 
 
     @Override
@@ -51,17 +71,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawerlayout);
         setNavigationViewListener();
 
-        //AR 버튼
-//        btn = findViewById(R.id.arbutton);
-//        btn.setOnClickListener(view -> {
-//            Intent intentAr = new Intent(MainActivity.this, ArActivity.class);
-//            try {
-//                startActivity(intentAr);
-//                finish();
-//            } catch (ActivityNotFoundException e) {
-//                System.out.println("error");
-//            }
-//        });
         mFirebaseAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         userID= Objects.requireNonNull(mFirebaseAuth.getCurrentUser()).getUid();

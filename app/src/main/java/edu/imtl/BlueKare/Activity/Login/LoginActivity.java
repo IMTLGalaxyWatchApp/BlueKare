@@ -68,19 +68,19 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mFirebaseAuth.getCurrentUser();
-                                if(user.isEmailVerified()){ // 그리고 그때 그 계정이 실제로 존재하는 계정인지
+                                if(user.isEmailVerified()){
                                     Log.d("login", "signInWithEmail:success" + user.getEmail());
                                     Toast.makeText(LoginActivity.this, "signInWithEmail:success.", Toast.LENGTH_SHORT).show();
                                     Intent i = new Intent(LoginActivity.this , MainActivity.class);
                                     startActivity(i);
                                     finish();
                                 }else{
-                                    Toast.makeText(LoginActivity.this, "인증이 되지 않은 이메일입니다 해당 이메일 주소에서 링크를 클릭해주세요", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this, "이메일 인증이 되지 않은 계정입니다", Toast.LENGTH_SHORT).show();
                                     loginbtn.setEnabled(true);
                                 }
 
                             } else {
-                                Toast.makeText(LoginActivity.this, "Login Failed, Try again!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                                 loginbtn.setEnabled(true);
                             }
                         }

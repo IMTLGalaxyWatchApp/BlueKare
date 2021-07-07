@@ -1,4 +1,4 @@
-package edu.imtl.BlueKare.Activity.Record;
+package edu.imtl.BlueKare.Activity.Survey;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,13 +13,11 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
-import edu.imtl.BlueKare.Activity.MainMenu.Fragment_main;
 import edu.imtl.BlueKare.R;
 
 
-public class Fragment_record_A extends Fragment {
+public class Fragment_survey_A extends Fragment {
 
     private EditText patient_name;
     private EditText patient_age;
@@ -40,7 +38,7 @@ public class Fragment_record_A extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_record_a, container, false);
+        return inflater.inflate(R.layout.fragment_survey_a, container, false);
     }
 
     @Override
@@ -80,7 +78,7 @@ public class Fragment_record_A extends Fragment {
         nextButtonA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getParentFragmentManager().beginTransaction().replace(R.id.recordContainer, new Fragment_record_B()).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.recordContainer, new Fragment_survey_B()).commit();
 
             }
         });

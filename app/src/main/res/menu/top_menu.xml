@@ -3,19 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Main Menu"
+    <item android:title="매인 메뉴"
         android:id="@+id/Main_Menu_nav"
         android:icon="@drawable/ic_baseline_map_24"/>
-    <item android:title="Record"
-        android:id="@+id/Record_nav"
+    <item
+        android:id="@+id/Survey_nav"
+        android:icon="@drawable/ic_baseline_menu_24"
+        android:title="인적사항 수집"/>
+
+    <item android:title="녹음음"
+       android:id="@+id/Record_nav"
         android:icon="@drawable/ic_baseline_info_24"/>
+
     <item
         android:id="@+id/Download_nav"
         android:icon="@drawable/ic_baseline_menu_24"
-        android:title="Download"/>
+        android:title="다운로드"/>
 
 
-    <item android:title="Settings">
+    <item android:title="설정">
         <menu >
             <item
                 android:id="@+id/saveImage"
@@ -31,9 +37,9 @@
     </item>
 
 
-    <item android:title="Account">
+    <item android:title="계정">
         <menu >
-            <item android:title="Logout"
+            <item android:title="로그아웃"
                 android:id="@+id/Logout"
                 android:icon="@drawable/ic_baseline_search_24"/>
         </menu>

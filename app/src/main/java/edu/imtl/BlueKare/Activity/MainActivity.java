@@ -17,6 +17,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import edu.imtl.BlueKare.Activity.Download.Fragment_download;
 import edu.imtl.BlueKare.Activity.MainMenu.Fragment_main;
+import edu.imtl.BlueKare.Activity.Survey.Fragment_survey;
 import edu.imtl.BlueKare.Activity.Record.Fragment_record;
 import edu.imtl.BlueKare.Activity.Login.LoginActivity;
 import edu.imtl.BlueKare.R;
@@ -113,6 +114,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.Main_Menu_nav: {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_main()).commit();
+                break;
+            }
+            case R.id.Survey_nav: {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_survey()).commit();
                 break;
             }
             case R.id.Record_nav: {

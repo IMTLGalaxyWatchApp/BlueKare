@@ -1,10 +1,9 @@
-package edu.imtl.BlueKare.Activity.Record;
+package edu.imtl.BlueKare.Activity.Survey;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,14 +13,12 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
-import edu.imtl.BlueKare.Activity.MainMenu.Fragment_main;
 import edu.imtl.BlueKare.R;
 
 
 
-public class Fragment_record_B extends Fragment {
+public class Fragment_survey_B extends Fragment {
 
 
     /*================= Question Type B  =====================*/
@@ -42,7 +39,7 @@ public class Fragment_record_B extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_record_b, container, false);
+        return inflater.inflate(R.layout.fragment_survey_b, container, false);
     }
 
     @Override
@@ -71,7 +68,7 @@ public class Fragment_record_B extends Fragment {
         nextButtonB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getParentFragmentManager().beginTransaction().replace(R.id.recordContainer, new Fragment_record_C()).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.recordContainer, new Fragment_survey_C()).commit();
 
             }
         });

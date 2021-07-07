@@ -5,19 +5,19 @@
 
     <item android:title="매인 메뉴"
         android:id="@+id/Main_Menu_nav"
-        android:icon="@drawable/ic_baseline_map_24"/>
+        android:icon="@drawable/ic_baseline_bar_chart_24"/>
     <item
         android:id="@+id/Survey_nav"
-        android:icon="@drawable/ic_baseline_menu_24"
+        android:icon="@drawable/ic_baseline_content_paste_24"
         android:title="인적사항 수집"/>
 
-    <item android:title="녹음음"
+    <item android:title="녹음"
        android:id="@+id/Record_nav"
-        android:icon="@drawable/ic_baseline_info_24"/>
+        android:icon="@drawable/ic_baseline_record_voice_over_24"/>
 
     <item
         android:id="@+id/Download_nav"
-        android:icon="@drawable/ic_baseline_menu_24"
+        android:icon="@drawable/ic_baseline_arrow_downward_24"
         android:title="다운로드"/>
 
 
@@ -41,7 +41,7 @@
         <menu >
             <item android:title="로그아웃"
                 android:id="@+id/Logout"
-                android:icon="@drawable/ic_baseline_search_24"/>
+                android:icon="@drawable/ic_baseline_account_circle_24"/>
         </menu>
     </item>
 

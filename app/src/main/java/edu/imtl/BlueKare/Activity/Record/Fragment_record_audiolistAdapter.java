@@ -15,10 +15,10 @@ import edu.imtl.BlueKare.R;
 
 public class Fragment_record_audiolistAdapter extends RecyclerView.Adapter<Fragment_record_audiolistAdapter.AudioViewHolder> {
 
-    private File[] allFiles;
+    private final File[] allFiles;
     private Fragment_record_TimeAgo timeAgo;
 
-    private onItemListClick onItemListClick;
+    private final onItemListClick onItemListClick;
 
     public Fragment_record_audiolistAdapter(File[] allFiles, onItemListClick onItemListClick) {
         this.allFiles = allFiles;
@@ -48,8 +48,8 @@ public class Fragment_record_audiolistAdapter extends RecyclerView.Adapter<Fragm
     public class AudioViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView list_image;
-        private TextView list_title;
-        private TextView list_date;
+        private final TextView list_title;
+        private final TextView list_date;
 
         public AudioViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -21,18 +21,7 @@ import android.widget.EditText;
 public class Fragment_record extends Fragment {
 
     /*================= Recording  =====================*/
-    Context cThis;//context 설정
-    String LogTT = "[STT]";//LOG타이틀
-    //음성 인식용
-    Intent SttIntent;
-    SpeechRecognizer mRecognizer;
-    //음성 출력용
-    TextToSpeech tts;
 
-
-    private Button RecordButton;
-    EditText txtInMsg;
-    EditText txtSystem;
     /*=======================================================*/
 
 
@@ -44,6 +33,5 @@ public class Fragment_record extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 }

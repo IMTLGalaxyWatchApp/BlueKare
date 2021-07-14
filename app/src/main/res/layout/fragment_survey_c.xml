@@ -327,18 +327,36 @@
                 android:padding="15dp"
                 android:textSize="15sp" />
         </LinearLayout>
-
-        <Button
-            android:id="@+id/nextButtonC"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="10dp"
-            android:padding="15dp"
-            android:text="다음"
-            android:textAlignment="center"
-            android:textSize="24sp" />
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <Button
+                android:id="@+id/preButtonC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                android:padding="15dp"
+                android:text="이전"
+                android:textAlignment="center"
+                android:textSize="20dp" />
+            <Button
+                android:id="@+id/nextButtonC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                android:padding="15dp"
+                android:text="다음"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

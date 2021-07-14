@@ -24,6 +24,7 @@ public class Fragment_survey_A extends Fragment {
     private EditText patient_address;
     private EditText patient_education_total;
     private Spinner patient_sex;
+
     String[] sex = new String[]{"남", "녀"};
     private Spinner patient_socialstatus;
     String[] socialstatus = new String[]{"상", "중상", "중", "중하", "하"};
@@ -34,6 +35,7 @@ public class Fragment_survey_A extends Fragment {
     private Spinner patient_education;
     String[] education = new String[]{"무학", "초졸", "중졸", "고졸", "전문대졸", "대졸", "대학원졸"};
     private Button nextButtonA;
+    private Button preButtonA;
 
 
     @Override
@@ -54,6 +56,7 @@ public class Fragment_survey_A extends Fragment {
         patient_marriage = view.findViewById(R.id.patient_marriage);
         patient_education = view.findViewById(R.id.patient_education);
         nextButtonA = view.findViewById(R.id.nextButtonA);
+
 
         ArrayAdapter<String> adapter_sex = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, sex);
         adapter_sex.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -82,6 +85,8 @@ public class Fragment_survey_A extends Fragment {
 
             }
         });
+
+
 
     }
 }

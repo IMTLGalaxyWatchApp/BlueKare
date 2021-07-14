@@ -33,6 +33,7 @@ public class Fragment_survey_B extends Fragment {
     private Spinner question9;
     String[] bool = new String[]{"예", "아니오"};
     private Button nextButtonB;
+    private Button preButtonB;
     /*=======================================================*/
 
 
@@ -56,6 +57,7 @@ public class Fragment_survey_B extends Fragment {
         question8 = view.findViewById(R.id.record_questionb_8);
         question9 = view.findViewById(R.id.record_questionb_9);
         nextButtonB = view.findViewById(R.id.nextButtonB);
+        preButtonB=view.findViewById(R.id.preButtonB);
 
         ArrayAdapter<String> adapter_bool = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, bool);
         adapter_bool.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -70,6 +72,12 @@ public class Fragment_survey_B extends Fragment {
             public void onClick(View v) {
                 getParentFragmentManager().beginTransaction().replace(R.id.recordContainer, new Fragment_survey_C()).commit();
 
+            }
+        });
+        preButtonB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getParentFragmentManager().beginTransaction().replace(R.id.recordContainer, new Fragment_survey_A()).commit();
             }
         });
 

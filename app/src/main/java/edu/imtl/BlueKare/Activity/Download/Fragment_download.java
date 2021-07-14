@@ -2,6 +2,7 @@ package edu.imtl.BlueKare.Activity.Download;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,13 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
@@ -110,6 +118,23 @@ public class Fragment_download extends Fragment {
 
         String transDateString=sdf.format(c.getTime());
         //periodArray[3]=transDateString;
+    }
+    private void SearchName(String name){
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        Query query = rootRef.child("Users").orderByChild("name").startAt(name).endAt(name + "\uf8ff");
+        query.addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot messageSnapshot: dataSnapshot.getChildren()) {
+                            String name = (String) messageSnapshot.child("name").getValue();
+                            Log.d("TAG", "name is :"+name);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
     }
 
 }

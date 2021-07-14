@@ -1,4 +1,4 @@
-package edu.imtl.BlueKare.Activity.Login;
+package edu.imtl.bluekare.Activity.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,8 +18,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import edu.imtl.BlueKare.Activity.MainActivity;
-import edu.imtl.BlueKare.R;
+import edu.imtl.bluekare.Activity.MainActivity;
+import edu.imtl.bluekare.R;
 
 public class LoginActivity extends AppCompatActivity {
     EditText id, password;

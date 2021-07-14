@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="edu.imtl.BlueKare">
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the "MyLocation" functionality.
-    -->
+    package="edu.imtl.bluekare"
+    android:versionCode="1"
+    android:versionName="1.0">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
     <queries>
-        <package android:name="com.google.android.googlequicksearchbox"/>
+        <package android:name="com.sec.android.app.shealth" />
     </queries>
     <application
         android:allowBackup="true"
@@ -21,21 +18,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-
+        <meta-data
+            android:name="com.samsung.android.health.permission.read"
+            android:value="com.samsung.health.step_count" />
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
 
         <activity
-            android:name="edu.imtl.BlueKare.Activity.Login.LoginActivity"
+            android:name="edu.imtl.bluekare.Activity.Login.LoginActivity"
             android:noHistory="true" />
         <activity
-            android:name="edu.imtl.BlueKare.Activity.Login.RegisterActivity"
+            android:name="edu.imtl.bluekare.Activity.Login.RegisterActivity"
             android:noHistory="true" />
         <activity
-            android:name="edu.imtl.BlueKare.Activity.MainActivity"
+            android:name="edu.imtl.bluekare.Activity.MainActivity"
             android:screenOrientation="fullSensor" />
-        <activity android:name="edu.imtl.BlueKare.Activity.Login.SplashActivity">
+        <activity android:name="edu.imtl.bluekare.Activity.Login.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

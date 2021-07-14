@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:232245928238:android:95b522adc78c2658165abf",
         "android_client_info": {
-          "package_name": "edu.imtl.BlueKare"
+          "package_name": "edu.imtl.bluekare"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "232245928238-9mtp74btb6kv6m0n710m8nm3se8h19ef.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "edu.imtl.BlueKare",
+            "package_name": "edu.imtl.bluekare",
             "certificate_hash": "c379ae6ab108cbd8e75a1cb8fa235ce7d287af55"
           }
         },

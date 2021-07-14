@@ -1,4 +1,4 @@
-package edu.imtl.BlueKare.Activity.Record;
+package edu.imtl.bluekare.Activity.Record;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
-import edu.imtl.BlueKare.R;
+import edu.imtl.bluekare.R;
 
 
 public class Fragment_record_audiolistAdapter extends RecyclerView.Adapter<Fragment_record_audiolistAdapter.AudioViewHolder> {

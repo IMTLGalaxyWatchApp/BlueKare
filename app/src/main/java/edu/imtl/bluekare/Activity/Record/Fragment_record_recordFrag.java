@@ -1,4 +1,4 @@
-package edu.imtl.BlueKare.Activity.Record;
+package edu.imtl.bluekare.Activity.Record;
 
 
 import android.Manifest;
@@ -6,7 +6,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.media.MediaRecorder;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,15 +21,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import edu.imtl.BlueKare.R;
+import edu.imtl.bluekare.R;
 
 
 /**

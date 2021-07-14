@@ -1,4 +1,4 @@
-package edu.imtl.BlueKare.Activity.Download;
+package edu.imtl.bluekare.Activity.Download;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ import androidx.fragment.app.Fragment;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
-import edu.imtl.BlueKare.R;
+import edu.imtl.bluekare.R;
 
 
 public class Fragment_download extends Fragment {

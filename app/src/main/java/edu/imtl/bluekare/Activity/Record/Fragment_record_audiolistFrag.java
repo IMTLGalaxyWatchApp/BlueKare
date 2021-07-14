@@ -1,4 +1,4 @@
-package edu.imtl.BlueKare.Activity.Record;
+package edu.imtl.bluekare.Activity.Record;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -21,8 +21,9 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
-import edu.imtl.BlueKare.R;
+import edu.imtl.bluekare.R;
 
 
 /**
@@ -78,7 +79,7 @@ public class Fragment_record_audiolistFrag extends Fragment implements Fragment_
 
         playerSeekbar = view.findViewById(R.id.player_seekbar);
 
-        String path = getActivity().getExternalFilesDir("/").getAbsolutePath();
+        String path = Objects.requireNonNull(requireActivity().getExternalFilesDir("/")).getAbsolutePath();
         File directory = new File(path);
         allFiles = directory.listFiles();
 

@@ -1,9 +1,9 @@
-package edu.imtl.BlueKare.Activity.Login;
+package edu.imtl.bluekare.Activity.Login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import edu.imtl.BlueKare.R;
+import edu.imtl.bluekare.R;
 
 import android.content.Intent;
 import android.os.Bundle;

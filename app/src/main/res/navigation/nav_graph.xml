@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/recordFragment"
-        android:name="edu.imtl.BlueKare.Activity.Record.Fragment_record_recordFrag"
+        android:name="edu.imtl.bluekare.Activity.Record.Fragment_record_recordFrag"
         android:label="fragment_record"
         tools:layout="@layout/fragment_record_main" >
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/audioListFragment"
-        android:name="edu.imtl.BlueKare.Activity.Record.Fragment_record_audiolistFrag"
+        android:name="edu.imtl.bluekare.Activity.Record.Fragment_record_audiolistFrag"
         android:label="fragment_audio_list"
         tools:layout="@layout/fragment_audio_list" />
 </navigation>

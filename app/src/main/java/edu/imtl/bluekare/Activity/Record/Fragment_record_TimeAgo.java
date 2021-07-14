@@ -1,4 +1,4 @@
-package edu.imtl.BlueKare.Activity.Record;
+package edu.imtl.bluekare.Activity.Record;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;

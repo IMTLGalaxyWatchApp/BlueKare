@@ -1,4 +1,4 @@
-package edu.imtl.BlueKare;
+package edu.imtl.bluekare;
 
 import org.junit.Test;
 

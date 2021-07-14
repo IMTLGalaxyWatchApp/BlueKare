@@ -1,28 +1,17 @@
-package edu.imtl.BlueKare.Activity.Record;
+package edu.imtl.bluekare.Activity.Record;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import edu.imtl.BlueKare.R;
-
-import android.content.Context;
-import android.content.Intent;
-import android.speech.SpeechRecognizer;
-import android.speech.tts.TextToSpeech;
-import android.widget.EditText;
+import edu.imtl.bluekare.R;
 
 public class Fragment_record extends Fragment {
-
-    /*================= Recording  =====================*/
-
-    /*=======================================================*/
 
 
     @Override
@@ -35,3 +24,7 @@ public class Fragment_record extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 }
+
+
+
+

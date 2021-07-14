@@ -1,4 +1,4 @@
-package edu.imtl.bluekare.Activity.Record;
+package edu.imtl.bluekare.Fragments.Record;
 
 import android.view.LayoutInflater;
 import android.view.View;

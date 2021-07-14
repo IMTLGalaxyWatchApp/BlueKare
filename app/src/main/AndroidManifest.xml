@@ -26,15 +26,15 @@
             android:required="false" />
 
         <activity
-            android:name="edu.imtl.bluekare.Activity.Login.LoginActivity"
+            android:name="edu.imtl.bluekare.Fragments.Login.LoginActivity"
             android:noHistory="true" />
         <activity
-            android:name="edu.imtl.bluekare.Activity.Login.RegisterActivity"
+            android:name="edu.imtl.bluekare.Fragments.Login.RegisterActivity"
             android:noHistory="true" />
         <activity
-            android:name="edu.imtl.bluekare.Activity.MainActivity"
+            android:name="edu.imtl.bluekare.MainActivity"
             android:screenOrientation="fullSensor" />
-        <activity android:name="edu.imtl.bluekare.Activity.Login.SplashActivity">
+        <activity android:name="edu.imtl.bluekare.Fragments.Login.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

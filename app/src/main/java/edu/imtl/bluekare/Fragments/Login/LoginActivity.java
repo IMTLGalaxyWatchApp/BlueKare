@@ -1,4 +1,4 @@
-package edu.imtl.bluekare.Activity.Login;
+package edu.imtl.bluekare.Fragments.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import edu.imtl.bluekare.Activity.MainActivity;
+import edu.imtl.bluekare.MainActivity;
 import edu.imtl.bluekare.R;
 
 public class LoginActivity extends AppCompatActivity {

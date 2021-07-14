@@ -39,6 +39,9 @@
 
     <item android:title="계정">
         <menu >
+            <item android:title="삼성헬스와 연동"
+                android:id="@+id/shealthConnect"
+                android:icon="@drawable/ic_baseline_account_circle_24"/>
             <item android:title="로그아웃"
                 android:id="@+id/Logout"
                 android:icon="@drawable/ic_baseline_account_circle_24"/>

@@ -1,4 +1,4 @@
-package edu.imtl.bluekare.Activity.MainMenu;
+package edu.imtl.bluekare.Fragments.MainMenu;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

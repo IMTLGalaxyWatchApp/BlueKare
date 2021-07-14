@@ -1,4 +1,4 @@
-package edu.imtl.bluekare.Activity;
+package edu.imtl.bluekare;
 
 import android.Manifest;
 import android.content.Intent;
@@ -15,13 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import edu.imtl.bluekare.Activity.Download.Fragment_download;
-import edu.imtl.bluekare.Activity.MainMenu.Fragment_main;
-import edu.imtl.bluekare.Activity.Survey.Fragment_survey;
-import edu.imtl.bluekare.Activity.Record.Fragment_record;
-import edu.imtl.bluekare.Activity.Login.LoginActivity;
-import edu.imtl.bluekare.Activity.SHealth.StepCountReporter;
-import edu.imtl.bluekare.R;
+import edu.imtl.bluekare.Fragments.Download.Fragment_download;
+import edu.imtl.bluekare.Fragments.MainMenu.Fragment_main;
+import edu.imtl.bluekare.Fragments.Survey.Fragment_survey;
+import edu.imtl.bluekare.Fragments.Record.Fragment_record;
+import edu.imtl.bluekare.Fragments.Login.LoginActivity;
+import edu.imtl.bluekare.SHealth.StepCountReporter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -47,7 +46,7 @@ import java.util.Map;
 import java.util.Objects;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     /*================= Samsung Health  =====================*/
     public static final String APP_TAG = "SimpleHealth";
@@ -65,27 +64,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static String finalUserId;
     public static int datasize;
     TextView musername, museremail;
-    private long lastTimeBackPressed;;
+    private long lastTimeBackPressed;
+    ;
 
 
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
 
     // Requesting permission to RECORD_AUDIO
     private boolean permissionToRecordAccepted = false;
-    private String [] permissions = {Manifest.permission.RECORD_AUDIO};
+    private String[] permissions = {Manifest.permission.RECORD_AUDIO};
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode){
+        switch (requestCode) {
             case REQUEST_RECORD_AUDIO_PERMISSION:
-                permissionToRecordAccepted  = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                permissionToRecordAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                 break;
         }
-        if (!permissionToRecordAccepted ) finish();
+        if (!permissionToRecordAccepted) finish();
 
     }
-
 
 
     @Override
@@ -97,12 +96,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
-        userID= Objects.requireNonNull(mFirebaseAuth.getCurrentUser()).getUid();
+        userID = Objects.requireNonNull(mFirebaseAuth.getCurrentUser()).getUid();
         NavigationView navigationView = findViewById(R.id.navigationlayout);
         View headerView = navigationView.getHeaderView(0);
-        museremail= headerView.findViewById(R.id.userdraweremail);
-        musername= headerView.findViewById(R.id.userdrawername);
-
+        museremail = headerView.findViewById(R.id.userdraweremail);
+        musername = headerView.findViewById(R.id.userdrawername);
 
 
         DocumentReference docRef = fstore.collection("users").document(userID);
@@ -113,10 +111,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (document.exists()) {
                     musername.setText(document.getString("fName"));
                     museremail.setText(document.getString("email"));
-                    finalUserId=userID;
+                    finalUserId = userID;
                 }
-            }
-            else {
+            } else {
                 Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
             }
         });
@@ -140,48 +137,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Handle navigation view item clicks here.
-        switch (item.getItemId()) {
-            case R.id.Main_Menu_nav: {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_main()).commit();
-                break;
-            }
-            case R.id.Survey_nav: {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_survey()).commit();
-                break;
-            }
-            case R.id.Record_nav: {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_record()).commit();
-                break;
-            }
-            case R.id.Download_nav: {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_download()).commit();
-                break;
-            }
-            case R.id.Logout: {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(MainActivity.this , LoginActivity.class));
-                this.finish();
-                break;
-            }
-        }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerlayout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
 
     @Override
     public void onBackPressed() {
         drawerLayout = findViewById(R.id.drawerlayout);
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else {
-            if (System.currentTimeMillis() - lastTimeBackPressed < 2000)
-            {
+        } else {
+            if (System.currentTimeMillis() - lastTimeBackPressed < 2000) {
                 finish();
                 return;
             }
@@ -222,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
     };
+
     private void showPermissionAlarmDialog() {
         if (isFinishing()) {
             return;
@@ -321,22 +285,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         runOnUiThread(() -> Log.e(APP_TAG, String.valueOf(count)));
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.top_menu, menu);
-        return true;
-    }
 
     @Override
-    public boolean onOptionsItemSelected(android.view.MenuItem item) {
-
-        if (item.getItemId() == R.id.connect) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // Handle navigation view item clicks here.
+        if (item.getItemId() == R.id.Main_Menu_nav) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_main()).commit();
+        }
+        if (item.getItemId() == R.id.Survey_nav) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_survey()).commit();
+        }
+        if (item.getItemId() == R.id.Record_nav) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_record()).commit();
+        }
+        if (item.getItemId() == R.id.Download_nav) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_download()).commit();
+        }
+        if (item.getItemId() == R.id.shealthConnect) {
             requestPermission();
         }
+        if (item.getItemId() == R.id.Logout) {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            this.finish();
+        }
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerlayout);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 }
 

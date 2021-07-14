@@ -16,7 +16,7 @@
  * to change without notice.
  */
 
-package edu.imtl.bluekare.Activity.SHealth;
+package edu.imtl.bluekare.SHealth;
 
 import com.samsung.android.sdk.healthdata.HealthConstants.StepCount;
 import com.samsung.android.sdk.healthdata.HealthData;

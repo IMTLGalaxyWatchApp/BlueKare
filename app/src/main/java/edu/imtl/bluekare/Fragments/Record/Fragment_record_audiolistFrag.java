@@ -1,4 +1,4 @@
-package edu.imtl.bluekare.Activity.Record;
+package edu.imtl.bluekare.Fragments.Record;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;

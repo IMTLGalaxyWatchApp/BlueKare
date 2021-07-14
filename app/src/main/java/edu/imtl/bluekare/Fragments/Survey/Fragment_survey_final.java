@@ -1,4 +1,4 @@
-package edu.imtl.bluekare.Activity.Survey;
+package edu.imtl.bluekare.Fragments.Survey;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

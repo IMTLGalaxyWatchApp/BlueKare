@@ -1,4 +1,4 @@
-package edu.imtl.bluekare.Activity.Download;
+package edu.imtl.bluekare.Fragments.Download;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;

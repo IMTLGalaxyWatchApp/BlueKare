@@ -1,4 +1,4 @@
-package edu.imtl.bluekare.Activity.Login;
+package edu.imtl.bluekare.Fragments.Login;
 
 import androidx.appcompat.app.AppCompatActivity;
 

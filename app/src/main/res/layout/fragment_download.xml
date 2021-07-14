@@ -48,6 +48,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:queryHint="이름 검색"
+                    app:iconifiedByDefault="false"
+                    android:visibility="visible"
+                    app:showAsAction="always"
                     />
 
             </LinearLayout>
@@ -72,7 +75,8 @@
                     android:id="@+id/spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:spinnerMode="dropdown"/>
             </LinearLayout>
 
             <LinearLayout
@@ -100,37 +104,49 @@
                         android:id="@+id/checkBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="심박수(HeartRate)" />
+                        android:text="심박수(HeartRate)"
+                        android:checked="true"/>
 
                     <CheckBox
                         android:id="@+id/checkBox2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="ECG" />
+                        android:text="Electrocardiogram(ECG)"
+                        android:checked="true"/>
 
                     <CheckBox
                         android:id="@+id/checkBox3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="걸음수(StepDailyTrend)" />
+                        android:text="걸음수(StepDailyTrend)"
+                        android:checked="true"/>
 
                     <CheckBox
                         android:id="@+id/checkBox4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="CheckBox" />
+                        android:text="혈압(Blood Pressure)"
+                        android:checked="true"/>
 
                     <CheckBox
                         android:id="@+id/checkBox5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="CheckBox" />
+                        android:text="산소포화도(Oxygen Saturation)"
+                        android:checked="true"/>
 
                     <CheckBox
                         android:id="@+id/checkBox6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="CheckBox" />
+                        android:text="수면(Sleep Stage)"
+                        android:checked="true"/>
+                    <CheckBox
+                        android:id="@+id/checkBox7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="운동(Exercise)"
+                        android:checked="true"/>
                 </LinearLayout>
 
             </LinearLayout>

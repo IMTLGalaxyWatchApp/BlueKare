@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="기간설정">
+        <item>전체</item>
+        <item>1개월</item>
+        <item>1시간</item>
+        <item>직접설정</item>
+    </string-array>
+</resources>

@@ -13,13 +13,6 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="swipe_left_for_register">Swipe Left for Register</string>
-    <string name="login">Login</string>
-    <string name="password">Password</string>
-    <string name="e_mail">Email</string>
-    <string name="tag">Let\'s join us and \nBuild your relationship with others</string>
-    <string name="swipe_right_for_login">Swipe Right for Login</string>
-    <string name="register">Register</string>
     <string name="re_type_password">Re-type Password</string>
     <string name="your_name">Full Name</string>
     <string name="user_name">USER NAME</string>
@@ -84,4 +77,9 @@
     <string name="msg_req_agree">Please agree to Samsung Health policy</string>
     <string name="msg_req_available">Please make Samsung Health available</string>
 
+    <string name="hippo_abs_server">http://jdi.bitzflex.com:4000/</string>
+    <string name="create_device">api/v1/devices</string>
+    <string name="registration">api/v1/registration</string>
+    <string name="login">api/v1/session</string>
+    <string name="register_service">api/v1/services</string>
 </resources>

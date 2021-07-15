@@ -1,11 +1,15 @@
 package edu.imtl.bluekare.Fragments.Login;
 
 import android.content.Intent;
+import android.nfc.Tag;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +22,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.net.Socket;
+import java.nio.channels.Channel;
+
 import edu.imtl.bluekare.MainActivity;
 import edu.imtl.bluekare.R;
 
@@ -25,82 +32,59 @@ public class LoginActivity extends AppCompatActivity {
     EditText id, password;
     Button loginbtn;
     TextView register;
-    FirebaseAuth mFirebaseAuth;
-    private FirebaseAuth.AuthStateListener mAuthStateLisnter;
+    DeviceInfo deviceInfo;
+    RadioButton rembtn;
+
+    String device_id;
+    String device_name;
+    int remember_flag;
+
+    String uid, upw;
+
+    final String tag="asdf";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mFirebaseAuth = FirebaseAuth.getInstance();
+
         id = findViewById(R.id.et_email);
         password = findViewById(R.id.et_password);
         loginbtn = findViewById(R.id.btn_login);
         register = findViewById(R.id.toRegister);
+        rembtn=findViewById(R.id.rememBtn);
 
+        deviceInfo = new DeviceInfo(Build.BOARD, Build.BRAND, Build.CPU_ABI, Build.DEVICE, Build.DISPLAY,
+                Build.FINGERPRINT, Build.HOST, Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID), Build.MANUFACTURER, Build.MODEL, Build.PRODUCT,
+                Build.TAGS, Build.TYPE, Build.USER, Build.VERSION.RELEASE);
+        deviceInfo.logging();
 
-        mAuthStateLisnter = new FirebaseAuth.AuthStateListener() {
+        device_id = deviceInfo.getId();
+        device_name = deviceInfo.fingerprint;
+
+        remember_flag=1; // remember login
+
+        rembtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
-                if (mFirebaseUser!=null) {
-                    if(mFirebaseUser.isEmailVerified()) startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                }
+            public void onClick(View v) {
+                remember_flag*=-1;
             }
-        };
-
+        });
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = id.getText().toString();
-                String pswrd = password.getText().toString();
-                if (email.isEmpty()) {
-                    id.setError("Please insert Email");
-                    id.requestFocus();
-                } else if (pswrd.isEmpty()) {
-                    password.setError("Please insert Password");
-                    password.requestFocus();
-                } else {
-                    loginbtn.setEnabled(false);
-                    mFirebaseAuth.signInWithEmailAndPassword(email, pswrd).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                FirebaseUser user = mFirebaseAuth.getCurrentUser();
-                                if(user.isEmailVerified()){
-                                    Log.d("login", "signInWithEmail:success" + user.getEmail());
-                                    Toast.makeText(LoginActivity.this, "signInWithEmail:success.", Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(LoginActivity.this , MainActivity.class);
-                                    startActivity(i);
-                                    finish();
-                                }else{
-                                    Toast.makeText(LoginActivity.this, "이메일 인증이 되지 않은 계정입니다", Toast.LENGTH_SHORT).show();
-                                    loginbtn.setEnabled(true);
-                                }
+                uid=id.getText().toString();
+                upw=password.getText().toString();
+                Log.e(tag, uid);
+                Log.e(tag, upw);
+                Async_login_task async_login_task = new Async_login_task(LoginActivity.this, uid, upw, device_id, device_name, remember_flag);
+                async_login_task.execute();
 
-                            } else {
-                                Toast.makeText(LoginActivity.this, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show();
-                                loginbtn.setEnabled(true);
-                            }
-                        }
-                    });
-                    //loginbtn.setEnabled(true);
-                }
             }
         });
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-            }
-        });
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mFirebaseAuth.addAuthStateListener(mAuthStateLisnter);
+
     }
 
 

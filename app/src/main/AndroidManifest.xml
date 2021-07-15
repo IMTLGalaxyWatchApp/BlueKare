@@ -6,7 +6,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <queries>
         <package android:name="com.sec.android.app.shealth" />
@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme.NoActionBar">
         <meta-data
             android:name="com.samsung.android.health.permission.read"
-            android:value="com.samsung.health.step_count" />
+            android:value="com.samsung.health.user_profile;com.samsung.health.step_count;com.samsung.health.blood_pressure;com.samsung.health.exercise;com.samsung.health.heart_rate;com.samsung.health.oxygen_saturation;com.samsung.health.sleep;com.samsung.health.sleep_stage;com.samsung.shealth.step_daily_trend" />
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

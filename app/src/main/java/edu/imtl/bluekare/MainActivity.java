@@ -28,12 +28,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.samsung.android.sdk.healthdata.HealthConstants;
 import com.samsung.android.sdk.healthdata.HealthDataStore;
 import com.samsung.android.sdk.healthdata.HealthConnectionErrorResult;
 import com.samsung.android.sdk.healthdata.HealthConstants.StepCount;
 import com.samsung.android.sdk.healthdata.HealthPermissionManager;
 import com.samsung.android.sdk.healthdata.HealthPermissionManager.PermissionKey;
 import com.samsung.android.sdk.healthdata.HealthPermissionManager.PermissionType;
+import com.samsung.android.sdk.healthdata.HealthUserProfile;
 
 import android.app.AlertDialog;
 import android.os.Handler;
@@ -42,8 +44,10 @@ import android.util.Log;
 import android.view.Menu;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -53,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private HealthDataStore mStore;
     private StepCountReporter mReporter;
+
+
     /*=======================================================*/
 
     FloatingActionButton btn;
@@ -65,26 +71,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static int datasize;
     TextView musername, museremail;
     private long lastTimeBackPressed;
-    ;
 
-
-    private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
-
-    // Requesting permission to RECORD_AUDIO
-    private boolean permissionToRecordAccepted = false;
-    private String[] permissions = {Manifest.permission.RECORD_AUDIO};
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case REQUEST_RECORD_AUDIO_PERMISSION:
-                permissionToRecordAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                break;
-        }
-        if (!permissionToRecordAccepted) finish();
-
-    }
 
 
     @Override
@@ -132,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mStore = new HealthDataStore(this, mConnectionListener);
         // Request the connection to the health data store
         mStore.connectService();
+
         /*=======================================================*/
 
 
@@ -166,8 +154,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mReporter = new StepCountReporter(mStore, mStepCountObserver, new Handler(Looper.getMainLooper()));
             if (isPermissionAcquired()) {
                 mReporter.start();
+                HealthUserProfile usrProfile = HealthUserProfile.getProfile(mStore);
+                Log.d(APP_TAG,String.valueOf(usrProfile.getBirthDate()));
+                Log.d(APP_TAG,String.valueOf(usrProfile.getGender()));
+                Log.d(APP_TAG,String.valueOf(usrProfile.getHeight()));
+                Log.d(APP_TAG,String.valueOf(usrProfile.getWeight()));
             } else {
                 requestPermission();
+
+
             }
         }
 
@@ -241,11 +236,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private boolean isPermissionAcquired() {
-        PermissionKey permKey = new PermissionKey(StepCount.HEALTH_DATA_TYPE, PermissionType.READ);
+        Set<PermissionKey> mKeySet = new HashSet<>();
+        mKeySet.add(new HealthPermissionManager.PermissionKey(HealthConstants.USER_PROFILE_DATA_TYPE,
+                HealthPermissionManager.PermissionType.READ));
+        mKeySet.add(new HealthPermissionManager.PermissionKey(StepCount.HEALTH_DATA_TYPE,
+                HealthPermissionManager.PermissionType.READ));
+        mKeySet.add(new HealthPermissionManager.PermissionKey(HealthConstants.BloodPressure.HEALTH_DATA_TYPE,
+                HealthPermissionManager.PermissionType.READ));
+        mKeySet.add(new HealthPermissionManager.PermissionKey(HealthConstants.Exercise.HEALTH_DATA_TYPE,
+                HealthPermissionManager.PermissionType.READ));
+        mKeySet.add(new HealthPermissionManager.PermissionKey(HealthConstants.HeartRate.HEALTH_DATA_TYPE,
+                HealthPermissionManager.PermissionType.READ));
+        mKeySet.add(new HealthPermissionManager.PermissionKey(HealthConstants.OxygenSaturation.HEALTH_DATA_TYPE,
+                HealthPermissionManager.PermissionType.READ));
+        mKeySet.add(new HealthPermissionManager.PermissionKey(HealthConstants.Sleep.HEALTH_DATA_TYPE,
+                HealthPermissionManager.PermissionType.READ));
+        mKeySet.add(new HealthPermissionManager.PermissionKey(HealthConstants.SleepStage.HEALTH_DATA_TYPE,
+                HealthPermissionManager.PermissionType.READ));
+        mKeySet.add(new HealthPermissionManager.PermissionKey(HealthConstants.StepDailyTrend.HEALTH_DATA_TYPE,
+                HealthPermissionManager.PermissionType.READ));
         HealthPermissionManager pmsManager = new HealthPermissionManager(mStore);
         try {
             // Check whether the permissions that this application needs are acquired
-            Map<PermissionKey, Boolean> resultMap = pmsManager.isPermissionAcquired(Collections.singleton(permKey));
+            Map<PermissionKey, Boolean> resultMap = pmsManager.isPermissionAcquired(mKeySet);
             return !resultMap.containsValue(Boolean.FALSE);
         } catch (Exception e) {
             Log.e(APP_TAG, "Permission request fails.", e);
@@ -254,11 +267,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void requestPermission() {
-        PermissionKey permKey = new PermissionKey(StepCount.HEALTH_DATA_TYPE, PermissionType.READ);
+        Set<PermissionKey> mKeySet = new HashSet<>();
+        mKeySet.add(new HealthPermissionManager.PermissionKey(HealthConstants.USER_PROFILE_DATA_TYPE,
+                HealthPermissionManager.PermissionType.READ));
+        mKeySet.add(new HealthPermissionManager.PermissionKey(StepCount.HEALTH_DATA_TYPE,
+                HealthPermissionManager.PermissionType.READ));
+        mKeySet.add(new HealthPermissionManager.PermissionKey(HealthConstants.BloodPressure.HEALTH_DATA_TYPE,
+                HealthPermissionManager.PermissionType.READ));
+        mKeySet.add(new HealthPermissionManager.PermissionKey(HealthConstants.Exercise.HEALTH_DATA_TYPE,
+                HealthPermissionManager.PermissionType.READ));
+        mKeySet.add(new HealthPermissionManager.PermissionKey(HealthConstants.HeartRate.HEALTH_DATA_TYPE,
+                HealthPermissionManager.PermissionType.READ));
+        mKeySet.add(new HealthPermissionManager.PermissionKey(HealthConstants.OxygenSaturation.HEALTH_DATA_TYPE,
+                HealthPermissionManager.PermissionType.READ));
+        mKeySet.add(new HealthPermissionManager.PermissionKey(HealthConstants.Sleep.HEALTH_DATA_TYPE,
+                HealthPermissionManager.PermissionType.READ));
+        mKeySet.add(new HealthPermissionManager.PermissionKey(HealthConstants.SleepStage.HEALTH_DATA_TYPE,
+                HealthPermissionManager.PermissionType.READ));
+        mKeySet.add(new HealthPermissionManager.PermissionKey(HealthConstants.StepDailyTrend.HEALTH_DATA_TYPE,
+                HealthPermissionManager.PermissionType.READ));
+
         HealthPermissionManager pmsManager = new HealthPermissionManager(mStore);
         try {
             // Show user permission UI for allowing user to change options
-            pmsManager.requestPermissions(Collections.singleton(permKey), MainActivity.this)
+            pmsManager.requestPermissions(mKeySet, MainActivity.this)
                     .setResultListener(result -> {
                         Log.d(APP_TAG, "Permission callback is received.");
                         Map<PermissionKey, Boolean> resultMap = result.getResultMap();
@@ -276,13 +308,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    private StepCountReporter.StepCountObserver mStepCountObserver = count -> {
-        Log.d(APP_TAG, "Step reported : " + count);
+    private final StepCountReporter.StepCountObserver mStepCountObserver = count -> {
+//        Log.d(APP_TAG, "Step reported : " + count);
         updateStepCountView(String.valueOf(count));
     };
 
     private void updateStepCountView(final String count) {
-        runOnUiThread(() -> Log.e(APP_TAG, String.valueOf(count)));
+//        runOnUiThread(() -> Log.e(APP_TAG, String.valueOf(count)));
     }
 
 
@@ -314,5 +346,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }
 

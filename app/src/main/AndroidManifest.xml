@@ -17,7 +17,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppTheme.NoActionBar"
+        android:usesCleartextTraffic="true">
         <meta-data
             android:name="com.samsung.android.health.permission.read"
             android:value="com.samsung.health.user_profile;com.samsung.health.step_count;com.samsung.health.blood_pressure;com.samsung.health.exercise;com.samsung.health.heart_rate;com.samsung.health.oxygen_saturation;com.samsung.health.sleep;com.samsung.health.sleep_stage;com.samsung.shealth.step_daily_trend" />

@@ -56,7 +56,10 @@ public class Async_login_task extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        Log.d("Async", "LOGINTASK: "+s);
+        Log.d("Async", "LOGINTASK: "
+
+
+                +s);
 
         if(s==null){ Log.d("asdf","login error");}
 

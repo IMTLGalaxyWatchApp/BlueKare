@@ -63,8 +63,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     FloatingActionButton btn;
     DrawerLayout drawerLayout;
-    public static FirebaseFirestore fstore;
-    FirebaseAuth mFirebaseAuth;
     String userID;
     ImageButton mSearchBtn;
     public static String finalUserId;
@@ -81,29 +79,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawerlayout);
         setNavigationViewListener();
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        fstore = FirebaseFirestore.getInstance();
-        userID = Objects.requireNonNull(mFirebaseAuth.getCurrentUser()).getUid();
         NavigationView navigationView = findViewById(R.id.navigationlayout);
         View headerView = navigationView.getHeaderView(0);
         museremail = headerView.findViewById(R.id.userdraweremail);
         musername = headerView.findViewById(R.id.userdrawername);
 
 
-        DocumentReference docRef = fstore.collection("users").document(userID);
-        docRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                assert document != null;
-                if (document.exists()) {
-                    musername.setText(document.getString("fName"));
-                    museremail.setText(document.getString("email"));
-                    finalUserId = userID;
-                }
-            } else {
-                Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         drawerLayout = findViewById(R.id.drawerlayout);
 

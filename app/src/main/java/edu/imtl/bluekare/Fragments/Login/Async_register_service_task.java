@@ -60,7 +60,7 @@ public class Async_register_service_task extends AsyncTask<Void, Void, String> {
             String json;
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("device_id", device_num_id);
-            jsonObject.put("farm_id", 4);
+            jsonObject.put("farm_id", 14);
             jsonObject.put("service_type_cd", 1);
 
 

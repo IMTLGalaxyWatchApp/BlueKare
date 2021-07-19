@@ -18,7 +18,6 @@ import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 import edu.imtl.bluekare.MainActivity;
 
@@ -56,16 +55,15 @@ public class Async_login_task extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        Log.d("Async", "LOGINTASK: "
-
-
-                +s);
+        Log.d("Async", "LOGINTASK: "+s);
 
         if(s==null){ Log.d("asdf","login error");}
 
         else if(s.contains("data")){
+            //receving user token&renewal token
             String accToken = getUserAccessToken(contextRef.get().getApplicationContext());
             String renewalToken = getUserRenewalToken(contextRef.get().getApplicationContext());
+
             try {
                 JSONObject jsonObject_parent = new JSONObject(s);
                 JSONObject jsonObject = jsonObject_parent.getJSONObject("data");
@@ -79,7 +77,7 @@ public class Async_login_task extends AsyncTask<Void, Void, String> {
                     saveToken(acc_token, renewal_token, contextRef.get().getApplicationContext());
                 }
 
-
+                //간단한 값으로 DB 는 부담일 때 사용, 초기설정값 or 자동로그인 여부 저장할 때 사용, 어플리케이션 삭제 전 까지 보존
                 SharedPreferences remember_pref = contextRef.get().getSharedPreferences("renewal_token_pref", 0);
                 SharedPreferences.Editor editor = remember_pref.edit();
                 if(remember_flag == 1){

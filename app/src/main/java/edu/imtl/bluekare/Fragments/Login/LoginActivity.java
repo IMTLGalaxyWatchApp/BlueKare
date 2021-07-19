@@ -62,12 +62,12 @@ public class LoginActivity extends AppCompatActivity {
         device_id = deviceInfo.getId();
         device_name = deviceInfo.fingerprint;
 
-        remember_flag=1; // remember login
+        remember_flag=0; // remember login
 
         rembtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                remember_flag*=-1;
+                remember_flag=remember_flag==1?0:1;
             }
         });
 

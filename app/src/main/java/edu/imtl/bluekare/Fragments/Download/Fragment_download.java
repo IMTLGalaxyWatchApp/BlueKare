@@ -1,6 +1,9 @@
 package edu.imtl.bluekare.Fragments.Download;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,7 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,9 +30,14 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import edu.imtl.bluekare.Fragments.Register.DatePickerActivity;
+import edu.imtl.bluekare.Fragments.Register.RegisterActivity;
 import edu.imtl.bluekare.R;
+
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 
 public class Fragment_download extends Fragment {
@@ -37,6 +47,7 @@ public class Fragment_download extends Fragment {
     private Button btn;
     private CheckBox all, HR, ECG, Step, BP, OS, SS, Ex;
     private DatePickerDialog.OnDateSetListener callbackMethod;
+    private TextView textView;
     int mYear, mMonth, mDay;
 
     @Override
@@ -61,26 +72,39 @@ public class Fragment_download extends Fragment {
         OS=view.findViewById(R.id.checkBox5);
         SS=view.findViewById(R.id.checkBox6);
         Ex=view.findViewById(R.id.checkBox7);
+        textView=view.findViewById(R.id.DateText);
 
+        Calendar calendar = new GregorianCalendar();
+
+        mYear = calendar.get(Calendar.YEAR);
+        mMonth = calendar.get(Calendar.MONTH)+1;
+        mDay = calendar.get(Calendar.DAY_OF_MONTH);
 
         period.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 if(position==0){
                     //전체
                     System.out.println("0 clicked");
+                    textView.setText("전체");
                 }
                 else if(position==1){
-                    //1개월 전
+                    //3개월 전
                     System.out.println("1 clicked");
+                    String str=mYear+"-"+(mMonth-3)+"-"+mDay;
+                    textView.setText(str);
                 }
                 else if(position==2){
-                    //1시간 전
+                    //1개월전
+                    String str=mYear+"-"+(mMonth-1)+"-"+mDay;
+                    textView.setText(str);
                     System.out.println("2 clicked");
                 }
                 else{
                     //직접설정
-                    selectDate();
+                    Intent intent=new Intent(getActivity(), DatePickerActivity.class);
+                    startActivityForResult(intent,100);
                     System.out.println("직접설정 clicked");
                 }
             }
@@ -92,7 +116,9 @@ public class Fragment_download extends Fragment {
 
 
     }
+    /*
     void selectDate(){
+
         DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
 
             public void onDateSet(DatePicker view, int year,
@@ -118,23 +144,20 @@ public class Fragment_download extends Fragment {
 
         String transDateString=sdf.format(c.getTime());
         //periodArray[3]=transDateString;
+    }*/
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 100) {
+            if (resultCode != Activity.RESULT_OK) {
+                Log.e("asdf","intent error");
+                return;
+            }
+            String sendText = data.getExtras().getInt("mYear")+"-"+data.getExtras().getInt("mMonth")+"-"+data.getExtras().getInt("mDay");
+            textView.setText(sendText);
+        }
     }
-    private void SearchName(String name){
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        Query query = rootRef.child("Users").orderByChild("name").startAt(name).endAt(name + "\uf8ff");
-        query.addListenerForSingleValueEvent(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot messageSnapshot: dataSnapshot.getChildren()) {
-                            String name = (String) messageSnapshot.child("name").getValue();
-                            Log.d("TAG", "name is :"+name);
-                        }
-                    }
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                    }
-                });
-    }
+
 
 }

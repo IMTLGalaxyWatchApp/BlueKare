@@ -1,7 +1,6 @@
 package edu.imtl.bluekare.Fragments.Login;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -11,21 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.net.Socket;
-import java.nio.channels.Channel;
-
-import edu.imtl.bluekare.MainActivity;
+import edu.imtl.bluekare.Fragments.Register.RegisterActivity;
 import edu.imtl.bluekare.R;
 
 public class LoginActivity extends AppCompatActivity {
@@ -67,7 +55,10 @@ public class LoginActivity extends AppCompatActivity {
         rembtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                remember_flag=remember_flag==1?0:1;
+                if(rembtn.isChecked()) remember_flag=1;
+                else remember_flag=0;
+
+                Log.d("asdflogin",Integer.toString(remember_flag));
             }
         });
 
@@ -81,6 +72,14 @@ public class LoginActivity extends AppCompatActivity {
                 Async_login_task async_login_task = new Async_login_task(LoginActivity.this, uid, upw, device_id, device_name, remember_flag);
                 async_login_task.execute();
 
+            }
+        });
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent signup_intent = new Intent(getBaseContext(), RegisterActivity.class);
+                startActivity(signup_intent);
+                finish();
             }
         });
 

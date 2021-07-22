@@ -64,7 +64,7 @@
         android:layout_marginTop="-115dp"
         android:layout_marginEnd="189dp"
         android:layout_marginBottom="405dp"
-        android:checked="true"
+        android:checked="false"
         android:text="로그인 유지"
         android:textSize="15dp" />
 

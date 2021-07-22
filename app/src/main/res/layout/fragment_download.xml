@@ -65,19 +65,29 @@
 
                 <TextView
                     android:id="@+id/textView4"
-                    android:layout_width="150dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="기간 설정"
-                    android:textSize="7pt"/>
+                    android:textSize="7pt"
+                    android:layout_marginRight="0dp"/>
 
                 <Spinner
                     android:id="@+id/spinner"
-                    android:layout_width="match_parent"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:spinnerMode="dropdown"/>
+                <TextView
+                    android:id="@+id/DateText"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="7pt"
+                    android:layout_marginLeft="10dp"/>
             </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"

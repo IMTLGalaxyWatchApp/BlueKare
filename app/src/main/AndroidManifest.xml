@@ -29,12 +29,17 @@
         <activity
             android:name="edu.imtl.bluekare.Fragments.Login.LoginActivity"
             android:noHistory="true" />
-        <activity
-            android:name="edu.imtl.bluekare.Fragments.Login.RegisterActivity"
-            android:noHistory="true" />
+
         <activity
             android:name="edu.imtl.bluekare.MainActivity"
             android:screenOrientation="fullSensor" />
+
+        <activity android:name="edu.imtl.bluekare.Fragments.Register.DatePickerActivity"
+            android:theme="@style/PopupTheme"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Fragments.Register.RegisterActivity"></activity>
+
         <activity android:name="edu.imtl.bluekare.Fragments.Login.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <queries>
         <package android:name="com.sec.android.app.shealth" />
@@ -25,7 +26,14 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
-
+        <service
+            android:name="edu.imtl.bluekare.Background.BackgroundService"
+            android:enabled="true" />
+        <receiver android:name="edu.imtl.bluekare.Background.BootCompletedIntentReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
         <activity
             android:name="edu.imtl.bluekare.Fragments.Login.LoginActivity"
             android:noHistory="true" />
@@ -38,7 +46,7 @@
             android:theme="@style/PopupTheme"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Fragments.Register.RegisterActivity"></activity>
+        <activity android:name=".Fragments.Register.RegisterActivity" />
 
         <activity android:name="edu.imtl.bluekare.Fragments.Login.SplashActivity">
             <intent-filter>
@@ -46,6 +54,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <provider
+            android:authorities="edu.imtl.bluekare.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/root_paths" />
+        </provider>
 
         <meta-data
             android:name="preloaded_fonts"

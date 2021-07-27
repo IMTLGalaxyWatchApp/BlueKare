@@ -1,8 +1,11 @@
 package edu.imtl.bluekare;
 
 import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,10 +57,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     /*================= Samsung Health  =====================*/
     public static final String APP_TAG = "SimpleHealth";
-
     private HealthDataStore mStore;
     private StepCountReporter mReporter;
-
+    /*================= Background Task  =====================*/
 
     /*=======================================================*/
 
@@ -76,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        createNotificationChannel();
+
+
         drawerLayout = findViewById(R.id.drawerlayout);
         setNavigationViewListener();
 
@@ -106,6 +111,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    private void createNotificationChannel() {
+        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.O){
+            CharSequence name = "bluekare";
+            String description = "Channel for bluekare data update";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("bluekare",name,importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -132,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         @Override
         public void onConnected() {
             Log.d(APP_TAG, "Health data service is connected.");
-            mReporter = new StepCountReporter(mStore, mStepCountObserver, new Handler(Looper.getMainLooper()));
+            mReporter = new StepCountReporter(mStore, mStepCountObserver, new Handler(Looper.getMainLooper()), getApplicationContext());
             if (isPermissionAcquired()) {
                 mReporter.start();
                 HealthUserProfile usrProfile = HealthUserProfile.getProfile(mStore);

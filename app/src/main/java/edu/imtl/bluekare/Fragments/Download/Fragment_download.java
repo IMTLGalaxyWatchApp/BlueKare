@@ -49,7 +49,7 @@ public class Fragment_download extends Fragment {
     private CheckBox all, HR, ECG, Step, BP, OS, SS, Ex;
     private DatePickerDialog.OnDateSetListener callbackMethod;
     private TextView textView;
-    private SearchView searchView;
+    private EditText searchName;
     int mYear, mMonth, mDay;
 
     @Override
@@ -75,6 +75,8 @@ public class Fragment_download extends Fragment {
         SS=view.findViewById(R.id.checkBox6);
         Ex=view.findViewById(R.id.checkBox7);
         textView=view.findViewById(R.id.DateText);
+
+        searchName=view.findViewById(R.id.searchName);
 
         Calendar calendar = new GregorianCalendar();
 
@@ -116,20 +118,6 @@ public class Fragment_download extends Fragment {
             }
         });
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                //when clicked search button
-
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                //when the query is changed
-                return false;
-            }
-        });
 
 
 

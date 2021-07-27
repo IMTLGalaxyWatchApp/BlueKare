@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -37,20 +36,22 @@
 
                 <TextView
                     android:id="@+id/textView3"
-                    android:layout_width="150dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="피험자"
-                    android:textSize="7pt"/>
+                    android:textSize="7pt" />
 
-                <SearchView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                <EditText
+                    android:id="@+id/searchName"
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:queryHint="이름 검색"
-                    app:iconifiedByDefault="false"
-                    android:focusedByDefault="true"
-                    android:focusable="true"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:hint="  Search Name..."
+                    android:textSize="7pt"
+                    android:drawableRight="@drawable/ic_baseline_search_24"
                     />
 
             </LinearLayout>
@@ -65,16 +66,16 @@
 
                 <TextView
                     android:id="@+id/textView4"
-                    android:layout_width="130dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="0dp"
                     android:layout_weight="1"
                     android:text="기간 설정"
-                    android:textSize="7pt"
-                    android:layout_marginRight="0dp"/>
+                    android:textSize="7pt" />
 
                 <Spinner
                     android:id="@+id/spinner"
-                    android:layout_width="250dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:spinnerMode="dropdown"/>

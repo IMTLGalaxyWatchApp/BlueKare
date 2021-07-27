@@ -57,7 +57,7 @@ import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
-import edu.imtl.bluekare.MainActivity;
+import edu.imtl.bluekare.Main.MainActivity;
 
 
 public class StepCountReporter {

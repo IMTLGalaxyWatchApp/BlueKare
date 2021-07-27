@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -48,6 +49,7 @@ public class Fragment_download extends Fragment {
     private CheckBox all, HR, ECG, Step, BP, OS, SS, Ex;
     private DatePickerDialog.OnDateSetListener callbackMethod;
     private TextView textView;
+    private SearchView searchView;
     int mYear, mMonth, mDay;
 
     @Override
@@ -114,37 +116,26 @@ public class Fragment_download extends Fragment {
             }
         });
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //when clicked search button
 
-    }
-    /*
-    void selectDate(){
-
-        DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-
-            public void onDateSet(DatePicker view, int year,
-                                  int monthOfYear, int dayOfMonth) {
-                mYear = year;
-                mMonth = monthOfYear;
-                mDay = dayOfMonth;
-                updateDisplay();
+                return false;
             }
-        };
 
-        DatePickerDialog d = new DatePickerDialog(getActivity(),mDateSetListener, mYear, mMonth, mDay);
-        d.show();
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //when the query is changed
+                return false;
+            }
+        });
+
+
+
+
     }
-    private void updateDisplay() {
 
-        GregorianCalendar c = new GregorianCalendar(mYear, mMonth, mDay);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
-
-       // periodArray[3]=sdf.format(c.getTime());
-
-        sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-        String transDateString=sdf.format(c.getTime());
-        //periodArray[3]=transDateString;
-    }*/
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

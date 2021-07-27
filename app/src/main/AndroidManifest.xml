@@ -39,7 +39,7 @@
             android:noHistory="true" />
 
         <activity
-            android:name="edu.imtl.bluekare.MainActivity"
+            android:name="edu.imtl.bluekare.Main.MainActivity"
             android:screenOrientation="fullSensor" />
 
         <activity android:name="edu.imtl.bluekare.Fragments.Register.DatePickerActivity"

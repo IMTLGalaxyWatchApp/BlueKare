@@ -82,4 +82,5 @@
     <string name="registration">api/v1/registration</string>
     <string name="login">api/v1/session</string>
     <string name="register_service">api/v1/services</string>
+    <string name="renew">api/v1/session/renew</string>
 </resources>

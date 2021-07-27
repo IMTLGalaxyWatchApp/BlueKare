@@ -49,8 +49,8 @@
                     android:layout_weight="1"
                     android:queryHint="이름 검색"
                     app:iconifiedByDefault="false"
-                    android:visibility="visible"
-                    app:showAsAction="always"
+                    android:focusedByDefault="true"
+                    android:focusable="true"
                     />
 
             </LinearLayout>

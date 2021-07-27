@@ -154,8 +154,12 @@ public class RegisterActivity extends AppCompatActivity {
                 Log.e("asdf","intent error");
                 return;
             }
+            String converted_month=String.valueOf(data.getExtras().getInt("mMonth"));
+            String converted_day=String.valueOf(data.getExtras().getInt("mDay"));
+            if(data.getExtras().getInt("mMonth")<10) converted_month="0"+converted_month;
+            if(data.getExtras().getInt("mDay")<10) converted_day="0"+converted_day;
 
-            String sendText = data.getExtras().getInt("mYear")+"-"+data.getExtras().getInt("mMonth")+"-"+data.getExtras().getInt("mDay");
+            String sendText = data.getExtras().getInt("mYear")+"-"+converted_month+"-"+converted_day;
             dob_t.setText(sendText);
         }
     }

@@ -1,12 +1,10 @@
-package edu.imtl.bluekare;
+package edu.imtl.bluekare.Main;
 
-import android.Manifest;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -19,37 +17,34 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import edu.imtl.bluekare.Fragments.Download.Fragment_download;
+import edu.imtl.bluekare.Fragments.Login.DeviceInfo;
 import edu.imtl.bluekare.Fragments.MainMenu.Fragment_main;
 import edu.imtl.bluekare.Fragments.Survey.Fragment_survey;
 import edu.imtl.bluekare.Fragments.Record.Fragment_record;
 import edu.imtl.bluekare.Fragments.Login.LoginActivity;
+import edu.imtl.bluekare.R;
 import edu.imtl.bluekare.SHealth.StepCountReporter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.samsung.android.sdk.healthdata.HealthConstants;
 import com.samsung.android.sdk.healthdata.HealthDataStore;
 import com.samsung.android.sdk.healthdata.HealthConnectionErrorResult;
 import com.samsung.android.sdk.healthdata.HealthConstants.StepCount;
 import com.samsung.android.sdk.healthdata.HealthPermissionManager;
 import com.samsung.android.sdk.healthdata.HealthPermissionManager.PermissionKey;
-import com.samsung.android.sdk.healthdata.HealthPermissionManager.PermissionType;
 import com.samsung.android.sdk.healthdata.HealthUserProfile;
 
 import android.app.AlertDialog;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.view.Menu;
 
-import java.util.Collections;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
 
@@ -57,20 +52,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     /*================= Samsung Health  =====================*/
     public static final String APP_TAG = "SimpleHealth";
+
     private HealthDataStore mStore;
     private StepCountReporter mReporter;
-    /*================= Background Task  =====================*/
+
 
     /*=======================================================*/
 
     FloatingActionButton btn;
     DrawerLayout drawerLayout;
-    String userID;
+    String uid,name,dob,gender;
+    int age;
     ImageButton mSearchBtn;
     public static String finalUserId;
     public static int datasize;
-    TextView musername, museremail;
+    TextView musername, museremail,muserage, musergender;
     private long lastTimeBackPressed;
+
+    DeviceInfo deviceInfo;
 
 
 
@@ -78,9 +77,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        createNotificationChannel();
-
-
         drawerLayout = findViewById(R.id.drawerlayout);
         setNavigationViewListener();
 
@@ -88,12 +84,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View headerView = navigationView.getHeaderView(0);
         museremail = headerView.findViewById(R.id.userdraweremail);
         musername = headerView.findViewById(R.id.userdrawername);
+        muserage=headerView.findViewById(R.id.userdrawerage);
+        musergender=headerView.findViewById(R.id.userdrawergender);
 
 
 
         drawerLayout = findViewById(R.id.drawerlayout);
 
         findViewById(R.id.menu).setOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
+
+        deviceInfo = new DeviceInfo(Build.BOARD, Build.BRAND, Build.CPU_ABI, Build.DEVICE, Build.DISPLAY,
+                Build.FINGERPRINT, Build.HOST, Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID), Build.MANUFACTURER, Build.MODEL, Build.PRODUCT,
+                Build.TAGS, Build.TYPE, Build.USER, Build.VERSION.RELEASE);
+
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_main()).commit();
@@ -107,21 +110,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mStore.connectService();
 
         /*=======================================================*/
-
-
-    }
-
-    private void createNotificationChannel() {
-        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.O){
-            CharSequence name = "bluekare";
-            String description = "Channel for bluekare data update";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel("bluekare",name,importance);
-            channel.setDescription(description);
-
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
+//        Async_get_registration async_get_registration = new Async_get_registration(MainActivity.this);
+//        async_get_registration.execute();
+        setUserInfo();
 
     }
 
@@ -146,12 +137,40 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    public void setUserInfo(){
+
+        name=getIntent().getStringExtra("name");
+        uid=getIntent().getStringExtra("uid");
+        dob=getIntent().getStringExtra("dob");
+        if(getIntent().getStringExtra("gender")=="0") gender="남성";
+        else gender="여성";
+
+
+
+        Log.e("setuserinfo",name+uid+dob+gender);
+        if(name!=null && uid!=null && dob!=null){
+            Calendar cal = new GregorianCalendar();;
+            SimpleDateFormat formats;
+            formats = new SimpleDateFormat ( "yyyy");
+
+            // Finalvar.birth_year의 값은 1950년 1월 20일
+            int time2 = Integer.parseInt(formats.format(cal.getTime()));
+            int ageSum = Integer.parseInt(dob.substring(0,4));
+
+            muserage.setText(Integer.toString(time2 - ageSum +1)+"세");
+            musergender.setText(gender);
+            museremail.setText(uid);
+            musername.setText(name);
+        }
+
+    }
+
     private final HealthDataStore.ConnectionListener mConnectionListener = new HealthDataStore.ConnectionListener() {
 
         @Override
         public void onConnected() {
             Log.d(APP_TAG, "Health data service is connected.");
-            mReporter = new StepCountReporter(mStore, mStepCountObserver, new Handler(Looper.getMainLooper()), getApplicationContext());
+            mReporter = new StepCountReporter(mStore, mStepCountObserver, new Handler(Looper.getMainLooper()));
             if (isPermissionAcquired()) {
                 mReporter.start();
                 HealthUserProfile usrProfile = HealthUserProfile.getProfile(mStore);
@@ -337,7 +356,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             requestPermission();
         }
         if (item.getItemId() == R.id.Logout) {
-            FirebaseAuth.getInstance().signOut();
+            SharedPreferences remember_pref = getSharedPreferences("renewal_token_pref", 0);
+            SharedPreferences.Editor editor = remember_pref.edit();
+            editor.putString("renew_token", "none");
+            editor.putString("auto_renew_token", "none");
+            editor.apply();
+            Intent intent_login = new Intent(getBaseContext(), LoginActivity.class);
+            intent_login.putExtra("uid", deviceInfo.getId());
+            startActivity(intent_login);
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             this.finish();
         }

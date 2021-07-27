@@ -19,7 +19,8 @@ import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import edu.imtl.bluekare.MainActivity;
+import edu.imtl.bluekare.Main.Async_get_registration;
+import edu.imtl.bluekare.Main.MainActivity;
 
 import static edu.imtl.bluekare.Fragments.Login.SaveUserData.getUserAccessToken;
 import static edu.imtl.bluekare.Fragments.Login.SaveUserData.getUserRenewalToken;
@@ -92,7 +93,8 @@ public class Async_login_task extends AsyncTask<Void, Void, String> {
                 Async_get_device_log async_get_device_log = new Async_get_device_log(contextRef.get(), device_id, device_name);
                 async_get_device_log.execute();
 
-
+                Async_get_registration async_get_registration = new Async_get_registration(contextRef.get());
+                async_get_registration.execute();
 
                 Intent intent_main = new Intent(contextRef.get(), MainActivity.class);
                 intent_main.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -1,5 +1,9 @@
 package edu.imtl.bluekare.Main;
 
+import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.pm.PackageManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -34,12 +38,15 @@ import com.samsung.android.sdk.healthdata.HealthConstants.StepCount;
 import com.samsung.android.sdk.healthdata.HealthPermissionManager;
 import com.samsung.android.sdk.healthdata.HealthPermissionManager.PermissionKey;
 import com.samsung.android.sdk.healthdata.HealthUserProfile;
+import com.samsung.android.sdk.healthdata.HealthPermissionManager.PermissionType;
 
 import android.app.AlertDialog;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-
+import android.view.Menu;
+import java.util.Collections;
+import java.util.Objects;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -76,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        createNotificationChannel();
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawerlayout);
         setNavigationViewListener();
@@ -110,13 +118,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mStore.connectService();
 
         /*=======================================================*/
+
 //        Async_get_registration async_get_registration = new Async_get_registration(MainActivity.this);
 //        async_get_registration.execute();
         setUserInfo();
 
     }
 
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
+            CharSequence name = "bluekare";
+            String description = "Channel for bluekare data update";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("bluekare", name, importance);
+            channel.setDescription(description);
 
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
     @Override
     public void onBackPressed() {
         drawerLayout = findViewById(R.id.drawerlayout);
@@ -170,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         @Override
         public void onConnected() {
             Log.d(APP_TAG, "Health data service is connected.");
-            mReporter = new StepCountReporter(mStore, mStepCountObserver, new Handler(Looper.getMainLooper()));
+            mReporter = new StepCountReporter(mStore, mStepCountObserver, new Handler(Looper.getMainLooper()), getApplicationContext());
             if (isPermissionAcquired()) {
                 mReporter.start();
                 HealthUserProfile usrProfile = HealthUserProfile.getProfile(mStore);
@@ -180,8 +200,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Log.d(APP_TAG,String.valueOf(usrProfile.getWeight()));
             } else {
                 requestPermission();
-
-
             }
         }
 

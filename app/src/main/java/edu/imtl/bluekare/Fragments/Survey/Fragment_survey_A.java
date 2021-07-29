@@ -81,7 +81,7 @@ public class Fragment_survey_A extends Fragment {
         nextButtonA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getParentFragmentManager().beginTransaction().replace(R.id.recordContainer, new Fragment_survey_B()).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_survey_B()).addToBackStack(null).commit();
 
             }
         });

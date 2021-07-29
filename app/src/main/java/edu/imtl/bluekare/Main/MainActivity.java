@@ -137,20 +137,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             notificationManager.createNotificationChannel(channel);
         }
     }
-    @Override
-    public void onBackPressed() {
-        drawerLayout = findViewById(R.id.drawerlayout);
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            if (System.currentTimeMillis() - lastTimeBackPressed < 2000) {
-                finish();
-                return;
-            }
-            Toast.makeText(this, "'뒤로' 버튼을 한번 더 누르시면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show();
-            lastTimeBackPressed = System.currentTimeMillis();
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        drawerLayout = findViewById(R.id.drawerlayout);
+//        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//        } else {
+//            if (System.currentTimeMillis() - lastTimeBackPressed < 2000) {
+//                finish();
+//                return;
+//            }
+//            Toast.makeText(this, "'뒤로' 버튼을 한번 더 누르시면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show();
+//            lastTimeBackPressed = System.currentTimeMillis();
+//        }
+//    }
 
     private void setNavigationViewListener() {
         NavigationView navigationView = findViewById(R.id.navigationlayout);

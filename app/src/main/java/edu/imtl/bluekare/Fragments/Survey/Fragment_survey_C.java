@@ -69,14 +69,14 @@ public class Fragment_survey_C extends Fragment {
         nextButtonC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getParentFragmentManager().beginTransaction().replace(R.id.recordContainer, new Fragment_survey_D()).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.recordContainer, new Fragment_survey_D()).addToBackStack(null).commit();
 
             }
         });
         preButtonC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getParentFragmentManager().beginTransaction().replace(R.id.recordContainer, new Fragment_survey_B()).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.recordContainer, new Fragment_survey_B()).addToBackStack(null).commit();
             }
         });
 

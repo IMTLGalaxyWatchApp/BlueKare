@@ -81,7 +81,7 @@ public class StepCountReporter {
             @Override
             public void onChange(String dataTypeName) {
                 Log.d("APP_TAG", "Observer receives a data changed event");
-                readTodayStepCount();
+                readToday();
             }
         };
 
@@ -93,113 +93,52 @@ public class StepCountReporter {
 
         HealthDataObserver.addObserver(mStore, StepCount.HEALTH_DATA_TYPE, mHealthDataObserver);
 
-        readTodayStepCount();
+        readToday();
     }
 
     public void stop() {
         HealthDataObserver.removeObserver(mStore, mHealthDataObserver);
     }
 
-
-//    private void readTodayStepCount() {
-//        private String ALIAS_BINNING_TIME = "binning_time"
-//
-//        // Create a filter for today's steps from all source devices
-//        HealthDataResolver.Filter filter = HealthDataResolver.Filter.and(
-////                HealthDataResolver.Filter.eq(HealthConstants.StepDailyTrend.DAY_TIME, getTodayStartUtcTime()),
-//                HealthDataResolver.Filter.eq(HealthConstants.StepDailyTrend.SOURCE_TYPE, HealthConstants.StepDailyTrend.SOURCE_TYPE_ALL));
-//
-//        HealthDataResolver.ReadRequest request = new HealthDataResolver.ReadRequest.Builder()
-//                // Set the data type
-//                .setDataType(HealthConstants.StepDailyTrend.HEALTH_DATA_TYPE)
-//                .setTimeGroup(HealthDataResolver.AggregateRequest.TimeGroupUnit.MINUTELY, 10, StepCount.START_TIME, StepCount.TIME_OFFSET, ALIAS_BINNING_TIME)
-//                .setSort(ALIAS_BINNING_TIME, HealthDataResolver.SortOrder.ASC)
-//
-//                // Set a filter
-//                .setFilter(filter)
-//                // Build
-//                .build();
-//        mHealthDataResolver = new HealthDataResolver(mStore, null);
-//
-//        try {
-//            mHealthDataResolver.read(request).setResultListener(result -> {
-//                long dayTime = 0;
-//                int totalCount = 0;
-//
-//                try {
-//                    for (HealthData healthData : result) {
-//                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-//                        HealthData data = healthData;
-//                        dayTime = data.getLong(HealthConstants.StepDailyTrend.DAY_TIME);
-//                        Date date = new Date(dayTime);
-//                        String dateformat = sdf.format(date);
-//                        totalCount = data.getInt(HealthConstants.StepDailyTrend.COUNT);
-//                        Log.d("HERE", String.valueOf(dateformat));
-//                        Log.d("HERE", String.valueOf(totalCount));
-//
-//                    }
-//                } finally {
-//                    result.close();
-//                }
-//            });
-//        } catch (Exception e) {
-//            Log.e(MainActivity.APP_TAG, e.getClass().getName() + " - " + e.getMessage());
-//        }
-//    }
-
-
-    // Read the today's step count on demand
-    private void readTodayStepCount() {
+    // Read the today
+    private void readToday() {
 
         // Set time range from start time of today to the current time
-        long startTime = getUtcStartOfDay(System.currentTimeMillis(), TimeZone.getDefault());
+        long startTime = getUtcStartOfDay(System.currentTimeMillis(), TimeZone.getDefault()) -TimeUnit.DAYS.toMillis(6);
         long endTime = startTime + TimeUnit.DAYS.toMillis(1);
 
-
-
-
-        HealthDataResolver.ReadRequest request = new HealthDataResolver.ReadRequest.Builder()
+        ////////////STEP COUNT///////////////
+        HealthDataResolver.ReadRequest request_stepcount = new HealthDataResolver.ReadRequest.Builder()
                 .setDataType(StepCount.HEALTH_DATA_TYPE)
-//                .addFunction(AggregateFunction.SUM, StepCount.COUNT, "total_step")
-//                .setProperties(new String[]{HealthConstants.StepCount.COUNT})
                 .setLocalTimeRange(StepCount.START_TIME, StepCount.TIME_OFFSET, startTime, endTime)
-                //                .setSort(ALIAS_BINNING_TIME, HealthDataResolver.SortOrder.ASC)
-
                 .build();
 
-
         try {
-            mHealthDataResolver.read(request).setResultListener(readResult -> {
+            mHealthDataResolver.read(request_stepcount).setResultListener(readResult -> {
                 StringBuilder stepCountdata = new StringBuilder();
-                stepCountdata.append("Start Time,Step Count");
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                stepCountdata.append("Start Time,End Time,Step Count,Distance,Calorie,Speed");
+                SimpleDateFormat todate = new SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());
+                SimpleDateFormat tomin = new SimpleDateFormat("yyyy-MM-dd HH:mm", java.util.Locale.getDefault());
 
-                String Filename = "Step_Count_" + String.valueOf(sdf.format(new Date(startTime))) + ".csv";
+                String Filename = "Step_Count_" + String.valueOf(todate.format(new Date(startTime))) + ".csv";
 
                 try (HealthDataResolver.ReadResult result = readResult) {
 
-                    long start = 0;
-                    long end = 0;
                     for (HealthData healthData : result) {
-
-
                         HealthData data = healthData;
-                        start = data.getLong(StepCount.START_TIME);
-                        end = data.getLong(StepCount.END_TIME);
-
-                        Date startdate = new Date(start);
-                        Date enddate = new Date(end);
-                        String startdateformat = sdf.format(startdate);
-                        String enddateformat = sdf.format(enddate);
+                        String startdateformat = tomin.format(new Date(data.getLong(StepCount.START_TIME)));
+                        String enddateformat = tomin.format(new Date(data.getLong(StepCount.END_TIME)));
                         Log.d("HERE : START: ", String.valueOf(startdateformat));
                         Log.d("HERE : END: ", String.valueOf(enddateformat));
                         Log.d("HERE : COUNT", String.valueOf(data.getInt(StepCount.COUNT)));
 
 //                        stepCountdata.append("\n"+String.valueOf(1)+","+String.valueOf(1*1));
-                        stepCountdata.append("\n").append(startdateformat).append(",").append(data.getInt(StepCount.COUNT));
-
-
-
+                        stepCountdata.append("\n").append(startdateformat)
+                                .append(",").append(enddateformat)
+                                .append(",").append(data.getString(StepCount.COUNT))
+                                .append(",").append(data.getString(StepCount.DISTANCE))
+                                .append(",").append(data.getString(StepCount.CALORIE))
+                                .append(",").append(data.getString(StepCount.SPEED));
                     }
 
                     try{
@@ -225,7 +164,6 @@ public class StepCountReporter {
                         }
 
                         chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            chooser.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
                         mContext.startActivity(chooser);
 
                     } catch (IOException e) {
@@ -237,6 +175,85 @@ public class StepCountReporter {
             Log.e("STEPCOUNT", "Getting step count fails.", e);
         }
 
+        ////////////EXERCISE///////////////
+
+        HealthDataResolver.ReadRequest request_exercise = new HealthDataResolver.ReadRequest.Builder()
+                .setDataType(HealthConstants.Exercise.HEALTH_DATA_TYPE)
+//                .addFunction(AggregateFunction.SUM, StepCount.COUNT, "total_step")
+//                .setProperties(new String[]{HealthConstants.StepCount.COUNT})
+                .setLocalTimeRange(HealthConstants.Exercise.START_TIME, HealthConstants.Exercise.TIME_OFFSET, startTime, endTime)
+//                .setTimeAfter(BeginTime)
+                //                .setSort(ALIAS_BINNING_TIME, HealthDataResolver.SortOrder.ASC)
+
+                .build();
+
+        try {
+            mHealthDataResolver.read(request_exercise).setResultListener(readResult -> {
+                StringBuilder exercise_data = new StringBuilder();
+                exercise_data.append("Start Time,End Time,Exercise_type,Calorie,Duration,Distance,Count,Max Speed, Mean Speed, Min Heart Rate, Max Heart Rate");
+                SimpleDateFormat todate = new SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());
+                SimpleDateFormat tomin = new SimpleDateFormat("yyyy-MM-dd HH:mm", java.util.Locale.getDefault());
+
+                String Filename = "Exercise_" + String.valueOf(todate.format(new Date(startTime))) + ".csv";
+
+                try (HealthDataResolver.ReadResult result = readResult) {
+
+                    for (HealthData healthData : result) {
+                        HealthData data = healthData;
+                        String startdateformat = tomin.format(new Date(data.getLong(HealthConstants.Exercise.START_TIME)));
+                        String enddateformat = tomin.format(new Date(data.getLong(HealthConstants.Exercise.END_TIME)));
+                        Log.d("HERE : START: ", String.valueOf(startdateformat));
+                        Log.d("HERE : END: ", String.valueOf(enddateformat));
+                        Log.d("HERE : COUNT", String.valueOf(data.getInt(HealthConstants.Exercise.COUNT)));
+
+                        exercise_data.append("\n").append(startdateformat)
+                                .append(",").append(enddateformat)
+                                .append(",").append(data.getString(HealthConstants.Exercise.EXERCISE_TYPE))
+                                .append(",").append(data.getString(HealthConstants.Exercise.CALORIE))
+                                .append(",").append(data.getString(HealthConstants.Exercise.DURATION))
+                                .append(",").append(data.getString(HealthConstants.Exercise.DISTANCE))
+                                .append(",").append(data.getString(HealthConstants.Exercise.COUNT))
+                                .append(",").append(data.getString(HealthConstants.Exercise.MAX_SPEED))
+                                .append(",").append(data.getString(HealthConstants.Exercise.MEAN_SPEED))
+                                .append(",").append(data.getString(HealthConstants.Exercise.MIN_HEART_RATE))
+                                .append(",").append(data.getString(HealthConstants.Exercise.MAX_HEART_RATE));
+                    }
+
+                    try{
+                        FileOutputStream out = mContext.openFileOutput(Filename,Context.MODE_PRIVATE);
+                        out.write((exercise_data.toString().getBytes()));
+                        out.close();
+
+                        File filelocation = new File(mContext.getFilesDir(), Filename);
+                        Uri path = FileProvider.getUriForFile(mContext,"edu.imtl.bluekare.fileprovider", filelocation);
+                        Intent fileIntent = new Intent(Intent.ACTION_SEND);
+                        fileIntent.setType("text/csv");
+                        fileIntent.putExtra(Intent.EXTRA_SUBJECT, Filename);
+                        fileIntent.putExtra(Intent.EXTRA_STREAM, path);
+                        fileIntent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION );
+
+                        Intent chooser = Intent.createChooser(fileIntent, "Send Email");
+
+                        List<ResolveInfo> resInfoList = mContext.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
+
+                        for (ResolveInfo resolveInfo : resInfoList) {
+                            String packageName = resolveInfo.activityInfo.packageName;
+                            mContext.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        }
+
+                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mContext.startActivity(chooser);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        } catch (Exception e) {
+            Log.e("STEPCOUNT", "Getting step count fails.", e);
+        }
+
+        ////////////EXERCISE///////////////
 
     }
 

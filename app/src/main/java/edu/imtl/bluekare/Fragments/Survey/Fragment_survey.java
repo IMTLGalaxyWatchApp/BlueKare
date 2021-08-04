@@ -25,7 +25,7 @@ public class Fragment_survey extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getChildFragmentManager().beginTransaction().replace(R.id.recordContainer, new Fragment_survey_A()).commit();
+        getChildFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_Pre()).commit();
 
     }
 }

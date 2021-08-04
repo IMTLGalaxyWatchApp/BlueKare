@@ -1,8 +1,11 @@
 package edu.imtl.bluekare.Main;
 
 import android.Manifest;
+import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import edu.imtl.bluekare.Background.AlarmReceiver;
 import edu.imtl.bluekare.Fragments.Download.Fragment_download;
 import edu.imtl.bluekare.Fragments.Login.DeviceInfo;
 import edu.imtl.bluekare.Fragments.MainMenu.Fragment_main;
@@ -53,6 +57,7 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TimeZone;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -62,10 +67,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private HealthDataStore mStore;
     private StepCountReporter mReporter;
-
-
+    /*================= Background Service  =====================*/
+    private AlarmManager alarmManager;
+    private PendingIntent pendingIntent;
+    private Calendar calendar;
     /*=======================================================*/
-
     FloatingActionButton btn;
     DrawerLayout drawerLayout;
     String uid,name,dob,gender;
@@ -122,7 +128,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        Async_get_registration async_get_registration = new Async_get_registration(MainActivity.this);
 //        async_get_registration.execute();
         setUserInfo();
+        setAlarm();
 
+    }
+
+    private void setAlarm() {
+        calendar = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getDefault());
+        calendar.set(Calendar.AM_PM, Calendar.PM);
+        calendar.set(Calendar.HOUR_OF_DAY, 5);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
     }
 
     private void createNotificationChannel() {

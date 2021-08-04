@@ -5,7 +5,10 @@
       <map>
         <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/activity_main.xml" value="0.13500506585612967" />
         <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_main.xml" value="0.13500506585612967" />
+        <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_record.xml" value="0.1526268115942029" />
         <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_survey.xml" value="0.13500506585612967" />
+        <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_survey_final.xml" value="0.1526268115942029" />
+        <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_survey_pre.xml" value="0.1" />
       </map>
     </option>
   </component>

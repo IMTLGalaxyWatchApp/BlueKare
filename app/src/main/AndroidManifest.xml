@@ -31,7 +31,7 @@
         <service
             android:name="edu.imtl.bluekare.Background.BackgroundService"
             android:enabled="true" />
-        <receiver android:name="edu.imtl.bluekare.Background.BootCompletedIntentReceiver" >
+        <receiver android:name="edu.imtl.bluekare.Background.AlarmReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

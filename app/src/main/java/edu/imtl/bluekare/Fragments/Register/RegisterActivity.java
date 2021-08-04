@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import edu.imtl.bluekare.Fragments.Login.DeviceInfo;
+import edu.imtl.bluekare.Fragments.Login.LoginActivity;
 import edu.imtl.bluekare.R;
 
 import android.app.DatePickerDialog;
@@ -104,7 +105,13 @@ public class RegisterActivity extends AppCompatActivity {
                 gender=1;
             }
         });
-
+        tologin_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         register_button.setOnClickListener(new View.OnClickListener() {
             @Override

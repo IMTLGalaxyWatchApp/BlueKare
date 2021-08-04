@@ -28,7 +28,7 @@ public class BackgroundService extends Service {
         alarm.setRepeating(AlarmManager.RTC_WAKEUP, cur_cal.getTimeInMillis(),
                 60 * 1000 * 3, pintent);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "bluekare")
-                .setSmallIcon(R.mipmap.ic_launcher_foreground)
+                .setSmallIcon(R.mipmap.ic_launcher_grad)
                 .setContentTitle("BLUE KARE CARES ABOUT YOU")
                 .setContentText("For Test Purpose")
                 .setAutoCancel(true)

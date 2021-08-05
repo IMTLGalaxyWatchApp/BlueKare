@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
         String temp_pw = getIntent().getStringExtra("pw");
 
         if(temp_email!=null && temp_email.length() > 2 && temp_pw.length() > 2)
-        {
+        {   Log.e("asdf","async_login");
             Async_login_task async_login_task = new Async_login_task(LoginActivity.this, temp_email, temp_pw, device_id, device_name, remember_flag);
             async_login_task.execute();
 
@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences remember_pref = getApplicationContext().getSharedPreferences("renewal_token_pref", 0);
         String temp_renewal_token = remember_pref.getString("auto_renew_token", "none");
         if(!temp_renewal_token.equals("none"))
-        {
+        {   Log.e("asdf","async_renew");
             Async_renew_session_task async_renew_session_task = new Async_renew_session_task(LoginActivity.this, temp_renewal_token, true);
             async_renew_session_task.execute();
         }

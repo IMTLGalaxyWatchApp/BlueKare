@@ -115,8 +115,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_main()).commit();
             navigationView.setCheckedItem(R.id.Main_Menu_nav);
+            Log.e("asdf","mainfragopen");
         }
-
+        Log.e("asdf","mainopen");
         /*================= Samsung Health  =====================*/
         // Create a HealthDataStore instance and set its listener
         mStore = new HealthDataStore(this, mConnectionListener);
@@ -125,8 +126,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         /*=======================================================*/
 
-//        Async_get_registration async_get_registration = new Async_get_registration(MainActivity.this);
-//        async_get_registration.execute();
         setUserInfo();
         setAlarm();
 

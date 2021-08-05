@@ -73,11 +73,11 @@ public class Async_renew_session_task extends AsyncTask<Void, Void, String> {
                     Async_get_registration async_get_registration = new Async_get_registration(contextRef.get());
                     async_get_registration.execute();
 
-                    Intent intent_main = new Intent(contextRef.get(), MainActivity.class);
-                    intent_main.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    contextRef.get().startActivity(intent_main);
-
-                    ((Activity) contextRef.get()).finish();
+//                    Intent intent_main = new Intent(contextRef.get(), MainActivity.class);
+//                    intent_main.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    contextRef.get().startActivity(intent_main);
+//
+//                    ((Activity) contextRef.get()).finish();
                 }
 
 

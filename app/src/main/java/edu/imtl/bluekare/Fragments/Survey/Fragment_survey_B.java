@@ -15,6 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import edu.imtl.bluekare.R;
+import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.get_B;
+import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.set_B;
 
 
 
@@ -36,6 +38,10 @@ public class Fragment_survey_B extends Fragment {
     private Button preButtonB;
     /*=======================================================*/
 
+    String[] temp=new String[9];
+    EditText[] edits=new EditText[5];
+    Spinner[] spins=new Spinner[4];
+    Integer[] temp_pos=new Integer[9];
 
 
     @Override
@@ -51,9 +57,13 @@ public class Fragment_survey_B extends Fragment {
         question2 = view.findViewById(R.id.record_questionb_2);
         question3 = view.findViewById(R.id.record_questionb_3);
         question4 = view.findViewById(R.id.record_questionb_4);
+        question7 = view.findViewById(R.id.record_questionb_7);
+
+        edits= new EditText[]{question1, question2, question3, question4, question7};
+        temp_pos=new Integer[]{1,2,3,4,7,5,6,8,9};
+
         question5 = view.findViewById(R.id.record_questionb_5);
         question6 = view.findViewById(R.id.record_questionb_6);
-        question7 = view.findViewById(R.id.record_questionb_7);
         question8 = view.findViewById(R.id.record_questionb_8);
         question9 = view.findViewById(R.id.record_questionb_9);
         nextButtonB = view.findViewById(R.id.nextButtonB);
@@ -66,20 +76,46 @@ public class Fragment_survey_B extends Fragment {
         question8.setAdapter(adapter_bool);
         question9.setAdapter(adapter_bool);
 
+        spins=new Spinner[]{question5,question6,question8,question9};
+
+        temp=get_B();
+        setFrag(temp);
+
 
         nextButtonB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                saveFrag();
+                set_B(temp);
                 getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_C()).addToBackStack(null).commit();
-
             }
         });
         preButtonB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                saveFrag();
+                set_B(temp);
                 getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_A()).addToBackStack(null).commit();
             }
         });
+
+    }
+
+    private void saveFrag(){
+        for(int i=0;i<5;i++){
+            temp[temp_pos[i]-1]=edits[i].getText().toString();
+        }
+        for(int i=0;i<4;i++){
+            temp[temp_pos[i+5]-1]=String.valueOf(spins[i].getSelectedItemPosition());
+        }
+    }
+    private void setFrag(String[] temp){
+        for(int i=0;i<5;i++){
+            edits[i].setText(temp[temp_pos[i]-1]);
+        }
+        for(int i=0;i<4;i++) {
+            if(temp[temp_pos[i+5]-1]!=null) spins[i].setSelection(Integer.valueOf(temp[temp_pos[i+5]-1]));
+        }
 
     }
 }

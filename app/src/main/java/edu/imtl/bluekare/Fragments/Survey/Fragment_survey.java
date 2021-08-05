@@ -18,8 +18,8 @@ public class Fragment_survey extends Fragment {
 
     static String[] result_A=new String[9];
     static String[] result_B=new String[9];
-    static String[] result_C=new String[9];
-    static String[] result_D=new String[9];
+    static String[] result_C=new String[10];
+    static String[] result_D=new String[10];
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_survey, container, false);

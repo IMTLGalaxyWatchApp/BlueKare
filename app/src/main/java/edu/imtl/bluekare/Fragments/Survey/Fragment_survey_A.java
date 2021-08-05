@@ -98,8 +98,6 @@ public class Fragment_survey_A extends Fragment {
             }
         });
 
-
-
     }
     public void saveFrag(){
         temp[0]=patient_name.getText().toString();

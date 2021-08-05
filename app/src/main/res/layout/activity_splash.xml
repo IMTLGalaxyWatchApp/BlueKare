@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/splash"
-        android:layout_width="300dp"
-        android:layout_height="554dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="#77FFFFFF"
         android:foregroundGravity="center"
         android:scaleX="1.5"

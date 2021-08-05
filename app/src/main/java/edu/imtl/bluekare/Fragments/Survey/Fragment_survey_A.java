@@ -1,6 +1,7 @@
 package edu.imtl.bluekare.Fragments.Survey;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import edu.imtl.bluekare.R;
+import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.get_A;
+import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.set_A;
 
 
 public class Fragment_survey_A extends Fragment {
@@ -37,6 +40,8 @@ public class Fragment_survey_A extends Fragment {
     private Button nextButtonA;
     private Button preButtonA;
 
+    String[] temp=new String[9];
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,6 +61,8 @@ public class Fragment_survey_A extends Fragment {
         patient_marriage = view.findViewById(R.id.patient_marriage);
         patient_education = view.findViewById(R.id.patient_education);
         nextButtonA = view.findViewById(R.id.nextButtonA);
+
+        temp=get_A();
 
 
         ArrayAdapter<String> adapter_sex = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, sex);
@@ -78,9 +85,14 @@ public class Fragment_survey_A extends Fragment {
         adapter_education.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         patient_education.setAdapter(adapter_education);
 
+        setFrag(); //위치 어레이 어뎁터 뒤로 고정
+
+
         nextButtonA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                saveFrag();
+                set_A(temp);
                 getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_B()).addToBackStack(null).commit();
 
             }
@@ -88,5 +100,29 @@ public class Fragment_survey_A extends Fragment {
 
 
 
+    }
+    public void saveFrag(){
+        temp[0]=patient_name.getText().toString();
+        temp[1]=String.valueOf(patient_sex.getSelectedItemPosition());
+        temp[2]=patient_age.getText().toString();
+        temp[3]=patient_address.getText().toString();
+        temp[4]=String.valueOf(patient_socialstatus.getSelectedItemPosition());
+        temp[5]=String.valueOf(patient_job.getSelectedItemPosition());
+        temp[6]=String.valueOf(patient_marriage.getSelectedItemPosition());
+        temp[7]=String.valueOf(patient_education.getSelectedItemPosition());
+        temp[8]=patient_education_total.getText().toString();
+
+        for(int i=0;i<9;i++) Log.e("temp",temp[i]);
+    }
+    public void setFrag(){
+        patient_name.setText(temp[0]);
+        if(temp[1]!=null)patient_sex.setSelection(Integer.valueOf(temp[1]));
+        patient_age.setText(temp[2]);
+        patient_address.setText(temp[3]);
+        if(temp[4]!=null)patient_socialstatus.setSelection(Integer.valueOf(temp[4]));
+        if(temp[5]!=null)patient_job.setSelection(Integer.valueOf(temp[5]));
+        if(temp[6]!=null)patient_marriage.setSelection(Integer.valueOf(temp[6]));
+        if(temp[7]!=null)patient_education.setSelection(Integer.valueOf(temp[7]));
+        patient_education_total.setText(temp[8]);
     }
 }

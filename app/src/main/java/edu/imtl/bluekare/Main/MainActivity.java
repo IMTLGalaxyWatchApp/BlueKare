@@ -30,7 +30,6 @@ import edu.imtl.bluekare.Fragments.MainMenu.Fragment_main;
 import edu.imtl.bluekare.Fragments.Survey.Fragment_survey;
 import edu.imtl.bluekare.Fragments.Record.Fragment_record;
 import edu.imtl.bluekare.Fragments.Login.LoginActivity;
-import edu.imtl.bluekare.Fragments.Survey.Fragment_survey_A;
 import edu.imtl.bluekare.R;
 import edu.imtl.bluekare.SHealth.StepCountReporter;
 
@@ -50,7 +49,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.Menu;
-
 import java.util.Collections;
 import java.util.Objects;
 import java.text.SimpleDateFormat;
@@ -76,16 +74,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     /*=======================================================*/
     FloatingActionButton btn;
     DrawerLayout drawerLayout;
-    String uid, name, dob, gender;
+    String uid,name,dob,gender;
     int age;
     ImageButton mSearchBtn;
     public static String finalUserId;
     public static int datasize;
-    TextView musername, museremail, muserage, musergender;
+    TextView musername, museremail,muserage, musergender;
     private long lastTimeBackPressed;
-    Fragment_survey fragment_survey;
 
     DeviceInfo deviceInfo;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,8 +98,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View headerView = navigationView.getHeaderView(0);
         museremail = headerView.findViewById(R.id.userdraweremail);
         musername = headerView.findViewById(R.id.userdrawername);
-        muserage = headerView.findViewById(R.id.userdrawerage);
-        musergender = headerView.findViewById(R.id.userdrawergender);
+        muserage=headerView.findViewById(R.id.userdrawerage);
+        musergender=headerView.findViewById(R.id.userdrawergender);
+
+
+
+        drawerLayout = findViewById(R.id.drawerlayout);
 
         findViewById(R.id.menu).setOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
 
@@ -112,9 +115,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_main()).commit();
             navigationView.setCheckedItem(R.id.Main_Menu_nav);
-            Log.e("asdf", "mainfragopen");
         }
-        Log.e("asdf", "mainopen");
+
         /*================= Samsung Health  =====================*/
         // Create a HealthDataStore instance and set its listener
         mStore = new HealthDataStore(this, mConnectionListener);
@@ -123,6 +125,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         /*=======================================================*/
 
+//        Async_get_registration async_get_registration = new Async_get_registration(MainActivity.this);
+//        async_get_registration.execute();
         setUserInfo();
         setAlarm();
 
@@ -139,8 +143,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
     }
 
     private void createNotificationChannel() {
@@ -155,49 +159,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             notificationManager.createNotificationChannel(channel);
         }
     }
-
-    @Override
-    public void onBackPressed() {
-        drawerLayout = findViewById(R.id.drawerlayout);
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else {
-            if (System.currentTimeMillis() - lastTimeBackPressed < 2000) {
-                finish();
-                return;
-            }
-            Toast.makeText(this, "'뒤로' 버튼을 한번 더 누르시면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show();
-            lastTimeBackPressed = System.currentTimeMillis();
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        drawerLayout = findViewById(R.id.drawerlayout);
+//        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//        } else {
+//            if (System.currentTimeMillis() - lastTimeBackPressed < 2000) {
+//                finish();
+//                return;
+//            }
+//            Toast.makeText(this, "'뒤로' 버튼을 한번 더 누르시면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show();
+//            lastTimeBackPressed = System.currentTimeMillis();
+//        }
+//    }
 
     private void setNavigationViewListener() {
         NavigationView navigationView = findViewById(R.id.navigationlayout);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    public void setUserInfo() {
+    public void setUserInfo(){
 
-        name = getIntent().getStringExtra("name");
-        uid = getIntent().getStringExtra("uid");
-        dob = getIntent().getStringExtra("dob");
-        if (getIntent().getStringExtra("gender") == "0") gender = "남성";
-        else gender = "여성";
+        name=getIntent().getStringExtra("name");
+        uid=getIntent().getStringExtra("uid");
+        dob=getIntent().getStringExtra("dob");
+        if(getIntent().getStringExtra("gender")=="0") gender="남성";
+        else gender="여성";
 
 
-        Log.e("setuserinfo", name + uid + dob + gender);
-        if (name != null && uid != null && dob != null) {
-            Calendar cal = new GregorianCalendar();
-            ;
+
+        Log.e("setuserinfo",name+uid+dob+gender);
+        if(name!=null && uid!=null && dob!=null){
+            Calendar cal = new GregorianCalendar();;
             SimpleDateFormat formats;
-            formats = new SimpleDateFormat("yyyy");
+            formats = new SimpleDateFormat ( "yyyy");
 
             // Finalvar.birth_year의 값은 1950년 1월 20일
             int time2 = Integer.parseInt(formats.format(cal.getTime()));
-            int ageSum = Integer.parseInt(dob.substring(0, 4));
+            int ageSum = Integer.parseInt(dob.substring(0,4));
 
-            muserage.setText(Integer.toString(time2 - ageSum + 1) + "세");
+            muserage.setText(Integer.toString(time2 - ageSum +1)+"세");
             musergender.setText(gender);
             museremail.setText(uid);
             musername.setText(name);
@@ -214,10 +216,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (isPermissionAcquired()) {
                 mReporter.start();
                 HealthUserProfile usrProfile = HealthUserProfile.getProfile(mStore);
-                Log.d(APP_TAG, String.valueOf(usrProfile.getBirthDate()));
-                Log.d(APP_TAG, String.valueOf(usrProfile.getGender()));
-                Log.d(APP_TAG, String.valueOf(usrProfile.getHeight()));
-                Log.d(APP_TAG, String.valueOf(usrProfile.getWeight()));
+                Log.d(APP_TAG,String.valueOf(usrProfile.getBirthDate()));
+                Log.d(APP_TAG,String.valueOf(usrProfile.getGender()));
+                Log.d(APP_TAG,String.valueOf(usrProfile.getHeight()));
+                Log.d(APP_TAG,String.valueOf(usrProfile.getWeight()));
             } else {
                 requestPermission();
             }

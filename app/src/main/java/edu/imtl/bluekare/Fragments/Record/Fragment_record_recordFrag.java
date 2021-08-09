@@ -11,6 +11,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -27,6 +28,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
+
 import edu.imtl.bluekare.R;
 
 
@@ -117,7 +120,7 @@ public class Fragment_record_recordFrag extends Fragment implements View.OnClick
                     stopRecording();
 
                     // Change button image and set Recording state to false
-                    recordBtn.setImageDrawable(getResources().getDrawable(R.drawable.record_btn_stopped, null));
+                    recordBtn.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.record_btn_stopped, null));
                     isRecording = false;
                 } else {
                     //Check permission to record audio
@@ -126,7 +129,7 @@ public class Fragment_record_recordFrag extends Fragment implements View.OnClick
                         startRecording();
 
                         // Change button image and set Recording state to false
-                        recordBtn.setImageDrawable(getResources().getDrawable(R.drawable.record_btn_recording, null));
+                        recordBtn.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.record_btn_recording, null));
                         isRecording = true;
                     }
                 }
@@ -183,12 +186,12 @@ public class Fragment_record_recordFrag extends Fragment implements View.OnClick
 
     private boolean checkPermissions() {
         //Check permission
-        if (ActivityCompat.checkSelfPermission(getContext(), recordPermission) == PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(requireContext(), recordPermission) == PackageManager.PERMISSION_GRANTED) {
             //Permission Granted
             return true;
         } else {
             //Permission not granted, ask for permission
-            ActivityCompat.requestPermissions(getActivity(), new String[]{recordPermission}, PERMISSION_CODE);
+            ActivityCompat.requestPermissions(requireActivity(), new String[]{recordPermission}, PERMISSION_CODE);
             return false;
         }
     }

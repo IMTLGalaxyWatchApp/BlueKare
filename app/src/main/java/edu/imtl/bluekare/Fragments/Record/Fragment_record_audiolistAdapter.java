@@ -64,7 +64,7 @@ public class Fragment_record_audiolistAdapter extends RecyclerView.Adapter<Fragm
 
         @Override
         public void onClick(View v) {
-            onItemListClick.onClickListener(allFiles[getAdapterPosition()], getAdapterPosition());
+            onItemListClick.onClickListener(allFiles[getBindingAdapterPosition()], getBindingAdapterPosition());
         }
     }
 

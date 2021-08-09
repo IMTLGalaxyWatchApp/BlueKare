@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Objects;
 
 import static edu.imtl.bluekare.Fragments.Login.SaveUserData.getUserAccessToken;
 
@@ -117,7 +118,7 @@ public class Async_get_device_log extends AsyncTask<Void, Void, String> {
         } catch (IOException e){
             e.printStackTrace();
         } catch (Exception e){
-            Log.e("Error", e.getMessage());
+            Log.e("Error", Objects.requireNonNull(e.getMessage()));
         }
         return null;
     }

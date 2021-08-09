@@ -18,6 +18,8 @@ import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 import edu.imtl.bluekare.Main.Async_get_registration;
 import edu.imtl.bluekare.Main.MainActivity;
@@ -138,7 +140,7 @@ public class Async_login_task extends AsyncTask<Void, Void, String> {
             httpURLConnection.setDoInput(true);
 
             OutputStream outputStream = httpURLConnection.getOutputStream();
-            outputStream.write(json.getBytes("UTF-8"));
+            outputStream.write(json.getBytes(StandardCharsets.UTF_8));
             outputStream.flush();
             outputStream.close();
 
@@ -150,10 +152,10 @@ public class Async_login_task extends AsyncTask<Void, Void, String> {
             String page = "";
             BufferedReader reader;
             if(status_code == HttpURLConnection.HTTP_OK){
-                reader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), "UTF-8"));
+                reader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), StandardCharsets.UTF_8));
 
             }
-            else reader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream(), "UTF-8"));
+            else reader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream(), StandardCharsets.UTF_8));
             while((line = reader.readLine()) != null) page += line+"\n";
             Log.d("page", page);
             return page;
@@ -161,7 +163,7 @@ public class Async_login_task extends AsyncTask<Void, Void, String> {
         } catch (IOException | JSONException e){
             e.printStackTrace();
         } catch (Exception e){
-            Log.e("Error", e.getMessage());
+            Log.e("Error", Objects.requireNonNull(e.getMessage()));
         }
         return null;
     }

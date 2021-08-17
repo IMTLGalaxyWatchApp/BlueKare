@@ -1,6 +1,7 @@
 package edu.imtl.bluekare.Fragments.Survey;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import edu.imtl.bluekare.R;
+
+import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.final_result_D;
+import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.result_D;
 
 public class Fragment_survey_D extends Fragment {
 
@@ -34,7 +38,10 @@ public class Fragment_survey_D extends Fragment {
     private Button preButtonD;
     /*=======================================================*/
 
-
+    String[] temp=new String[10];
+    EditText[] edits=new EditText[6];
+    Spinner[] spins=new Spinner[4];
+    Integer[] temp_pos=new Integer[10];
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,10 +71,18 @@ public class Fragment_survey_D extends Fragment {
         question2_2_3.setAdapter(adapter_bool);
         question2_3_3.setAdapter(adapter_bool);
 
-
+        spins=new Spinner[]{question1,question2_1_3,question2_2_3,question2_3_3};
+        edits=new EditText[]{question2_1_1,question2_1_2,question2_2_1,question2_2_2,question2_3_1,question2_3_2};
+        temp_pos=new Integer[]{1,2,4,5,7,8,0,3,6,9};
+        temp=result_D;
+        
+        setFrag(temp);
+        //for(int i=0;i<temp.length;i++) Log.e("temp",temp[i]);
         nextButtonD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                saveFrag();
+                convertSpin();
                 getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_final()).addToBackStack(null).commit();
 
             }
@@ -75,9 +90,35 @@ public class Fragment_survey_D extends Fragment {
         preButtonD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                saveFrag();
+                convertSpin();
                 getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_C()).addToBackStack(null).commit();
             }
         });
+
+    }
+    private void saveFrag(){
+        for(int i=0;i<6;i++){
+            temp[temp_pos[i]]=edits[i].getText().toString();
+        }
+        for(int i=0;i<4;i++){
+            temp[temp_pos[i+6]]=String.valueOf(spins[i].getSelectedItemPosition());
+        }
+    }
+    private void setFrag(String[] temp){
+        for(int i=0;i<6;i++){
+            edits[i].setText(temp[temp_pos[i]]);
+        }
+        for(int i=0;i<4;i++) {
+            if(temp[temp_pos[i+6]]!=null) spins[i].setSelection(Integer.valueOf(temp[temp_pos[i+6]]));
+        }
+
+    }
+    private void convertSpin(){
+        final_result_D=temp.clone();
+        for(int i=0;i<4;i++){
+            final_result_D[temp_pos[i+6]]=spins[i].getSelectedItem().toString();
+        }
 
     }
 }

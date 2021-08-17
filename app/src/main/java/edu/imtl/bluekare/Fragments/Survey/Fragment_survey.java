@@ -20,6 +20,11 @@ public class Fragment_survey extends Fragment {
     static String[] result_B=new String[9];
     static String[] result_C=new String[10];
     static String[] result_D=new String[10];
+
+    static String[] final_result_A=new String[9];
+    static String[] final_result_B=new String[9];
+    static String[] final_result_C=new String[10];
+    static String[] final_result_D=new String[10];
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_survey, container, false);
@@ -28,16 +33,7 @@ public class Fragment_survey extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getChildFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_Pre()).addToBackStack(null).commit();
+        getChildFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_A()).addToBackStack(null).commit();
 
     }
-    public static String[] get_A(){ return result_A;}
-    public static String[] get_B(){ return result_B;}
-    public static String[] get_C(){ return result_C;}
-    public static String[] get_D(){ return result_D;}
-
-    public static void set_A(String[] temp){ result_A=temp;}
-    public static void set_B(String[] temp){ result_B=temp;}
-    public static void set_C(String[] temp){ result_C=temp;}
-    public static void set_D(String[] temp){ result_D=temp;}
 }

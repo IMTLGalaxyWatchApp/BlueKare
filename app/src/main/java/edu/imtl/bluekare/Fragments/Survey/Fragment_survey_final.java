@@ -13,12 +13,11 @@ import androidx.fragment.app.Fragment;
 import edu.imtl.bluekare.Fragments.MainMenu.Fragment_main;
 import edu.imtl.bluekare.Main.MainActivity;
 import edu.imtl.bluekare.R;
-
 public class Fragment_survey_final extends Fragment {
 
 
     /*================= Question Type final  =====================*/
-    private Button MenuButton;
+
 
     /*=======================================================*/
 
@@ -31,15 +30,6 @@ public class Fragment_survey_final extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        MenuButton=view.findViewById(R.id.button_to_mainMenu);
-
-        MenuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
-
-
 
     }
 }

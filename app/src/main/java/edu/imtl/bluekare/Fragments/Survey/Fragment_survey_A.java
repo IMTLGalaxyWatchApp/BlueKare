@@ -16,9 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import edu.imtl.bluekare.R;
-import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.get_A;
-import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.set_A;
-
+import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.result_A;
+import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.final_result_A;
 
 public class Fragment_survey_A extends Fragment {
 
@@ -38,7 +37,6 @@ public class Fragment_survey_A extends Fragment {
     private Spinner patient_education;
     String[] education = new String[]{"무학", "초졸", "중졸", "고졸", "전문대졸", "대졸", "대학원졸"};
     private Button nextButtonA;
-    private Button preButtonA;
 
     String[] temp=new String[9];
 
@@ -62,7 +60,7 @@ public class Fragment_survey_A extends Fragment {
         patient_education = view.findViewById(R.id.patient_education);
         nextButtonA = view.findViewById(R.id.nextButtonA);
 
-        temp=get_A();
+        temp=result_A;
 
 
         ArrayAdapter<String> adapter_sex = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, sex);
@@ -92,7 +90,7 @@ public class Fragment_survey_A extends Fragment {
             @Override
             public void onClick(View v) {
                 saveFrag();
-                set_A(temp);
+                convertSpin();
                 getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_B()).addToBackStack(null).commit();
 
             }
@@ -110,9 +108,11 @@ public class Fragment_survey_A extends Fragment {
         temp[7]=String.valueOf(patient_education.getSelectedItemPosition());
         temp[8]=patient_education_total.getText().toString();
 
-        for(int i=0;i<9;i++) Log.e("temp",temp[i]);
+        //for(int i=0;i<9;i++) Log.e(String.valueOf(i),temp[i]);
     }
     public void setFrag(){
+//        for(int i=0;i<9;i++)
+//            if(temp[i]!=null) Log.e(String.valueOf(i),temp[i]);
         patient_name.setText(temp[0]);
         if(temp[1]!=null)patient_sex.setSelection(Integer.valueOf(temp[1]));
         patient_age.setText(temp[2]);
@@ -122,5 +122,15 @@ public class Fragment_survey_A extends Fragment {
         if(temp[6]!=null)patient_marriage.setSelection(Integer.valueOf(temp[6]));
         if(temp[7]!=null)patient_education.setSelection(Integer.valueOf(temp[7]));
         patient_education_total.setText(temp[8]);
+    }
+    public void convertSpin(){
+        final_result_A=temp.clone();
+        final_result_A[1]=patient_sex.getSelectedItem().toString();
+        final_result_A[4]=patient_socialstatus.getSelectedItem().toString();
+        final_result_A[5]=patient_job.getSelectedItem().toString();
+        final_result_A[6]=patient_marriage.getSelectedItem().toString();
+        final_result_A[7]=patient_education.getSelectedItem().toString();
+        for(int i=0;i<9;i++)
+            if(temp[i]!=null) Log.e(String.valueOf(i),temp[i]);
     }
 }

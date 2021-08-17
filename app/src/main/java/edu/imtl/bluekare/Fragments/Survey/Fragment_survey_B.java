@@ -1,6 +1,7 @@
 package edu.imtl.bluekare.Fragments.Survey;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import edu.imtl.bluekare.R;
-import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.get_B;
-import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.set_B;
-
+import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.result_B;
+import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.final_result_B;
 
 
 public class Fragment_survey_B extends Fragment {
@@ -78,7 +78,7 @@ public class Fragment_survey_B extends Fragment {
 
         spins=new Spinner[]{question5,question6,question8,question9};
 
-        temp=get_B();
+        temp=result_B;
         setFrag(temp);
 
 
@@ -86,7 +86,7 @@ public class Fragment_survey_B extends Fragment {
             @Override
             public void onClick(View v) {
                 saveFrag();
-                set_B(temp);
+                convertSpin();
                 getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_C()).addToBackStack(null).commit();
             }
         });
@@ -94,7 +94,7 @@ public class Fragment_survey_B extends Fragment {
             @Override
             public void onClick(View v) {
                 saveFrag();
-                set_B(temp);
+                convertSpin();
                 getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_A()).addToBackStack(null).commit();
             }
         });
@@ -117,5 +117,11 @@ public class Fragment_survey_B extends Fragment {
             if(temp[temp_pos[i+5]-1]!=null) spins[i].setSelection(Integer.parseInt(temp[temp_pos[i+5]-1]));
         }
 
+    }
+    private void convertSpin(){
+        final_result_B=temp.clone();
+        for(int i=0;i<4;i++){
+            final_result_B[temp_pos[i+5]-1]=spins[i].getSelectedItem().toString();
+        }
     }
 }

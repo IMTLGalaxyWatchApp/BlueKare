@@ -110,13 +110,13 @@ public class Fragment_survey_A extends Fragment {
     public void setFrag(){
 //        for(int i=0;i<9;i++)
 //            if(temp[i]!=null) Log.e(String.valueOf(i),temp[i]);
-        if(temp[0]!=null)patient_sex.setSelection(Integer.valueOf(temp[0]));
+        if(temp[0]!=null)patient_sex.setSelection(Integer.parseInt(temp[0]));
         patient_age.setText(temp[1]);
         patient_address.setText(temp[2]);
-        if(temp[3]!=null)patient_socialstatus.setSelection(Integer.valueOf(temp[3]));
-        if(temp[4]!=null)patient_job.setSelection(Integer.valueOf(temp[4]));
-        if(temp[5]!=null)patient_marriage.setSelection(Integer.valueOf(temp[5]));
-        if(temp[6]!=null)patient_education.setSelection(Integer.valueOf(temp[6]));
+        if(temp[3]!=null)patient_socialstatus.setSelection(Integer.parseInt(temp[3]));
+        if(temp[4]!=null)patient_job.setSelection(Integer.parseInt(temp[4]));
+        if(temp[5]!=null)patient_marriage.setSelection(Integer.parseInt(temp[5]));
+        if(temp[6]!=null)patient_education.setSelection(Integer.parseInt(temp[6]));
         patient_education_total.setText(temp[7]);
     }
     public void convertSpin(){

@@ -23,34 +23,56 @@
         android:textSize="14sp"
         android:layout_marginStart="25dp"
         android:layout_marginBottom="50dp"
-        android:layout_above="@id/et_email"/>
+        android:layout_above="@id/et_email_layout"/>
 
-    <EditText
-        android:id="@+id/et_email"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_email_layout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="email"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:padding="15dp"
-        android:inputType="textEmailAddress"
-        android:layout_above="@id/et_password"
-        android:background="@drawable/et_custom"
-        android:textSize="15sp" />
+        android:layout_above="@id/et_password_layout"
+        >
 
-    <EditText
-        android:id="@+id/et_password"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="email"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:textSize="15sp"
+            android:background="@drawable/et_custom"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_password_layout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="password"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
-        android:padding="15dp"
-        android:inputType="textPassword"
         android:layout_centerInParent="true"
-        android:background="@drawable/et_custom"
-        android:textSize="15sp" />
+
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="password"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textSize="15sp"
+            android:background="@drawable/et_custom"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
 
     <RadioButton
@@ -72,7 +94,7 @@
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_password"
+        android:layout_below="@id/et_password_layout"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="73dp"
         android:layout_marginRight="20dp"

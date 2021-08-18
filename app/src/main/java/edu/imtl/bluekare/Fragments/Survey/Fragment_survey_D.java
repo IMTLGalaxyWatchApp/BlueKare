@@ -110,7 +110,7 @@ public class Fragment_survey_D extends Fragment {
             edits[i].setText(temp[temp_pos[i]]);
         }
         for(int i=0;i<4;i++) {
-            if(temp[temp_pos[i+6]]!=null) spins[i].setSelection(Integer.valueOf(temp[temp_pos[i+6]]));
+            if(temp[temp_pos[i+6]]!=null) spins[i].setSelection(Integer.parseInt(temp[temp_pos[i+6]]));
         }
 
     }

@@ -21,7 +21,6 @@ import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.final_result_A;
 
 public class Fragment_survey_A extends Fragment {
 
-    private EditText patient_name;
     private EditText patient_age;
     private EditText patient_address;
     private EditText patient_education_total;
@@ -38,7 +37,7 @@ public class Fragment_survey_A extends Fragment {
     String[] education = new String[]{"무학", "초졸", "중졸", "고졸", "전문대졸", "대졸", "대학원졸"};
     private Button nextButtonA;
 
-    String[] temp=new String[9];
+    String[] temp=new String[8];
 
 
     @Override
@@ -49,7 +48,6 @@ public class Fragment_survey_A extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        patient_name = view.findViewById(R.id.patient_name);
         patient_age = view.findViewById(R.id.patient_age);
         patient_address = view.findViewById(R.id.patient_address);
         patient_education_total = view.findViewById(R.id.patient_education_total);
@@ -98,39 +96,37 @@ public class Fragment_survey_A extends Fragment {
 
     }
     public void saveFrag(){
-        temp[0]=patient_name.getText().toString();
-        temp[1]=String.valueOf(patient_sex.getSelectedItemPosition());
-        temp[2]=patient_age.getText().toString();
-        temp[3]=patient_address.getText().toString();
-        temp[4]=String.valueOf(patient_socialstatus.getSelectedItemPosition());
-        temp[5]=String.valueOf(patient_job.getSelectedItemPosition());
-        temp[6]=String.valueOf(patient_marriage.getSelectedItemPosition());
-        temp[7]=String.valueOf(patient_education.getSelectedItemPosition());
-        temp[8]=patient_education_total.getText().toString();
+        temp[0]=String.valueOf(patient_sex.getSelectedItemPosition());
+        temp[1]=patient_age.getText().toString();
+        temp[2]=patient_address.getText().toString();
+        temp[3]=String.valueOf(patient_socialstatus.getSelectedItemPosition());
+        temp[4]=String.valueOf(patient_job.getSelectedItemPosition());
+        temp[5]=String.valueOf(patient_marriage.getSelectedItemPosition());
+        temp[6]=String.valueOf(patient_education.getSelectedItemPosition());
+        temp[7]=patient_education_total.getText().toString();
 
         //for(int i=0;i<9;i++) Log.e(String.valueOf(i),temp[i]);
     }
     public void setFrag(){
 //        for(int i=0;i<9;i++)
 //            if(temp[i]!=null) Log.e(String.valueOf(i),temp[i]);
-        patient_name.setText(temp[0]);
-        if(temp[1]!=null)patient_sex.setSelection(Integer.valueOf(temp[1]));
-        patient_age.setText(temp[2]);
-        patient_address.setText(temp[3]);
-        if(temp[4]!=null)patient_socialstatus.setSelection(Integer.valueOf(temp[4]));
-        if(temp[5]!=null)patient_job.setSelection(Integer.valueOf(temp[5]));
-        if(temp[6]!=null)patient_marriage.setSelection(Integer.valueOf(temp[6]));
-        if(temp[7]!=null)patient_education.setSelection(Integer.valueOf(temp[7]));
+        if(temp[0]!=null)patient_sex.setSelection(Integer.valueOf(temp[0]));
+        patient_age.setText(temp[1]);
+        patient_address.setText(temp[2]);
+        if(temp[3]!=null)patient_socialstatus.setSelection(Integer.valueOf(temp[3]));
+        if(temp[4]!=null)patient_job.setSelection(Integer.valueOf(temp[4]));
+        if(temp[5]!=null)patient_marriage.setSelection(Integer.valueOf(temp[5]));
+        if(temp[6]!=null)patient_education.setSelection(Integer.valueOf(temp[6]));
         patient_education_total.setText(temp[8]);
     }
     public void convertSpin(){
         final_result_A=temp.clone();
-        final_result_A[1]=patient_sex.getSelectedItem().toString();
-        final_result_A[4]=patient_socialstatus.getSelectedItem().toString();
-        final_result_A[5]=patient_job.getSelectedItem().toString();
-        final_result_A[6]=patient_marriage.getSelectedItem().toString();
-        final_result_A[7]=patient_education.getSelectedItem().toString();
-        for(int i=0;i<9;i++)
+        final_result_A[0]=patient_sex.getSelectedItem().toString();
+        final_result_A[3]=patient_socialstatus.getSelectedItem().toString();
+        final_result_A[4]=patient_job.getSelectedItem().toString();
+        final_result_A[5]=patient_marriage.getSelectedItem().toString();
+        final_result_A[6]=patient_education.getSelectedItem().toString();
+        for(int i=0;i<8;i++)
             if(temp[i]!=null) Log.e(String.valueOf(i),temp[i]);
     }
 }

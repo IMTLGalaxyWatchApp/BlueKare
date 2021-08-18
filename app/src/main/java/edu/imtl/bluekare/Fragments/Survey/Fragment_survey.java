@@ -15,8 +15,10 @@ import edu.imtl.bluekare.R;
 
 
 public class Fragment_survey extends Fragment {
+    static String name;
+    static String phoneNum;
 
-    static String[] result_A=new String[9];
+    static String[] result_A=new String[8];
     static String[] result_B=new String[9];
     static String[] result_C=new String[10];
     static String[] result_D=new String[10];
@@ -33,7 +35,7 @@ public class Fragment_survey extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getChildFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_A()).addToBackStack(null).commit();
+        getChildFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_Pre()).addToBackStack(null).commit();
 
     }
 }

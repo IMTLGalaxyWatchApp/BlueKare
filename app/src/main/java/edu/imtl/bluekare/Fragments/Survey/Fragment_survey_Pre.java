@@ -34,8 +34,8 @@ public class Fragment_survey_Pre extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButtonA = view.findViewById(R.id.toA);
-        _name=view.findViewById(R.id.nameText);
-        _phoneNum=view.findViewById(R.id.phoneText);
+        _name=view.findViewById(R.id.editTextTextPersonName);
+        _phoneNum=view.findViewById(R.id.editTextPhone);
 
         ButtonA.setOnClickListener(new View.OnClickListener() {
             @Override

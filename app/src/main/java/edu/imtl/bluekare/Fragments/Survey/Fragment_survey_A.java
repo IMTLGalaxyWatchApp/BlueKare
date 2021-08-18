@@ -117,7 +117,7 @@ public class Fragment_survey_A extends Fragment {
         if(temp[4]!=null)patient_job.setSelection(Integer.valueOf(temp[4]));
         if(temp[5]!=null)patient_marriage.setSelection(Integer.valueOf(temp[5]));
         if(temp[6]!=null)patient_education.setSelection(Integer.valueOf(temp[6]));
-        patient_education_total.setText(temp[8]);
+        patient_education_total.setText(temp[7]);
     }
     public void convertSpin(){
         final_result_A=temp.clone();

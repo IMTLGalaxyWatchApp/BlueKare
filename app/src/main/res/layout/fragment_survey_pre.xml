@@ -6,23 +6,24 @@
     android:layout_height="match_parent"
     android:layout_marginTop="30dp"
     android:orientation="vertical">
-
-
     <TextView
-        android:id="@+id/textView7"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-smallcaps"
         android:text="인적 사항 수집"
+        android:textSize="40sp"
         android:textAlignment="center"
-        android:textColor="#8FC838"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/colorPrimary"
+
         />
 
 
+
+
+
     <LinearLayout
+        android:layout_marginTop="80dp"
         android:id="@+id/linearlayout_num"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,23 +31,28 @@
         android:layout_marginBottom="10dp"
         >
 
-        <TextView
-            android:id="@+id/nameText"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="이름"
-            android:gravity="center"/>
-
-        <EditText
-            android:id="@+id/editTextTextPersonName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-             />
+            android:layout_marginTop="10dp"
+            android:layout_centerInParent="true"
+
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="이름"
+                android:inputType="textPersonName"
+                android:padding="15dp"
+                android:textSize="15sp"
+                android:background="@drawable/et_custom"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
 
@@ -55,36 +61,42 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
          >
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_centerInParent="true"
 
-        <TextView
-            android:id="@+id/phoneText"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="전화번호"
-            android:gravity="center"/>
+            >
 
-        <EditText
-            android:id="@+id/editTextPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="phone"
-            android:layout_marginRight="20dp"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextPhone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="전화번호"
+                android:inputType="phone"
+                android:padding="15dp"
+                android:textSize="15sp"
+                android:background="@drawable/et_custom"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
     </LinearLayout>
 
 
     <Button
         android:id="@+id/toA"
-        android:layout_width="150dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:padding="15dp"
         android:text="다음"
         android:textAlignment="center"
         android:textSize="20sp"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center"
+        android:layout_marginTop="120dp"
+        android:layout_gravity="center|bottom"
         />
 
 

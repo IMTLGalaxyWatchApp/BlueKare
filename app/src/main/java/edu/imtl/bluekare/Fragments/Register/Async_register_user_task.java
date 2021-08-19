@@ -50,7 +50,6 @@ public class Async_register_user_task extends AsyncTask<Void, Void, String> {
         this.gender = gender;
         this.dob = dob;
 
-
     }
 
     @Override

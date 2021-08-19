@@ -164,10 +164,15 @@
 
             <Button
                 android:id="@+id/button"
-                android:layout_width="150dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Download"
-                android:layout_gravity="center"/>
+                android:text="다운로드"
+                android:layout_gravity="center|bottom"
+                android:layout_marginTop="30dp"
+                android:textSize="20dp"
+                android:padding="15dp"
+                android:layout_margin="10dp"
+                />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

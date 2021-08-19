@@ -125,14 +125,16 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/et_custom"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:ems="10"
+                >
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="72dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:padding="15dp"
@@ -141,9 +143,9 @@
 
                 <RadioGroup
                     android:layout_width="208dp"
-                    android:layout_height="39dp"
+                    android:layout_height="50dp"
                     android:orientation="horizontal"
-                    android:paddingTop="13dp">
+                    android:paddingTop="0dp">
 
                     <RadioButton
                         android:id="@+id/male_button"
@@ -173,10 +175,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="20dp"
-
-
                     android:layout_marginRight="20dp"
-                    android:background="@drawable/btn_custom"
+                    android:background="@drawable/chip_selected"
                     android:text="register"
                     android:textColor="@android:color/white" />
 

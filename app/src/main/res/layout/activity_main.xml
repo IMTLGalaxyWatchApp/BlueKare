@@ -35,13 +35,13 @@
                 android:id="@+id/layouttoolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
-                android:background="@android:color/transparent"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingStart="15dp"
-                android:paddingEnd="15dp"
+                android:paddingEnd="45dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                >
 
 
                 <ImageView
@@ -57,17 +57,17 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:background="@android:color/transparent"
-                    app:srcCompat="@drawable/ic_baseline_search_24" />
+                    />
 
-                <TextView
-                    android:id="@+id/appname"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="right"
-                    android:text="@string/app_name"
-                    android:textColor="@color/filters_header"
-                    android:textSize="40sp"
-                    android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@mipmap/transparent_logo_foreground"
+                    android:layout_gravity="center"
+                    />
+
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

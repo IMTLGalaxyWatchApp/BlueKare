@@ -91,7 +91,6 @@ public class LoginActivity extends AppCompatActivity {
         {   Log.e("asdf","async_login");
             Async_login_task async_login_task = new Async_login_task(LoginActivity.this, temp_email, temp_pw, device_id, device_name, remember_flag);
             async_login_task.execute();
-
         }
 
 

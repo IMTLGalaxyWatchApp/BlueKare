@@ -335,26 +335,24 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
             <Button
                 android:id="@+id/preButtonC"
-                android:layout_width="200dp"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
                 android:padding="15dp"
                 android:text="이전"
                 android:textAlignment="center"
                 android:textSize="20dp"
-                android:theme="@style/myButton"/>
+                android:theme="@style/myButtonGray"/>
             <Button
                 android:id="@+id/nextButtonC"
-                android:layout_width="200dp"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="10dp"
                 android:padding="15dp"
                 android:text="다음"
                 android:textAlignment="center"

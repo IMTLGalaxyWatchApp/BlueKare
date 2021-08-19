@@ -19,4 +19,9 @@
     <color name="brown">#795548</color>
     <color name="colorDarkBlue">#3D4054</color>
 
+    <color name="mainColor">#a2e6f4</color>
+    <color name="pointColor">#39fff1</color>
+    <color name="maindarkColor">#97daf3</color>
+
+
 </resources>

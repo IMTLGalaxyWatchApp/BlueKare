@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
+import edu.imtl.bluekare.Main.MainActivity;
 import edu.imtl.bluekare.R;
 
 
@@ -251,4 +252,5 @@ public class Fragment_record_audiolistFrag extends Fragment implements Fragment_
             stopAudio();
         }
     }
+
 }

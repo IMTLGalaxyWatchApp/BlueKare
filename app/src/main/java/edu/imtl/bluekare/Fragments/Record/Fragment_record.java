@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import edu.imtl.bluekare.R;
 
-public class Fragment_record extends Fragment {
+public class Fragment_record extends Fragment  {
 
 
     @Override
@@ -23,6 +23,7 @@ public class Fragment_record extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
+
 }
 
 

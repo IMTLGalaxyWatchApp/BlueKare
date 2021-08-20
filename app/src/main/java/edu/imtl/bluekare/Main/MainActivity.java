@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import edu.imtl.bluekare.Background.AlarmReceiver;
 import edu.imtl.bluekare.Fragments.Download.Fragment_download;
@@ -50,6 +51,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.Menu;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -159,20 +161,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             notificationManager.createNotificationChannel(channel);
         }
     }
-//    @Override
-//    public void onBackPressed() {
-//        drawerLayout = findViewById(R.id.drawerlayout);
-//        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-//            drawerLayout.closeDrawer(GravityCompat.START);
-//        } else {
-//            if (System.currentTimeMillis() - lastTimeBackPressed < 2000) {
-//                finish();
-//                return;
-//            }
-//            Toast.makeText(this, "'뒤로' 버튼을 한번 더 누르시면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show();
-//            lastTimeBackPressed = System.currentTimeMillis();
-//        }
-//    }
+    public interface onKeyBackPressedListener {
+        void onBackKey();
+    }
+    private onKeyBackPressedListener mOnKeyBackPressedListener;
+    public void setOnKeyBackPressedListener(onKeyBackPressedListener listener) { mOnKeyBackPressedListener = listener; }
+
+    @Override
+    public void onBackPressed() {
+        drawerLayout = findViewById(R.id.drawerlayout);
+
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else {
+
+                if (System.currentTimeMillis() - lastTimeBackPressed < 2000) {
+                    finish();
+                    return;
+                }
+                Toast.makeText(this, "'뒤로' 버튼을 한번 더 누르시면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show();
+                lastTimeBackPressed = System.currentTimeMillis();
+
+        }
+    }
 
     private void setNavigationViewListener() {
         NavigationView navigationView = findViewById(R.id.navigationlayout);

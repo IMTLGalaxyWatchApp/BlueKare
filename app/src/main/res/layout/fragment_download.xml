@@ -170,8 +170,9 @@
                 android:layout_gravity="center|bottom"
                 android:layout_marginTop="30dp"
                 android:textSize="20dp"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:layout_margin="10dp"
+                android:background="@drawable/chip_selected"
                 />
 
         </LinearLayout>

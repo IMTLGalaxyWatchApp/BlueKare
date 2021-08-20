@@ -22,7 +22,7 @@
         android:layout_above="@id/et_email_layout"
         android:layout_marginStart="25dp"
         android:layout_marginBottom="50dp"
-        android:text="당신의 일상에 누구보다 가까이\n인공지능 기반 생활밀착형 우울증 치료 어플"
+        android:text="당신의 일상에 누구보다 가까이\n인공지능 기반 생활밀착형 우울증 치료 솔루션"
         android:textSize="14sp" />
 
     <com.google.android.material.textfield.TextInputLayout

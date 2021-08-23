@@ -9,35 +9,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
-import edu.imtl.bluekare.Fragments.MainMenu.Fragment_main;
-import edu.imtl.bluekare.Main.MainActivity;
 import edu.imtl.bluekare.R;
 import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.*;
-
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
-
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
+
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.lang.reflect.Array;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Fragment_survey_final extends Fragment {
@@ -68,12 +53,12 @@ public class Fragment_survey_final extends Fragment {
             survey.append(data).append(",");
         }
         try{
-            FileOutputStream out = getActivity().openFileOutput(Filename, Context.MODE_PRIVATE);
+            FileOutputStream out = requireActivity().openFileOutput(Filename, Context.MODE_PRIVATE);
             out.write((survey.toString()).getBytes(Charset.forName("EUC-KR")));
             out.close();
 
-            File filelocation = new File(getActivity().getFilesDir(), Filename);
-            Uri path = FileProvider.getUriForFile(getActivity(),"edu.imtl.bluekare.fileprovider", filelocation);
+            File filelocation = new File(requireActivity().getFilesDir(), Filename);
+            Uri path = FileProvider.getUriForFile(requireActivity(),"edu.imtl.bluekare.fileprovider", filelocation);
             Intent fileIntent = new Intent(Intent.ACTION_SEND);
             fileIntent.setType("text/csv");
             fileIntent.putExtra(Intent.EXTRA_SUBJECT, Filename);
@@ -82,15 +67,15 @@ public class Fragment_survey_final extends Fragment {
 
             Intent chooser = Intent.createChooser(fileIntent, "Send Email");
 
-            List<ResolveInfo> resInfoList = getActivity().getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
+            List<ResolveInfo> resInfoList = requireActivity().getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
 
             for (ResolveInfo resolveInfo : resInfoList) {
                 String packageName = resolveInfo.activityInfo.packageName;
-                getActivity().grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                requireActivity().grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
             }
 
             chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            getActivity().startActivity(chooser);
+            requireActivity().startActivity(chooser);
 
         } catch (IOException e) {
             e.printStackTrace();

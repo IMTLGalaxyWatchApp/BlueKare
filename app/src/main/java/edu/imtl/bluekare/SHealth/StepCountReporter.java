@@ -31,31 +31,23 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
-import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
+
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Locale;
-import java.util.Objects;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicLong;
+
 
 import edu.imtl.bluekare.Main.MainActivity;
 
@@ -66,7 +58,7 @@ public class StepCountReporter {
     private final StepCountObserver mStepCountObserver;
     private final HealthDataResolver mHealthDataResolver;
     private final HealthDataObserver mHealthDataObserver;
-    private Context mContext;
+    private final Context mContext;
 
     public StepCountReporter(@NonNull HealthDataStore store, @NonNull StepCountObserver listener,
                              @Nullable Handler resultHandler, Context context) {
@@ -104,7 +96,8 @@ public class StepCountReporter {
     private void readToday() {
 
         // Set time range from start time of today to the current time
-        long startTime = getUtcStartOfDay(System.currentTimeMillis(), TimeZone.getDefault()) -TimeUnit.DAYS.toMillis(6);
+        long startTime = getUtcStartOfDay(System.currentTimeMillis(), TimeZone.getDefault()) -TimeUnit.DAYS.toMillis(77);
+        Log.d("TIME:",String.valueOf(startTime));
         long endTime = startTime + TimeUnit.DAYS.toMillis(1);
         SimpleDateFormat todate = new SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());
         SimpleDateFormat tomin = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault());
@@ -121,7 +114,7 @@ public class StepCountReporter {
                 data.append("Start Time,End Time,Step Count,Distance,Calorie,Speed");
 
 
-                String Filename = "Step_Count_" + String.valueOf(todate.format(new Date(startTime))) + ".csv";
+                String Filename = "Step_Count_" + todate.format(new Date(startTime)) + ".csv";
 
                 try (HealthDataResolver.ReadResult result = readResult) {
 
@@ -162,8 +155,8 @@ public class StepCountReporter {
                             mContext.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
                         }
 
-                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        mContext.startActivity(chooser);
+//                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        mContext.startActivity(chooser);
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -186,7 +179,7 @@ public class StepCountReporter {
                 StringBuilder data = new StringBuilder();
                 data.append("Start Time,End Time,Exercise_type,Calorie,Duration,Distance,Count,Max Speed, Mean Speed, Min Heart Rate, Max Heart Rate");
 
-                String Filename = "Exercise_" + String.valueOf(todate.format(new Date(startTime))) + ".csv";
+                String Filename = "Exercise_" + todate.format(new Date(startTime)) + ".csv";
 
                 try (HealthDataResolver.ReadResult result = readResult) {
 
@@ -229,8 +222,8 @@ public class StepCountReporter {
                             mContext.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
                         }
 
-                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        mContext.startActivity(chooser);
+//                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        mContext.startActivity(chooser);
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -250,11 +243,11 @@ public class StepCountReporter {
                 .build();
 
         try {
-            mHealthDataResolver.read(request_exercise).setResultListener(readResult -> {
+            mHealthDataResolver.read(request_sleepStage).setResultListener(readResult -> {
                 StringBuilder data = new StringBuilder();
                 data.append("Start Time,End Time,SLEEP_ID,STAGE");
 
-                String Filename = "SleepStage_" + String.valueOf(todate.format(new Date(startTime))) + ".csv";
+                String Filename = "SleepStage_" + todate.format(new Date(startTime)) + ".csv";
 
                 try (HealthDataResolver.ReadResult result = readResult) {
 
@@ -264,17 +257,25 @@ public class StepCountReporter {
 
                         data.append("\n").append(startdateformat)
                                 .append(",").append(enddateformat)
-                                .append(",").append(healthData.getString(HealthConstants.SleepStage.SLEEP_ID));
-
+                                .append(",").append(healthData.getString(HealthConstants.SleepStage.SLEEP_ID))
+                                .append(",");
+                        Log.d("SLEEP", String.valueOf(healthData.getInt(HealthConstants.SleepStage.STAGE)));
                         switch (healthData.getInt(HealthConstants.SleepStage.STAGE)){
                             case 40001:
                                 data.append("STAGE_AWAKE");
+                                break;
                             case 40002:
                                 data.append("STAGE_LIGHT");
+                                break;
                             case 40003:
                                 data.append("STAGE_DEEP");
+                                break;
                             case 40004:
                                 data.append("STAGE_REM");
+                                break;
+                            default:
+                                data.append("Unknown");
+                                break;
                         }
                     }
 
@@ -321,11 +322,11 @@ public class StepCountReporter {
                 .build();
 
         try {
-            mHealthDataResolver.read(request_exercise).setResultListener(readResult -> {
+            mHealthDataResolver.read(request_heartRate).setResultListener(readResult -> {
                 StringBuilder data = new StringBuilder();
                 data.append("Start Time,End Time,Heart Rate,Heart Beat Count, Min, Max");
 
-                String Filename = "HeartRate_" + String.valueOf(todate.format(new Date(startTime))) + ".csv";
+                String Filename = "HeartRate_" + todate.format(new Date(startTime)) + ".csv";
 
                 try (HealthDataResolver.ReadResult result = readResult) {
 
@@ -364,8 +365,8 @@ public class StepCountReporter {
                             mContext.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
                         }
 
-                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        mContext.startActivity(chooser);
+//                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        mContext.startActivity(chooser);
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -377,19 +378,133 @@ public class StepCountReporter {
         }
         ////////////HEART_RATE///////////////
 
+
+        ////////////SPo2///////////////
+
+        HealthDataResolver.ReadRequest request_oxygen = new HealthDataResolver.ReadRequest.Builder()
+                .setDataType(HealthConstants.OxygenSaturation.HEALTH_DATA_TYPE)
+                .setLocalTimeRange(HealthConstants.OxygenSaturation.START_TIME, HealthConstants.OxygenSaturation.TIME_OFFSET, startTime, endTime)
+                .build();
+
+        try {
+            mHealthDataResolver.read(request_oxygen).setResultListener(readResult -> {
+                StringBuilder data = new StringBuilder();
+                data.append("Start Time,End Time,SPO2,Heart Rate");
+
+                String Filename = "OxygenSaturation_" + todate.format(new Date(startTime)) + ".csv";
+
+                try (HealthDataResolver.ReadResult result = readResult) {
+
+                    for (HealthData healthData : result) {
+                        String startdateformat = tomin.format(new Date(healthData.getLong(HealthConstants.OxygenSaturation.START_TIME)));
+                        String enddateformat = tomin.format(new Date(healthData.getLong(HealthConstants.OxygenSaturation.END_TIME)));
+
+                        data.append("\n").append(startdateformat)
+                                .append(",").append(enddateformat)
+                                .append(",").append(healthData.getString(HealthConstants.OxygenSaturation.SPO2))
+                                .append(",").append(healthData.getString(HealthConstants.OxygenSaturation.HEART_RATE));
+
+                    }
+
+                    try{
+                        FileOutputStream out = mContext.openFileOutput(Filename,Context.MODE_PRIVATE);
+                        out.write((data.toString().getBytes()));
+                        out.close();
+
+                        File filelocation = new File(mContext.getFilesDir(), Filename);
+                        Uri path = FileProvider.getUriForFile(mContext,"edu.imtl.bluekare.fileprovider", filelocation);
+                        Intent fileIntent = new Intent(Intent.ACTION_SEND);
+                        fileIntent.setType("text/csv");
+                        fileIntent.putExtra(Intent.EXTRA_SUBJECT, Filename);
+                        fileIntent.putExtra(Intent.EXTRA_STREAM, path);
+                        fileIntent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION );
+
+                        Intent chooser = Intent.createChooser(fileIntent, "Send Email");
+
+                        List<ResolveInfo> resInfoList = mContext.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
+
+                        for (ResolveInfo resolveInfo : resInfoList) {
+                            String packageName = resolveInfo.activityInfo.packageName;
+                            mContext.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        }
+
+//                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        mContext.startActivity(chooser);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        } catch (Exception e) {
+            Log.e("SLEEPSTAGE", "Getting step count fails.", e);
+        }
+        ////////////SPo2///////////////
+
+        ////////////Blood_Pressure///////////////
+
+        HealthDataResolver.ReadRequest request_blood = new HealthDataResolver.ReadRequest.Builder()
+                .setDataType(HealthConstants.BloodPressure.HEALTH_DATA_TYPE)
+                .setLocalTimeRange(HealthConstants.BloodPressure.START_TIME, HealthConstants.BloodPressure.TIME_OFFSET, startTime, endTime)
+                .build();
+
+        try {
+            mHealthDataResolver.read(request_blood).setResultListener(readResult -> {
+                StringBuilder data = new StringBuilder();
+                data.append("Start Time,Systolic,Diastolic, Mean, Pulse");
+
+                String Filename = "BloodPressure_" + todate.format(new Date(startTime)) + ".csv";
+
+                try (HealthDataResolver.ReadResult result = readResult) {
+
+                    for (HealthData healthData : result) {
+                        String startdateformat = tomin.format(new Date(healthData.getLong(HealthConstants.BloodPressure.START_TIME)));
+
+                        data.append("\n").append(startdateformat)
+                                .append(",").append(healthData.getString(HealthConstants.BloodPressure.SYSTOLIC))
+                                .append(",").append(healthData.getString(HealthConstants.BloodPressure.DIASTOLIC))
+                                .append(",").append(healthData.getString(HealthConstants.BloodPressure.MEAN))
+                                .append(",").append(healthData.getString(HealthConstants.BloodPressure.PULSE));
+
+                    }
+
+                    try{
+                        FileOutputStream out = mContext.openFileOutput(Filename,Context.MODE_PRIVATE);
+                        out.write((data.toString().getBytes()));
+                        out.close();
+
+                        File filelocation = new File(mContext.getFilesDir(), Filename);
+                        Uri path = FileProvider.getUriForFile(mContext,"edu.imtl.bluekare.fileprovider", filelocation);
+                        Intent fileIntent = new Intent(Intent.ACTION_SEND);
+                        fileIntent.setType("text/csv");
+                        fileIntent.putExtra(Intent.EXTRA_SUBJECT, Filename);
+                        fileIntent.putExtra(Intent.EXTRA_STREAM, path);
+                        fileIntent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION );
+
+                        Intent chooser = Intent.createChooser(fileIntent, "Send Email");
+
+                        List<ResolveInfo> resInfoList = mContext.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
+
+                        for (ResolveInfo resolveInfo : resInfoList) {
+                            String packageName = resolveInfo.activityInfo.packageName;
+                            mContext.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        }
+
+                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mContext.startActivity(chooser);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        } catch (Exception e) {
+            Log.e("SLEEPSTAGE", "Getting step count fails.", e);
+        }
+        ////////////SPo2///////////////
     }
 
 
-    public static long getTodayStartUtcTime() {
-        Calendar today = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-
-        today.set(Calendar.HOUR_OF_DAY, 0);
-        today.set(Calendar.MINUTE, 0);
-        today.set(Calendar.SECOND, 0);
-        today.set(Calendar.MILLISECOND, 0);
-
-        return today.getTimeInMillis();
-    }
 
     private long getUtcStartOfDay(long time, TimeZone tz) {
         Calendar cal = Calendar.getInstance(tz);

@@ -153,7 +153,7 @@
             android:autofillHints=""
             android:background="@drawable/et_custom"
             android:hint="@string/record_questionb_4"
-            android:inputType="numberDecimal"
+            android:inputType="textPersonName"
             android:padding="15dp"
             android:textSize="15sp" />
 
@@ -241,7 +241,7 @@
             android:autofillHints=""
             android:background="@drawable/et_custom"
             android:hint="@string/record_questionb_7"
-            android:inputType="numberDecimal"
+            android:inputType="textPersonName"
             android:padding="15dp"
             android:textSize="15sp" />
     </LinearLayout>

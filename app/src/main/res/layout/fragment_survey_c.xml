@@ -87,7 +87,7 @@
                 android:autofillHints=""
                 android:background="@drawable/et_custom"
                 android:hint="@string/record_questionc_2_1_1"
-                android:inputType="numberDecimal"
+                android:inputType="textPersonName"
                 android:padding="15dp"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -118,7 +118,7 @@
                 android:autofillHints=""
                 android:background="@drawable/et_custom"
                 android:hint="@string/record_questionc_2_1_2"
-                android:inputType="numberDecimal"
+                android:inputType="textPersonName"
                 android:padding="15dp"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -177,7 +177,7 @@
                 android:autofillHints=""
                 android:background="@drawable/et_custom"
                 android:hint="@string/record_questionc_2_2_1"
-                android:inputType="numberDecimal"
+                android:inputType="textPersonName"
                 android:padding="15dp"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -208,7 +208,7 @@
                 android:autofillHints=""
                 android:background="@drawable/et_custom"
                 android:hint="@string/record_questionc_2_2_2"
-                android:inputType="numberDecimal"
+                android:inputType="textPersonName"
                 android:padding="15dp"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -267,7 +267,7 @@
                 android:autofillHints=""
                 android:background="@drawable/et_custom"
                 android:hint="@string/record_questionc_2_3_1"
-                android:inputType="numberDecimal"
+                android:inputType="textPersonName"
                 android:padding="15dp"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -298,7 +298,7 @@
                 android:autofillHints=""
                 android:background="@drawable/et_custom"
                 android:hint="@string/record_questionc_2_3_2"
-                android:inputType="numberDecimal"
+                android:inputType="textPersonName"
                 android:padding="15dp"
                 android:textSize="15sp" />
         </LinearLayout>

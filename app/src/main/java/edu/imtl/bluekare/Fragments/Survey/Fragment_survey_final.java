@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,6 +24,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.nio.charset.Charset;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public class Fragment_survey_final extends Fragment {
@@ -44,7 +47,11 @@ public class Fragment_survey_final extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         StringBuilder survey = new StringBuilder();
-        String Filename = "Survey_1" + ".csv";
+        String Filename = "Survey_"+".csv";
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            Filename = "Survey_" + java.time.LocalDate.now() +".csv";
+        }
+
         survey.append("성별,나이,거주지,사회 경제 상태,현재 직업,결혼 상태,교육 정도,총 교육 연학(년),총 삽화 횟수(현재 삽화 포함),현재의 우울증삽화가 시작된 시기,첫 번째 우울증삽화가 시작된 시기, 과거 삽화 시 정신병적 증상(환청, 피해의식) 동반, 자살에 대해서 심각한 고민을 해 본적 있습니까?(자살사고),자살에 대해서 구체적인 계획을 세워 본 적이 있습니까?(자살계획),자살시도를 한 적이 있습니까?, 계절성 변화,생리 전 증후군,가족이나 친척의 정신과 병력,환자와의 관계,진단명,치료유무,환자와의 관계,진단명,치료유무,환자와의 관계,진단명,치료유무, 과거 또는 현재 내외과적 질환 유무/Surgical history,진단명,진단연도,소견,진단명,진단연도,소견,진단명,진단연도,소견");
         survey.append("\n");
 

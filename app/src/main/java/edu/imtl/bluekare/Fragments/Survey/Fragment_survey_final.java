@@ -1,6 +1,8 @@
 package edu.imtl.bluekare.Fragments.Survey;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import edu.imtl.bluekare.Fragments.MainMenu.Fragment_main;
@@ -61,31 +64,39 @@ public class Fragment_survey_final extends Fragment {
         int mYear = calendar.get(Calendar.YEAR);
         int mMonth = calendar.get(Calendar.MONTH)+1;
         int mDay = calendar.get(Calendar.DAY_OF_MONTH);
+        String filepath="피험자 정보 수집"+name+"_"+String.valueOf(mYear)+"_"+String.valueOf(mMonth)+"_"+String.valueOf(mDay)+".csv";;
 
         CSVWriter writer;
         try {
-            String filepath="피험자 정보 수집"+name+"_"+String.valueOf(mYear)+"_"+String.valueOf(mMonth)+"_"+String.valueOf(mDay)+".csv";
+
 
             writer = new CSVWriter(new FileWriter(filepath));
             writer.writeAll(csv);
             writer.close();
+            File filelocation = new File(getActivity().getFilesDir(), filepath);
+            Uri path = FileProvider.getUriForFile(getActivity(),"edu.imtl.bluekare.fileprovider", filelocation);
+            Intent fileIntent = new Intent(Intent.ACTION_SEND);
+            fileIntent.setType("text/csv");
+            fileIntent.putExtra(Intent.EXTRA_SUBJECT, filepath);
+            fileIntent.putExtra(Intent.EXTRA_STREAM, path);
+            fileIntent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION );
 
-            File fileCsv = new File(filepath);
-            Uri u = Uri.fromFile(fileCsv);
-            uris.add(u);
+            Intent chooser = Intent.createChooser(fileIntent, "Send Email");
+
+            List<ResolveInfo> resInfoList = getActivity().getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
+
+            for (ResolveInfo resolveInfo : resInfoList) {
+                String packageName = resolveInfo.activityInfo.packageName;
+                getActivity().grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            }
+
+            chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getActivity().startActivity(chooser);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Intent emailIntent=new Intent(android.content.Intent.ACTION_SEND_MULTIPLE);
-        emailIntent.setType("plain/text");
-        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL,
-                new String[]{""});
-        emailIntent.putExtra(android.content.Intent.EXTRA_CC,
-                new String[]{""});
 
-        emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
-        startActivity(Intent.createChooser(emailIntent, "Send mail"));
 
 
     }

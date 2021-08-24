@@ -1,0 +1,704 @@
+Index: app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_Pre.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.imtl.bluekare.Fragments.Survey;\r\n\r\nimport android.os.Bundle;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.Spinner;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport edu.imtl.bluekare.R;\r\n\r\n\r\npublic class Fragment_survey_Pre extends Fragment {\r\n\r\n\r\n    private Button ButtonA;\r\n\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {\r\n        return inflater.inflate(R.layout.fragment_survey_pre, container, false);\r\n    }\r\n\r\n    @Override\r\n    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {\r\n        super.onViewCreated(view, savedInstanceState);\r\n        ButtonA = view.findViewById(R.id.toA);\r\n\r\n        ButtonA.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_A()).addToBackStack(null).commit();\r\n\r\n            }\r\n        });\r\n\r\n\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_Pre.java b/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_Pre.java
+--- a/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_Pre.java	
++++ b/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_Pre.java	
+@@ -1,6 +1,7 @@
+ package edu.imtl.bluekare.Fragments.Survey;
+ 
+ import android.os.Bundle;
++import android.util.Log;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+@@ -8,19 +9,20 @@
+ import android.widget.Button;
+ import android.widget.EditText;
+ import android.widget.Spinner;
++import android.widget.Toast;
+ 
+ import androidx.annotation.NonNull;
+ import androidx.annotation.Nullable;
+ import androidx.fragment.app.Fragment;
+ 
+ import edu.imtl.bluekare.R;
+-
+-
+ public class Fragment_survey_Pre extends Fragment {
+ 
+ 
+     private Button ButtonA;
+-
++    private EditText Fnum;
++    private EditText Bnum;
++    private String temp;
+ 
+     @Override
+     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+@@ -32,11 +34,21 @@
+         super.onViewCreated(view, savedInstanceState);
+         ButtonA = view.findViewById(R.id.toA);
+ 
++        Fnum=view.findViewById(R.id.editTextNumber);
++        Bnum=view.findViewById(R.id.editTextNumberPassword);
++
+         ButtonA.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+-                getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_A()).addToBackStack(null).commit();
+-
++                Log.e("주민등록번호", String.valueOf(Integer.valueOf(Fnum.getText().toString().length())));
++                Log.e("주민등록번호 뒤", String.valueOf(Integer.valueOf(Bnum.getText().toString().length())));
++                temp=Fnum.getText().toString()+"-"+Bnum.getText().toString();
++                Log.e("풀 주민등록번호", temp);
++                if(Fnum.getText().toString().length()!=6 || Bnum.getText().toString().length()!=7)
++                    Toast.makeText(getContext(),"주민등록번호가 올바르지 않습니다",Toast.LENGTH_LONG).show();
++                else {
++                    getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_A()).addToBackStack(null).commit();
++                }
+             }
+         });
+ 
+Index: app/src/main/res/layout/fragment_survey_final.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\">\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Data Saved!\"\r\n        android:textSize=\"40dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/button_to_mainMenu\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Back to Main Menu\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView\" />\r\n\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_survey_final.xml b/app/src/main/res/layout/fragment_survey_final.xml
+--- a/app/src/main/res/layout/fragment_survey_final.xml	
++++ b/app/src/main/res/layout/fragment_survey_final.xml	
+@@ -1,29 +1,33 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+-    android:layout_height="match_parent">
++    android:layout_height="match_parent"
++    android:orientation="vertical"
++    android:gravity="center">
++
++    <ImageView
++        android:id="@+id/imageView2"
++        android:layout_width="75dp"
++        android:layout_height="73dp"
++        android:layout_gravity="center"
++        app:srcCompat="@drawable/fui_ic_check_circle_black_128dp" />
+ 
+     <TextView
+         android:id="@+id/textView"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:text="Data Saved!"
+-        android:textSize="40dp"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
++        android:text="설문에 응해주셔서 감사드립니다."
++        android:textSize="20dp"
++        android:layout_gravity="center"/>
+ 
+-    <Button
++    <TextView
+         android:id="@+id/button_to_mainMenu"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:text="Back to Main Menu"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/textView" />
++        android:layout_gravity="center"
++        android:text="담당 연구원에게 핸드폰을 전달해주십시오." />
+ 
+ 
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
++</LinearLayout>
+\ No newline at end of file
+Index: app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_A.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.imtl.bluekare.Fragments.Survey;\r\n\r\nimport android.os.Bundle;\r\nimport android.util.Log;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.Spinner;\r\n\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport edu.imtl.bluekare.R;\r\nimport static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.get_A;\r\nimport static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.set_A;\r\n\r\n\r\npublic class Fragment_survey_A extends Fragment {\r\n\r\n    private EditText patient_name;\r\n    private EditText patient_age;\r\n    private EditText patient_address;\r\n    private EditText patient_education_total;\r\n    private Spinner patient_sex;\r\n\r\n    String[] sex = new String[]{\"남\", \"녀\"};\r\n    private Spinner patient_socialstatus;\r\n    String[] socialstatus = new String[]{\"상\", \"중상\", \"중\", \"중하\", \"하\"};\r\n    private Spinner patient_job;\r\n    String[] job = new String[]{\"전문.관리 \", \"사무 \", \"농업.노무 \", \"주부\", \"학생\", \"무직\"};\r\n    private Spinner patient_marriage;\r\n    String[] marriage = new String[]{\"미혼 \", \"동거\", \"기혼 \", \"재혼 \", \"이혼 \", \"별거 \", \"사별\", \"기타 \"};\r\n    private Spinner patient_education;\r\n    String[] education = new String[]{\"무학\", \"초졸\", \"중졸\", \"고졸\", \"전문대졸\", \"대졸\", \"대학원졸\"};\r\n    private Button nextButtonA;\r\n    private Button preButtonA;\r\n\r\n    String[] temp=new String[9];\r\n\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {\r\n        return inflater.inflate(R.layout.fragment_survey_a, container, false);\r\n    }\r\n\r\n    @Override\r\n    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {\r\n        super.onViewCreated(view, savedInstanceState);\r\n        patient_name = view.findViewById(R.id.patient_name);\r\n        patient_age = view.findViewById(R.id.patient_age);\r\n        patient_address = view.findViewById(R.id.patient_address);\r\n        patient_education_total = view.findViewById(R.id.patient_education_total);\r\n        patient_sex = view.findViewById(R.id.patient_sex);\r\n        patient_socialstatus = view.findViewById(R.id.patient_socialstatus);\r\n        patient_job = view.findViewById(R.id.patient_job);\r\n        patient_marriage = view.findViewById(R.id.patient_marriage);\r\n        patient_education = view.findViewById(R.id.patient_education);\r\n        nextButtonA = view.findViewById(R.id.nextButtonA);\r\n\r\n        temp=get_A();\r\n\r\n\r\n        ArrayAdapter<String> adapter_sex = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, sex);\r\n        adapter_sex.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n        patient_sex.setAdapter(adapter_sex);\r\n\r\n        ArrayAdapter<String> adapter_socialstatus = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, socialstatus);\r\n        adapter_socialstatus.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n        patient_socialstatus.setAdapter(adapter_socialstatus);\r\n\r\n        ArrayAdapter<String> adapter_job = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, job);\r\n        adapter_job.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n        patient_job.setAdapter(adapter_job);\r\n\r\n        ArrayAdapter<String> adapter_marriage = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, marriage);\r\n        adapter_marriage.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n        patient_marriage.setAdapter(adapter_marriage);\r\n\r\n        ArrayAdapter<String> adapter_education = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, education);\r\n        adapter_education.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n        patient_education.setAdapter(adapter_education);\r\n\r\n        setFrag(); //위치 어레이 어뎁터 뒤로 고정\r\n\r\n\r\n        nextButtonA.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                saveFrag();\r\n                set_A(temp);\r\n                getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_B()).addToBackStack(null).commit();\r\n\r\n            }\r\n        });\r\n\r\n    }\r\n    public void saveFrag(){\r\n        temp[0]=patient_name.getText().toString();\r\n        temp[1]=String.valueOf(patient_sex.getSelectedItemPosition());\r\n        temp[2]=patient_age.getText().toString();\r\n        temp[3]=patient_address.getText().toString();\r\n        temp[4]=String.valueOf(patient_socialstatus.getSelectedItemPosition());\r\n        temp[5]=String.valueOf(patient_job.getSelectedItemPosition());\r\n        temp[6]=String.valueOf(patient_marriage.getSelectedItemPosition());\r\n        temp[7]=String.valueOf(patient_education.getSelectedItemPosition());\r\n        temp[8]=patient_education_total.getText().toString();\r\n\r\n        for(int i=0;i<9;i++) Log.e(\"temp\",temp[i]);\r\n    }\r\n    public void setFrag(){\r\n        patient_name.setText(temp[0]);\r\n        if(temp[1]!=null)patient_sex.setSelection(Integer.valueOf(temp[1]));\r\n        patient_age.setText(temp[2]);\r\n        patient_address.setText(temp[3]);\r\n        if(temp[4]!=null)patient_socialstatus.setSelection(Integer.valueOf(temp[4]));\r\n        if(temp[5]!=null)patient_job.setSelection(Integer.valueOf(temp[5]));\r\n        if(temp[6]!=null)patient_marriage.setSelection(Integer.valueOf(temp[6]));\r\n        if(temp[7]!=null)patient_education.setSelection(Integer.valueOf(temp[7]));\r\n        patient_education_total.setText(temp[8]);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_A.java b/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_A.java
+--- a/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_A.java	
++++ b/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_A.java	
+@@ -16,9 +16,8 @@
+ import androidx.fragment.app.Fragment;
+ 
+ import edu.imtl.bluekare.R;
+-import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.get_A;
+-import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.set_A;
+-
++import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.result_A;
++import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.final_result_A;
+ 
+ public class Fragment_survey_A extends Fragment {
+ 
+@@ -38,7 +37,6 @@
+     private Spinner patient_education;
+     String[] education = new String[]{"무학", "초졸", "중졸", "고졸", "전문대졸", "대졸", "대학원졸"};
+     private Button nextButtonA;
+-    private Button preButtonA;
+ 
+     String[] temp=new String[9];
+ 
+@@ -62,7 +60,7 @@
+         patient_education = view.findViewById(R.id.patient_education);
+         nextButtonA = view.findViewById(R.id.nextButtonA);
+ 
+-        temp=get_A();
++        temp=result_A;
+ 
+ 
+         ArrayAdapter<String> adapter_sex = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, sex);
+@@ -92,7 +90,7 @@
+             @Override
+             public void onClick(View v) {
+                 saveFrag();
+-                set_A(temp);
++                convertSpin();
+                 getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_B()).addToBackStack(null).commit();
+ 
+             }
+@@ -110,9 +108,11 @@
+         temp[7]=String.valueOf(patient_education.getSelectedItemPosition());
+         temp[8]=patient_education_total.getText().toString();
+ 
+-        for(int i=0;i<9;i++) Log.e("temp",temp[i]);
++        //for(int i=0;i<9;i++) Log.e(String.valueOf(i),temp[i]);
+     }
+     public void setFrag(){
++//        for(int i=0;i<9;i++)
++//            if(temp[i]!=null) Log.e(String.valueOf(i),temp[i]);
+         patient_name.setText(temp[0]);
+         if(temp[1]!=null)patient_sex.setSelection(Integer.valueOf(temp[1]));
+         patient_age.setText(temp[2]);
+@@ -123,4 +123,14 @@
+         if(temp[7]!=null)patient_education.setSelection(Integer.valueOf(temp[7]));
+         patient_education_total.setText(temp[8]);
+     }
++    public void convertSpin(){
++        final_result_A=temp.clone();
++        final_result_A[1]=patient_sex.getSelectedItem().toString();
++        final_result_A[4]=patient_socialstatus.getSelectedItem().toString();
++        final_result_A[5]=patient_job.getSelectedItem().toString();
++        final_result_A[6]=patient_marriage.getSelectedItem().toString();
++        final_result_A[7]=patient_education.getSelectedItem().toString();
++        for(int i=0;i<9;i++)
++            if(temp[i]!=null) Log.e(String.valueOf(i),temp[i]);
++    }
+ }
+\ No newline at end of file
+Index: app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_B.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.imtl.bluekare.Fragments.Survey;\r\n\r\nimport android.os.Bundle;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.Spinner;\r\n\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport edu.imtl.bluekare.R;\r\nimport static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.get_B;\r\nimport static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.set_B;\r\n\r\n\r\n\r\npublic class Fragment_survey_B extends Fragment {\r\n\r\n\r\n    /*================= Question Type B  =====================*/\r\n    private EditText question1;\r\n    private EditText question2;\r\n    private EditText question3;\r\n    private EditText question4;\r\n    private EditText question7;\r\n    private Spinner question5;\r\n    private Spinner question6;\r\n    private Spinner question8;\r\n    private Spinner question9;\r\n    String[] bool = new String[]{\"예\", \"아니오\"};\r\n    private Button nextButtonB;\r\n    private Button preButtonB;\r\n    /*=======================================================*/\r\n\r\n    String[] temp=new String[9];\r\n    EditText[] edits=new EditText[5];\r\n    Spinner[] spins=new Spinner[4];\r\n    Integer[] temp_pos=new Integer[9];\r\n\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {\r\n        return inflater.inflate(R.layout.fragment_survey_b, container, false);\r\n    }\r\n\r\n    @Override\r\n    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {\r\n        super.onViewCreated(view, savedInstanceState);\r\n\r\n        question1 = view.findViewById(R.id.record_questionb_1);\r\n        question2 = view.findViewById(R.id.record_questionb_2);\r\n        question3 = view.findViewById(R.id.record_questionb_3);\r\n        question4 = view.findViewById(R.id.record_questionb_4);\r\n        question7 = view.findViewById(R.id.record_questionb_7);\r\n\r\n        edits= new EditText[]{question1, question2, question3, question4, question7};\r\n        temp_pos=new Integer[]{1,2,3,4,7,5,6,8,9};\r\n\r\n        question5 = view.findViewById(R.id.record_questionb_5);\r\n        question6 = view.findViewById(R.id.record_questionb_6);\r\n        question8 = view.findViewById(R.id.record_questionb_8);\r\n        question9 = view.findViewById(R.id.record_questionb_9);\r\n        nextButtonB = view.findViewById(R.id.nextButtonB);\r\n        preButtonB=view.findViewById(R.id.preButtonB);\r\n\r\n        ArrayAdapter<String> adapter_bool = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, bool);\r\n        adapter_bool.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n        question5.setAdapter(adapter_bool);\r\n        question6.setAdapter(adapter_bool);\r\n        question8.setAdapter(adapter_bool);\r\n        question9.setAdapter(adapter_bool);\r\n\r\n        spins=new Spinner[]{question5,question6,question8,question9};\r\n\r\n        temp=get_B();\r\n        setFrag(temp);\r\n\r\n\r\n        nextButtonB.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                saveFrag();\r\n                set_B(temp);\r\n                getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_C()).addToBackStack(null).commit();\r\n            }\r\n        });\r\n        preButtonB.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                saveFrag();\r\n                set_B(temp);\r\n                getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_A()).addToBackStack(null).commit();\r\n            }\r\n        });\r\n\r\n    }\r\n\r\n    private void saveFrag(){\r\n        for(int i=0;i<5;i++){\r\n            temp[temp_pos[i]-1]=edits[i].getText().toString();\r\n        }\r\n        for(int i=0;i<4;i++){\r\n            temp[temp_pos[i+5]-1]=String.valueOf(spins[i].getSelectedItemPosition());\r\n        }\r\n    }\r\n    private void setFrag(String[] temp){\r\n        for(int i=0;i<5;i++){\r\n            edits[i].setText(temp[temp_pos[i]-1]);\r\n        }\r\n        for(int i=0;i<4;i++) {\r\n            if(temp[temp_pos[i+5]-1]!=null) spins[i].setSelection(Integer.valueOf(temp[temp_pos[i+5]-1]));\r\n        }\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_B.java b/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_B.java
+--- a/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_B.java	
++++ b/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_B.java	
+@@ -1,6 +1,7 @@
+ package edu.imtl.bluekare.Fragments.Survey;
+ 
+ import android.os.Bundle;
++import android.util.Log;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+@@ -15,9 +16,8 @@
+ import androidx.fragment.app.Fragment;
+ 
+ import edu.imtl.bluekare.R;
+-import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.get_B;
+-import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.set_B;
+-
++import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.result_B;
++import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.final_result_B;
+ 
+ 
+ public class Fragment_survey_B extends Fragment {
+@@ -78,7 +78,7 @@
+ 
+         spins=new Spinner[]{question5,question6,question8,question9};
+ 
+-        temp=get_B();
++        temp=result_B;
+         setFrag(temp);
+ 
+ 
+@@ -86,7 +86,7 @@
+             @Override
+             public void onClick(View v) {
+                 saveFrag();
+-                set_B(temp);
++                convertSpin();
+                 getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_C()).addToBackStack(null).commit();
+             }
+         });
+@@ -94,7 +94,7 @@
+             @Override
+             public void onClick(View v) {
+                 saveFrag();
+-                set_B(temp);
++                convertSpin();
+                 getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_A()).addToBackStack(null).commit();
+             }
+         });
+@@ -118,4 +118,10 @@
+         }
+ 
+     }
++    private void convertSpin(){
++        final_result_B=temp.clone();
++        for(int i=0;i<4;i++){
++            final_result_B[temp_pos[i+5]-1]=spins[i].getSelectedItem().toString();
++        }
++    }
+ }
+\ No newline at end of file
+Index: app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.imtl.bluekare.Fragments.Survey;\r\n\r\nimport android.os.Bundle;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\n\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport edu.imtl.bluekare.R;\r\n\r\n\r\n\r\npublic class Fragment_survey extends Fragment {\r\n\r\n    static String[] result_A=new String[9];\r\n    static String[] result_B=new String[9];\r\n    static String[] result_C=new String[10];\r\n    static String[] result_D=new String[10];\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {\r\n        return inflater.inflate(R.layout.fragment_survey, container, false);\r\n    }\r\n\r\n    @Override\r\n    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {\r\n        super.onViewCreated(view, savedInstanceState);\r\n        getChildFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_Pre()).addToBackStack(null).commit();\r\n\r\n    }\r\n    public static String[] get_A(){ return result_A;}\r\n    public static String[] get_B(){ return result_B;}\r\n    public static String[] get_C(){ return result_C;}\r\n    public static String[] get_D(){ return result_D;}\r\n\r\n    public static void set_A(String[] temp){ result_A=temp;}\r\n    public static void set_B(String[] temp){ result_B=temp;}\r\n    public static void set_C(String[] temp){ result_C=temp;}\r\n    public static void set_D(String[] temp){ result_D=temp;}\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey.java b/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey.java
+--- a/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey.java	
++++ b/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey.java	
+@@ -20,6 +20,11 @@
+     static String[] result_B=new String[9];
+     static String[] result_C=new String[10];
+     static String[] result_D=new String[10];
++
++    static String[] final_result_A=new String[9];
++    static String[] final_result_B=new String[9];
++    static String[] final_result_C=new String[10];
++    static String[] final_result_D=new String[10];
+     @Override
+     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+         return inflater.inflate(R.layout.fragment_survey, container, false);
+@@ -28,16 +33,7 @@
+     @Override
+     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+         super.onViewCreated(view, savedInstanceState);
+-        getChildFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_Pre()).addToBackStack(null).commit();
++        getChildFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_A()).addToBackStack(null).commit();
+ 
+     }
+-    public static String[] get_A(){ return result_A;}
+-    public static String[] get_B(){ return result_B;}
+-    public static String[] get_C(){ return result_C;}
+-    public static String[] get_D(){ return result_D;}
+-
+-    public static void set_A(String[] temp){ result_A=temp;}
+-    public static void set_B(String[] temp){ result_B=temp;}
+-    public static void set_C(String[] temp){ result_C=temp;}
+-    public static void set_D(String[] temp){ result_D=temp;}
+ }
+\ No newline at end of file
+Index: app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_C.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.imtl.bluekare.Fragments.Survey;\r\n\r\nimport android.os.Bundle;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.Spinner;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport edu.imtl.bluekare.R;\r\n\r\n\r\npublic class Fragment_survey_C extends Fragment {\r\n\r\n\r\n    /*================= Question Type A  =====================*/\r\n    private EditText question2_1_1;\r\n    private EditText question2_1_2;\r\n    private EditText question2_2_1;\r\n    private EditText question2_2_2;\r\n    private EditText question2_3_1;\r\n    private EditText question2_3_2;\r\n    private Spinner question1;\r\n    private Spinner question2_1_3;\r\n    private Spinner question2_2_3;\r\n    private Spinner question2_3_3;\r\n    String[] bool = new String[]{\"예\", \"아니오\"};\r\n    private Button nextButtonC;\r\n    private Button preButtonC;\r\n    /*=======================================================*/\r\n\r\n\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {\r\n        return inflater.inflate(R.layout.fragment_survey_c, container, false);\r\n    }\r\n\r\n    @Override\r\n    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {\r\n        super.onViewCreated(view, savedInstanceState);\r\n        question1 = view.findViewById(R.id.record_questionc_1);\r\n        question2_1_1 = view.findViewById(R.id.record_questionc_2_1_1);\r\n        question2_1_2 = view.findViewById(R.id.record_questionc_2_1_2);\r\n        question2_1_3 = view.findViewById(R.id.record_questionc_2_1_3);\r\n        question2_2_1 = view.findViewById(R.id.record_questionc_2_2_1);\r\n        question2_2_2 = view.findViewById(R.id.record_questionc_2_2_2);\r\n        question2_2_3 = view.findViewById(R.id.record_questionc_2_2_3);\r\n        question2_3_1 = view.findViewById(R.id.record_questionc_2_3_1);\r\n        question2_3_2 = view.findViewById(R.id.record_questionc_2_3_2);\r\n        question2_3_3 = view.findViewById(R.id.record_questionc_2_3_3);\r\n        nextButtonC = view.findViewById(R.id.nextButtonC);\r\n        preButtonC=view.findViewById(R.id.preButtonC);\r\n\r\n        ArrayAdapter<String> adapter_bool = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, bool);\r\n        adapter_bool.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n        question1.setAdapter(adapter_bool);\r\n        question2_1_3.setAdapter(adapter_bool);\r\n        question2_2_3.setAdapter(adapter_bool);\r\n        question2_3_3.setAdapter(adapter_bool);\r\n\r\n\r\n        nextButtonC.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_D()).addToBackStack(null).commit();\r\n\r\n            }\r\n        });\r\n        preButtonC.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_B()).addToBackStack(null).commit();\r\n            }\r\n        });\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_C.java b/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_C.java
+--- a/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_C.java	
++++ b/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_C.java	
+@@ -1,6 +1,7 @@
+ package edu.imtl.bluekare.Fragments.Survey;
+ 
+ import android.os.Bundle;
++import android.util.Log;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+@@ -16,6 +17,9 @@
+ import edu.imtl.bluekare.R;
+ 
+ 
++import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.result_C;
++import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.final_result_C;
++
+ public class Fragment_survey_C extends Fragment {
+ 
+ 
+@@ -35,6 +39,11 @@
+     private Button preButtonC;
+     /*=======================================================*/
+ 
++    String[] temp=new String[10];
++    EditText[] edits=new EditText[6];
++    Spinner[] spins=new Spinner[4];
++    Integer[] temp_pos=new Integer[10];
++
+ 
+ 
+     @Override
+@@ -46,15 +55,22 @@
+     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+         super.onViewCreated(view, savedInstanceState);
+         question1 = view.findViewById(R.id.record_questionc_1);
++        question2_1_3 = view.findViewById(R.id.record_questionc_2_1_3);
++        question2_2_3 = view.findViewById(R.id.record_questionc_2_2_3);
++        question2_3_3 = view.findViewById(R.id.record_questionc_2_3_3);
++
++        spins=new Spinner[]{question1, question2_1_3, question2_2_3, question2_3_3};
++
+         question2_1_1 = view.findViewById(R.id.record_questionc_2_1_1);
+         question2_1_2 = view.findViewById(R.id.record_questionc_2_1_2);
+-        question2_1_3 = view.findViewById(R.id.record_questionc_2_1_3);
+         question2_2_1 = view.findViewById(R.id.record_questionc_2_2_1);
+         question2_2_2 = view.findViewById(R.id.record_questionc_2_2_2);
+-        question2_2_3 = view.findViewById(R.id.record_questionc_2_2_3);
+         question2_3_1 = view.findViewById(R.id.record_questionc_2_3_1);
+         question2_3_2 = view.findViewById(R.id.record_questionc_2_3_2);
+-        question2_3_3 = view.findViewById(R.id.record_questionc_2_3_3);
++
++        edits=new EditText[]{question2_1_1, question2_1_2, question2_2_1, question2_2_2, question2_3_1, question2_3_2};
++        temp_pos=new Integer[]{1,2,4,5,7,8,0,3,6,9};
++
+         nextButtonC = view.findViewById(R.id.nextButtonC);
+         preButtonC=view.findViewById(R.id.preButtonC);
+ 
+@@ -65,10 +81,14 @@
+         question2_2_3.setAdapter(adapter_bool);
+         question2_3_3.setAdapter(adapter_bool);
+ 
++        temp=result_C;
++        setFrag(temp);
+ 
+         nextButtonC.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
++                saveFrag();
++                convertSpin();
+                 getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_D()).addToBackStack(null).commit();
+ 
+             }
+@@ -76,9 +96,35 @@
+         preButtonC.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
++                saveFrag();
++                convertSpin();
+                 getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_B()).addToBackStack(null).commit();
+             }
+         });
+ 
+     }
++    private void saveFrag(){
++        for(int i=0;i<6;i++){
++            temp[temp_pos[i]]=edits[i].getText().toString();
++        }
++        for(int i=0;i<4;i++){
++            temp[temp_pos[i+6]]=String.valueOf(spins[i].getSelectedItemPosition());
++        }
++    }
++    private void setFrag(String[] temp){
++        for(int i=0;i<6;i++){
++            edits[i].setText(temp[temp_pos[i]]);
++        }
++        for(int i=0;i<4;i++) {
++            if(temp[temp_pos[i+6]]!=null) spins[i].setSelection(Integer.valueOf(temp[temp_pos[i+6]]));
++        }
++
++    }
++    private void convertSpin(){
++        final_result_C=temp.clone();
++        for(int i=0;i<4;i++){
++            final_result_C[temp_pos[i+6]]=spins[i].getSelectedItem().toString();
++        }
++    }
++
+ }
+\ No newline at end of file
+Index: app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_D.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.imtl.bluekare.Fragments.Survey;\r\n\r\nimport android.os.Bundle;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.Spinner;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport edu.imtl.bluekare.R;\r\n\r\npublic class Fragment_survey_D extends Fragment {\r\n\r\n\r\n    /*================= Question Type D  =====================*/\r\n    private EditText question2_1_1;\r\n    private EditText question2_1_2;\r\n    private EditText question2_2_1;\r\n    private EditText question2_2_2;\r\n    private EditText question2_3_1;\r\n    private EditText question2_3_2;\r\n    private Spinner question1;\r\n    private Spinner question2_1_3;\r\n    private Spinner question2_2_3;\r\n    private Spinner question2_3_3;\r\n    String[] bool = new String[]{\"예\", \"아니오\"};\r\n    private Button nextButtonD;\r\n    private Button preButtonD;\r\n    /*=======================================================*/\r\n\r\n\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {\r\n        return inflater.inflate(R.layout.fragment_survey_d, container, false);\r\n    }\r\n\r\n    @Override\r\n    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {\r\n        super.onViewCreated(view, savedInstanceState);\r\n        question1 = view.findViewById(R.id.record_questiond_1);\r\n        question2_1_1 = view.findViewById(R.id.record_questiond_2_1_1);\r\n        question2_1_2 = view.findViewById(R.id.record_questiond_2_1_2);\r\n        question2_1_3 = view.findViewById(R.id.record_questiond_2_1_3);\r\n        question2_2_1 = view.findViewById(R.id.record_questiond_2_2_1);\r\n        question2_2_2 = view.findViewById(R.id.record_questiond_2_2_2);\r\n        question2_2_3 = view.findViewById(R.id.record_questiond_2_2_3);\r\n        question2_3_1 = view.findViewById(R.id.record_questiond_2_3_1);\r\n        question2_3_2 = view.findViewById(R.id.record_questiond_2_3_2);\r\n        question2_3_3 = view.findViewById(R.id.record_questiond_2_3_3);\r\n        nextButtonD = view.findViewById(R.id.nextButtonD);\r\n        preButtonD=view.findViewById(R.id.preButtonD);\r\n\r\n        ArrayAdapter<String> adapter_bool = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, bool);\r\n        adapter_bool.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n        question1.setAdapter(adapter_bool);\r\n        question2_1_3.setAdapter(adapter_bool);\r\n        question2_2_3.setAdapter(adapter_bool);\r\n        question2_3_3.setAdapter(adapter_bool);\r\n\r\n\r\n        nextButtonD.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_final()).addToBackStack(null).commit();\r\n\r\n            }\r\n        });\r\n        preButtonD.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_C()).addToBackStack(null).commit();\r\n            }\r\n        });\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_D.java b/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_D.java
+--- a/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_D.java	
++++ b/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_D.java	
+@@ -1,6 +1,7 @@
+ package edu.imtl.bluekare.Fragments.Survey;
+ 
+ import android.os.Bundle;
++import android.util.Log;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+@@ -15,6 +16,9 @@
+ 
+ import edu.imtl.bluekare.R;
+ 
++import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.final_result_D;
++import static edu.imtl.bluekare.Fragments.Survey.Fragment_survey.result_D;
++
+ public class Fragment_survey_D extends Fragment {
+ 
+ 
+@@ -34,7 +38,10 @@
+     private Button preButtonD;
+     /*=======================================================*/
+ 
+-
++    String[] temp=new String[10];
++    EditText[] edits=new EditText[6];
++    Spinner[] spins=new Spinner[4];
++    Integer[] temp_pos=new Integer[10];
+ 
+     @Override
+     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+@@ -64,10 +71,18 @@
+         question2_2_3.setAdapter(adapter_bool);
+         question2_3_3.setAdapter(adapter_bool);
+ 
+-
++        spins=new Spinner[]{question1,question2_1_3,question2_2_3,question2_3_3};
++        edits=new EditText[]{question2_1_1,question2_1_2,question2_2_1,question2_2_2,question2_3_1,question2_3_2};
++        temp_pos=new Integer[]{1,2,4,5,7,8,0,3,6,9};
++        temp=result_D;
++        
++        setFrag(temp);
++        //for(int i=0;i<temp.length;i++) Log.e("temp",temp[i]);
+         nextButtonD.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
++                saveFrag();
++                convertSpin();
+                 getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_final()).addToBackStack(null).commit();
+ 
+             }
+@@ -75,9 +90,35 @@
+         preButtonD.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
++                saveFrag();
++                convertSpin();
+                 getParentFragmentManager().beginTransaction().replace(R.id.survey_container, new Fragment_survey_C()).addToBackStack(null).commit();
+             }
+         });
+ 
+     }
++    private void saveFrag(){
++        for(int i=0;i<6;i++){
++            temp[temp_pos[i]]=edits[i].getText().toString();
++        }
++        for(int i=0;i<4;i++){
++            temp[temp_pos[i+6]]=String.valueOf(spins[i].getSelectedItemPosition());
++        }
++    }
++    private void setFrag(String[] temp){
++        for(int i=0;i<6;i++){
++            edits[i].setText(temp[temp_pos[i]]);
++        }
++        for(int i=0;i<4;i++) {
++            if(temp[temp_pos[i+6]]!=null) spins[i].setSelection(Integer.valueOf(temp[temp_pos[i+6]]));
++        }
++
++    }
++    private void convertSpin(){
++        final_result_D=temp.clone();
++        for(int i=0;i<4;i++){
++            final_result_D[temp_pos[i+6]]=spins[i].getSelectedItem().toString();
++        }
++
++    }
+ }
+\ No newline at end of file
+Index: app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_final.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.imtl.bluekare.Fragments.Survey;\r\n\r\nimport android.os.Bundle;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.Button;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport edu.imtl.bluekare.Fragments.MainMenu.Fragment_main;\r\nimport edu.imtl.bluekare.Main.MainActivity;\r\nimport edu.imtl.bluekare.R;\r\n\r\npublic class Fragment_survey_final extends Fragment {\r\n\r\n\r\n    /*================= Question Type final  =====================*/\r\n    private Button MenuButton;\r\n\r\n    /*=======================================================*/\r\n\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {\r\n        return inflater.inflate(R.layout.fragment_survey_final, container, false);\r\n    }\r\n\r\n    @Override\r\n    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {\r\n        super.onViewCreated(view, savedInstanceState);\r\n        MenuButton=view.findViewById(R.id.button_to_mainMenu);\r\n\r\n        MenuButton.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n            }\r\n        });\r\n\r\n\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_final.java b/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_final.java
+--- a/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_final.java	
++++ b/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/Fragment_survey_final.java	
+@@ -13,12 +13,11 @@
+ import edu.imtl.bluekare.Fragments.MainMenu.Fragment_main;
+ import edu.imtl.bluekare.Main.MainActivity;
+ import edu.imtl.bluekare.R;
+-
+ public class Fragment_survey_final extends Fragment {
+ 
+ 
+     /*================= Question Type final  =====================*/
+-    private Button MenuButton;
++
+ 
+     /*=======================================================*/
+ 
+@@ -31,15 +30,6 @@
+     @Override
+     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+         super.onViewCreated(view, savedInstanceState);
+-        MenuButton=view.findViewById(R.id.button_to_mainMenu);
+-
+-        MenuButton.setOnClickListener(new View.OnClickListener() {
+-            @Override
+-            public void onClick(View v) {
+-            }
+-        });
+-
+-
+ 
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/res/menu/top_menu.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<menu xmlns:tools=\"http://schemas.android.com/tools\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\">\r\n\r\n    <item android:title=\"매인 메뉴\"\r\n        android:id=\"@+id/Main_Menu_nav\"\r\n        android:icon=\"@drawable/ic_baseline_bar_chart_24\"/>\r\n    <item\r\n        android:id=\"@+id/Survey_nav\"\r\n        android:icon=\"@drawable/ic_baseline_content_paste_24\"\r\n        android:title=\"인적사항 수집\"/>\r\n\r\n    <item android:title=\"녹음\"\r\n       android:id=\"@+id/Record_nav\"\r\n        android:icon=\"@drawable/ic_baseline_record_voice_over_24\"/>\r\n\r\n    <item\r\n        android:id=\"@+id/Download_nav\"\r\n        android:icon=\"@drawable/ic_baseline_arrow_downward_24\"\r\n        android:title=\"다운로드\"/>\r\n\r\n\r\n    <item android:title=\"설정\">\r\n        <menu >\r\n            <item\r\n                android:id=\"@+id/saveImage\"\r\n                android:title=\"Save Image\"\r\n                app:actionLayout=\"@layout/switch_item\"\r\n                app:showAsAction=\"always\" />\r\n            <item\r\n                android:id=\"@+id/unit\"\r\n                android:title=\"Camera Type\"\r\n                app:actionLayout=\"@layout/radio_button\"\r\n                app:showAsAction=\"always\"></item>\r\n        </menu>\r\n    </item>\r\n\r\n\r\n    <item android:title=\"계정\">\r\n        <menu >\r\n            <item android:title=\"삼성헬스와 연동\"\r\n                android:id=\"@+id/shealthConnect\"\r\n                android:icon=\"@drawable/ic_baseline_account_circle_24\"/>\r\n            <item android:title=\"로그아웃\"\r\n                android:id=\"@+id/Logout\"\r\n                android:icon=\"@drawable/ic_baseline_account_circle_24\"/>\r\n        </menu>\r\n    </item>\r\n\r\n</menu>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/menu/top_menu.xml b/app/src/main/res/menu/top_menu.xml
+--- a/app/src/main/res/menu/top_menu.xml	
++++ b/app/src/main/res/menu/top_menu.xml	
+@@ -3,7 +3,7 @@
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:android="http://schemas.android.com/apk/res/android">
+ 
+-    <item android:title="매인 메뉴"
++    <item android:title="메인 메뉴"
+         android:id="@+id/Main_Menu_nav"
+         android:icon="@drawable/ic_baseline_bar_chart_24"/>
+     <item
+Index: app/src/main/java/edu/imtl/bluekare/Fragments/Survey/surveyForm.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/surveyForm.java b/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/surveyForm.java
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/edu/imtl/bluekare/Fragments/Survey/surveyForm.java	
+@@ -0,0 +1,33 @@
++package edu.imtl.bluekare.Fragments.Survey;
++
++public class surveyForm {
++    public String[] result_A=new String[9];
++    public String[] result_B=new String[9];
++    public String[] result_C=new String[10];
++    public String[] result_D=new String[10];
++    public String regiNm;
++
++    public String[] final_result_A=new String[9];
++    public String[] final_result_B=new String[9];
++    public String[] final_result_C=new String[10];
++    public String[] final_result_D=new String[10];
++
++    public String[] get_A(){ return result_A;}
++    public String[] get_B(){ return result_B;}
++    public String[] get_C(){ return result_C;}
++    public String[] get_D(){ return result_D;}
++
++    public void set_A(String[] temp){ result_A=temp;}
++    public void set_B(String[] temp){ result_B=temp;}
++    public void set_C(String[] temp){ result_C=temp;}
++    public void set_D(String[] temp){ result_D=temp;}
++
++    public String get_Nm(){return regiNm;}
++    public void set_Nm(String temp){regiNm=temp;}
++
++
++    public void set_fianlA(String[] tempFinal){ final_result_A=tempFinal;}
++    public void set_fianlB(String[] tempFinal){ final_result_B=tempFinal;}
++    public void set_fianlC(String[] tempFinal){ final_result_C=tempFinal;}
++    public void set_fianlD(String[] tempFinal){ final_result_D=tempFinal;}
++}
+Index: app/src/main/res/layout/drawerheader.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\"\r\n    android:background=\"@color/colorPrimary\"\r\n    android:padding=\"20dp\">\r\n\r\n    <com.makeramen.roundedimageview.RoundedImageView\r\n        android:id=\"@+id/profileimage\"\r\n        android:layout_width=\"70dp\"\r\n        android:layout_height=\"70dp\"\r\n        android:scaleType=\"centerCrop\"\r\n        android:src=\"@drawable/ic_baseline_account_circle_24\"\r\n        app:riv_oval=\"true\" />\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\"\r\n        android:layout_marginStart=\"10dp\"\r\n        android:gravity=\"center_vertical\"\r\n        >\r\n\r\n        <TextView\r\n            android:id=\"@+id/userdrawername\"\r\n            android:layout_width=\"100dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"5dp\"\r\n            android:text=\"@string/user_name\"\r\n            android:textColor=\"@color/colorWhite\"\r\n            android:textSize=\"18sp\"\r\n            android:textStyle=\"bold\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/userdraweremail\"\r\n            android:layout_width=\"100dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"@string/user_email\"\r\n            android:textColor=\"@color/colorWhite\"\r\n            android:textSize=\"12sp\" />\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:id=\"@+id/userdrawerage\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"20세\"\r\n                android:textColor=\"@color/colorWhite\"\r\n                android:textSize=\"10sp\"\r\n                android:layout_marginRight=\"10dp\"/>\r\n\r\n            <TextView\r\n                android:id=\"@+id/userdrawergender\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"여성\"\r\n                android:textColor=\"@color/colorWhite\"\r\n                android:textSize=\"10sp\" />\r\n        </LinearLayout>\r\n\r\n    </LinearLayout>\r\n\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/drawerheader.xml b/app/src/main/res/layout/drawerheader.xml
+--- a/app/src/main/res/layout/drawerheader.xml	
++++ b/app/src/main/res/layout/drawerheader.xml	
+@@ -25,7 +25,7 @@
+ 
+         <TextView
+             android:id="@+id/userdrawername"
+-            android:layout_width="100dp"
++            android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginBottom="5dp"
+             android:text="@string/user_name"
+@@ -35,7 +35,7 @@
+ 
+         <TextView
+             android:id="@+id/userdraweremail"
+-            android:layout_width="100dp"
++            android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/user_email"
+             android:textColor="@color/colorWhite"
+Index: app/src/main/res/layout/fragment_survey_d.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n<androidx.core.widget.NestedScrollView xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:layout_marginTop=\"30dp\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\">\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:fontFamily=\"sans-serif-smallcaps\"\r\n            android:text=\"피험자 정보 기입\"\r\n            android:textAlignment=\"center\"\r\n            android:textColor=\"#8FC838\"\r\n            android:textSize=\"36sp\"\r\n            android:textStyle=\"bold\" />\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"D. \\t의학적 병력 평가\"\r\n            android:textAlignment=\"center\"\r\n            android:textColor=\"@color/colorPrimary\"\r\n            android:textSize=\"15sp\" />\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_1\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/record_questiond_1\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_2_1_1\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/record_questiond_2_1_1\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/record_questiond_2_1_1\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_2_1_2\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/record_questiond_2_1_2\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/record_questiond_2_1_2\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_2_1_3\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/record_questiond_2_1_3\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_2_2_1\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/record_questiond_2_2_1\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/record_questiond_2_2_1\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_2_2_2\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/record_questiond_2_2_2\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/record_questiond_2_2_2\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_2_2_3\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/record_questiond_2_2_3\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_2_3_1\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/record_questiond_2_3_1\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/record_questiond_2_3_1\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_2_3_2\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/record_questiond_2_3_2\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/record_questiond_2_3_2\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_2_3_3\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/record_questiond_2_3_3\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\"\r\n            android:gravity=\"center_horizontal\">\r\n            <Button\r\n                android:id=\"@+id/preButtonD\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"이전\"\r\n                android:textAlignment=\"center\"\r\n                android:textSize=\"20sp\" />\r\n            <Button\r\n                android:id=\"@+id/nextButtonD\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"다음\"\r\n                android:textAlignment=\"center\"\r\n                android:textSize=\"20sp\" />\r\n        </LinearLayout>\r\n\r\n    </LinearLayout>\r\n\r\n</androidx.core.widget.NestedScrollView>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_survey_d.xml b/app/src/main/res/layout/fragment_survey_d.xml
+--- a/app/src/main/res/layout/fragment_survey_d.xml	
++++ b/app/src/main/res/layout/fragment_survey_d.xml	
+@@ -352,7 +352,7 @@
+                 android:layout_marginRight="15dp"
+                 android:layout_marginBottom="10dp"
+                 android:padding="15dp"
+-                android:text="다음"
++                android:text="제출"
+                 android:textAlignment="center"
+                 android:textSize="20sp" />
+         </LinearLayout>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/activity_main.xml\" value=\"0.13500506585612967\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_main.xml\" value=\"0.13500506585612967\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_record.xml\" value=\"0.1526268115942029\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_survey.xml\" value=\"0.13500506585612967\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_survey_final.xml\" value=\"0.1526268115942029\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_survey_pre.xml\" value=\"0.1\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"NullableNotNullManager\">\r\n    <option name=\"myDefaultNullable\" value=\"org.jetbrains.annotations.Nullable\" />\r\n    <option name=\"myDefaultNotNull\" value=\"androidx.annotation.NonNull\" />\r\n    <option name=\"myNullables\">\r\n      <value>\r\n        <list size=\"15\">\r\n          <item index=\"0\" class=\"java.lang.String\" itemvalue=\"org.jetbrains.annotations.Nullable\" />\r\n          <item index=\"1\" class=\"java.lang.String\" itemvalue=\"javax.annotation.Nullable\" />\r\n          <item index=\"2\" class=\"java.lang.String\" itemvalue=\"javax.annotation.CheckForNull\" />\r\n          <item index=\"3\" class=\"java.lang.String\" itemvalue=\"edu.umd.cs.findbugs.annotations.Nullable\" />\r\n          <item index=\"4\" class=\"java.lang.String\" itemvalue=\"android.support.annotation.Nullable\" />\r\n          <item index=\"5\" class=\"java.lang.String\" itemvalue=\"androidx.annotation.Nullable\" />\r\n          <item index=\"6\" class=\"java.lang.String\" itemvalue=\"android.annotation.Nullable\" />\r\n          <item index=\"7\" class=\"java.lang.String\" itemvalue=\"androidx.annotation.RecentlyNullable\" />\r\n          <item index=\"8\" class=\"java.lang.String\" itemvalue=\"org.checkerframework.checker.nullness.qual.Nullable\" />\r\n          <item index=\"9\" class=\"java.lang.String\" itemvalue=\"org.checkerframework.checker.nullness.compatqual.NullableDecl\" />\r\n          <item index=\"10\" class=\"java.lang.String\" itemvalue=\"org.checkerframework.checker.nullness.compatqual.NullableType\" />\r\n          <item index=\"11\" class=\"java.lang.String\" itemvalue=\"com.android.annotations.Nullable\" />\r\n          <item index=\"12\" class=\"java.lang.String\" itemvalue=\"org.eclipse.jdt.annotation.Nullable\" />\r\n          <item index=\"13\" class=\"java.lang.String\" itemvalue=\"io.reactivex.annotations.Nullable\" />\r\n          <item index=\"14\" class=\"java.lang.String\" itemvalue=\"io.reactivex.rxjava3.annotations.Nullable\" />\r\n        </list>\r\n      </value>\r\n    </option>\r\n    <option name=\"myNotNulls\">\r\n      <value>\r\n        <list size=\"15\">\r\n          <item index=\"0\" class=\"java.lang.String\" itemvalue=\"org.jetbrains.annotations.NotNull\" />\r\n          <item index=\"1\" class=\"java.lang.String\" itemvalue=\"javax.annotation.Nonnull\" />\r\n          <item index=\"2\" class=\"java.lang.String\" itemvalue=\"edu.umd.cs.findbugs.annotations.NonNull\" />\r\n          <item index=\"3\" class=\"java.lang.String\" itemvalue=\"android.support.annotation.NonNull\" />\r\n          <item index=\"4\" class=\"java.lang.String\" itemvalue=\"androidx.annotation.NonNull\" />\r\n          <item index=\"5\" class=\"java.lang.String\" itemvalue=\"android.annotation.NonNull\" />\r\n          <item index=\"6\" class=\"java.lang.String\" itemvalue=\"androidx.annotation.RecentlyNonNull\" />\r\n          <item index=\"7\" class=\"java.lang.String\" itemvalue=\"org.checkerframework.checker.nullness.qual.NonNull\" />\r\n          <item index=\"8\" class=\"java.lang.String\" itemvalue=\"org.checkerframework.checker.nullness.compatqual.NonNullDecl\" />\r\n          <item index=\"9\" class=\"java.lang.String\" itemvalue=\"org.checkerframework.checker.nullness.compatqual.NonNullType\" />\r\n          <item index=\"10\" class=\"java.lang.String\" itemvalue=\"com.android.annotations.NonNull\" />\r\n          <item index=\"11\" class=\"java.lang.String\" itemvalue=\"org.eclipse.jdt.annotation.NonNull\" />\r\n          <item index=\"12\" class=\"java.lang.String\" itemvalue=\"io.reactivex.annotations.NonNull\" />\r\n          <item index=\"13\" class=\"java.lang.String\" itemvalue=\"io.reactivex.rxjava3.annotations.NonNull\" />\r\n          <item index=\"14\" class=\"java.lang.String\" itemvalue=\"lombok.NonNull\" />\r\n        </list>\r\n      </value>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_1_8\" default=\"true\" project-jdk-name=\"1.8\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	
++++ b/.idea/misc.xml	
+@@ -9,6 +9,14 @@
+         <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_survey.xml" value="0.13500506585612967" />
+         <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_survey_final.xml" value="0.1526268115942029" />
+         <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_survey_pre.xml" value="0.1" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/drawerheader.xml" value="0.296195652173913" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/fragment_main.xml" value="0.2390625" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/fragment_survey.xml" value="0.19739583333333333" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/fragment_survey_final.xml" value="0.25" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/fragment_survey_pre.xml" value="0.17760416666666667" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/single_list_item.xml" value="0.2390625" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/switch_item.xml" value="0.2390625" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/menu/top_menu.xml" value="0.2390625" />
+       </map>
+     </option>
+   </component>

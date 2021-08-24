@@ -1,0 +1,890 @@
+Index: app/src/main/res/drawable/btn_custom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<shape xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:padding=\"10dp\"\r\n    android:shape=\"rectangle\" >\r\n\r\n    <solid android:color=\"#26a69a\" />\r\n\r\n    <corners\r\n        android:bottomLeftRadius=\"5dp\"\r\n        android:bottomRightRadius=\"5dp\"\r\n        android:topLeftRadius=\"5dp\"\r\n        android:topRightRadius=\"5dp\" />\r\n\r\n</shape>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/btn_custom.xml b/app/src/main/res/drawable/btn_custom.xml
+--- a/app/src/main/res/drawable/btn_custom.xml	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/app/src/main/res/drawable/btn_custom.xml	(date 1629344362767)
+@@ -3,12 +3,9 @@
+     android:padding="10dp"
+     android:shape="rectangle" >
+ 
+-    <solid android:color="#26a69a" />
++    <solid android:color="@color/mainColor" />
+ 
+     <corners
+-        android:bottomLeftRadius="5dp"
+-        android:bottomRightRadius="5dp"
+-        android:topLeftRadius="5dp"
+-        android:topRightRadius="5dp" />
++        android:radius="10dp" />
+ 
+ </shape>
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_record.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\">\r\n\r\n    <com.google.android.material.textfield.TextInputLayout\r\n        android:id=\"@+id/textField1\"\r\n        android:layout_marginTop=\"50dp\"\r\n        android:layout_margin=\"20dp\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:hint=\"이름\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/textField2\"\r\n        >\r\n\r\n        <com.google.android.material.textfield.TextInputEditText\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\" />\r\n\r\n    </com.google.android.material.textfield.TextInputLayout>\r\n\r\n    <com.google.android.material.textfield.TextInputLayout\r\n        android:id=\"@+id/textField2\"\r\n        android:layout_margin=\"20dp\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:hint=\"전화번호\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textField1\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/record_filename\">\r\n\r\n        <com.google.android.material.textfield.TextInputEditText\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\" />\r\n\r\n    </com.google.android.material.textfield.TextInputLayout>\r\n\r\n\r\n    <TextView\r\n        android:id=\"@+id/record_filename\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"32dp\"\r\n        android:layout_marginTop=\"64dp\"\r\n        android:layout_marginEnd=\"32dp\"\r\n        android:fontFamily=\"@font/open_sans_semibold\"\r\n        android:lineHeight=\"32dp\"\r\n        android:text=\"성함과 전화번호를 누른 후 \\n 녹음버튼을 눌러주세요\"\r\n        android:textAlignment=\"center\"\r\n        android:textColor=\"@color/colorDarkBlue\"\r\n        android:textSize=\"18sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/textField2\" />\r\n\r\n    <Chronometer\r\n        android:id=\"@+id/record_timer\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"64dp\"\r\n        android:fontFamily=\"@font/open_sans_light\"\r\n        android:textColor=\"@color/colorDarkBlue\"\r\n        android:textSize=\"64sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/record_filename\" />\r\n\r\n    <ImageButton\r\n        android:id=\"@+id/record_btn\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:background=\"@android:color/white\"\r\n        android:src=\"@drawable/record_btn_stopped\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/record_timer\" />\r\n\r\n    <ImageButton\r\n        android:id=\"@+id/record_list_btn\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:background=\"@android:color/white\"\r\n        android:padding=\"16dp\"\r\n        android:src=\"@drawable/recorder_list_btn\"\r\n        app:layout_constraintBottom_toBottomOf=\"@id/record_btn\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toEndOf=\"@id/record_btn\"\r\n        app:layout_constraintTop_toTopOf=\"@id/record_btn\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_record.xml b/app/src/main/res/layout/fragment_record.xml
+--- a/app/src/main/res/layout/fragment_record.xml	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/app/src/main/res/layout/fragment_record.xml	(date 1629352382092)
+@@ -12,13 +12,16 @@
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:hint="이름"
++        android:background="@drawable/et_custom"
+         app:layout_constraintTop_toTopOf="parent"
+         app:layout_constraintBottom_toTopOf="@+id/textField2"
++
+         >
+ 
+         <com.google.android.material.textfield.TextInputEditText
+             android:layout_width="match_parent"
+-            android:layout_height="wrap_content" />
++            android:layout_height="wrap_content"
++            android:background="@drawable/et_custom"/>
+ 
+     </com.google.android.material.textfield.TextInputLayout>
+ 
+@@ -33,7 +36,8 @@
+ 
+         <com.google.android.material.textfield.TextInputEditText
+             android:layout_width="match_parent"
+-            android:layout_height="wrap_content" />
++            android:layout_height="wrap_content"
++            android:background="@drawable/et_custom"/>
+ 
+     </com.google.android.material.textfield.TextInputLayout>
+ 
+Index: app/src/main/res/layout/fragment_survey_pre.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n\r\n    android:id=\"@+id/nestedScrollView2\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:layout_marginTop=\"30dp\"\r\n    android:orientation=\"vertical\">\r\n    <TextView\r\n        android:layout_marginTop=\"50dp\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"인적 사항 수집\"\r\n        android:textSize=\"40sp\"\r\n        android:textAlignment=\"center\"\r\n        android:layout_marginBottom=\"10dp\"\r\n        android:textColor=\"@color/colorPrimary\"\r\n\r\n        />\r\n\r\n\r\n\r\n\r\n\r\n    <LinearLayout\r\n        android:layout_marginTop=\"80dp\"\r\n        android:id=\"@+id/linearlayout_num\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\"\r\n        android:layout_marginBottom=\"10dp\"\r\n        >\r\n\r\n        <com.google.android.material.textfield.TextInputLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"70dp\"\r\n            android:layout_marginLeft=\"20dp\"\r\n            android:layout_marginRight=\"20dp\"\r\n            android:layout_marginTop=\"10dp\"\r\n            android:layout_centerInParent=\"true\"\r\n\r\n            >\r\n\r\n            <com.google.android.material.textfield.TextInputEditText\r\n                android:id=\"@+id/editTextTextPersonName\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:hint=\"이름\"\r\n                android:inputType=\"textPersonName\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                />\r\n\r\n        </com.google.android.material.textfield.TextInputLayout>\r\n    </LinearLayout>\r\n\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\"\r\n         >\r\n        <com.google.android.material.textfield.TextInputLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"70dp\"\r\n            android:layout_marginLeft=\"20dp\"\r\n            android:layout_marginRight=\"20dp\"\r\n            android:layout_marginTop=\"10dp\"\r\n            android:layout_centerInParent=\"true\"\r\n\r\n            >\r\n\r\n            <com.google.android.material.textfield.TextInputEditText\r\n                android:id=\"@+id/editTextPhone\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:hint=\"전화번호\"\r\n                android:inputType=\"phone\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                />\r\n\r\n        </com.google.android.material.textfield.TextInputLayout>\r\n\r\n    </LinearLayout>\r\n\r\n\r\n    <Button\r\n        android:id=\"@+id/toA\"\r\n        android:layout_width=\"350dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:padding=\"15dp\"\r\n        android:text=\"다음\"\r\n        android:textAlignment=\"center\"\r\n        android:textSize=\"20sp\"\r\n        android:layout_marginTop=\"120dp\"\r\n        android:layout_gravity=\"center|bottom\"\r\n        />\r\n\r\n\r\n</LinearLayout>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_survey_pre.xml b/app/src/main/res/layout/fragment_survey_pre.xml
+--- a/app/src/main/res/layout/fragment_survey_pre.xml	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/app/src/main/res/layout/fragment_survey_pre.xml	(date 1629361711476)
+@@ -89,13 +89,15 @@
+ 
+     <Button
+         android:id="@+id/toA"
+-        android:layout_width="350dp"
++        android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:padding="15dp"
+         android:text="다음"
+         android:textAlignment="center"
+         android:textSize="20sp"
+-        android:layout_marginTop="120dp"
++        android:layout_marginTop="40dp"
++        android:layout_marginRight="10dp"
++        android:layout_marginLeft="10dp"
+         android:layout_gravity="center|bottom"
+         />
+ 
+Index: app/src/main/res/layout/activity_register.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:orientation=\"vertical\"\r\n    tools:context=\"edu.imtl.bluekare.Fragments.Register.RegisterActivity\">\r\n\r\n\r\n    <androidx.core.widget.NestedScrollView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:fillViewport=\"true\">\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"vertical\" >\r\n\r\n            <TextView\r\n                android:id=\"@+id/tv_logo\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginStart=\"25dp\"\r\n                android:layout_marginTop=\"60dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:text=\"Register\"\r\n                android:textAlignment=\"center\"\r\n                android:textSize=\"50sp\" />\r\n\r\n            <TextView\r\n                android:id=\"@+id/tv_subtitle\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginStart=\"25dp\"\r\n                android:layout_marginBottom=\"40dp\"\r\n                android:text=\"당신의 일상에 누구보다 가까이\\n인공지능 기반 생활밀착형 우울증 치료 어플\"\r\n                android:textSize=\"14sp\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/rt_name\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"50dp\"\r\n                android:layout_marginLeft=\"20dp\"\r\n                android:layout_marginRight=\"20dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"이름 (Name)\"\r\n                android:inputType=\"textPersonName\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/rt_email\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"50dp\"\r\n                android:layout_marginLeft=\"20dp\"\r\n                android:layout_marginRight=\"20dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"이메일 (Email)\"\r\n                android:inputType=\"textEmailAddress\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/rt_password\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"50dp\"\r\n                android:layout_marginLeft=\"20dp\"\r\n                android:layout_marginRight=\"20dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"비밀번호 (Password)\"\r\n                android:inputType=\"textPassword\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/rt_repassword\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"50dp\"\r\n                android:layout_marginLeft=\"20dp\"\r\n                android:layout_marginRight=\"20dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"비밀번호 확인 (Confirm Password)\"\r\n                android:inputType=\"textPassword\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/rt_phoneNum\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"50dp\"\r\n                android:layout_marginLeft=\"20dp\"\r\n                android:layout_marginRight=\"20dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"핸드폰 번호(Phone Number)\"\r\n                android:inputType=\"phone\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n\r\n\r\n            <EditText\r\n                android:id=\"@+id/rt_birth\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"50dp\"\r\n                android:layout_marginLeft=\"20dp\"\r\n                android:layout_marginRight=\"20dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"생년월일(Date of Birth)\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\"\r\n                android:ems=\"10\"\r\n                android:clickable=\"true\"\r\n                android:focusable=\"false\"\r\n                />\r\n\r\n            <LinearLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"50dp\"\r\n                android:layout_marginLeft=\"20dp\"\r\n                android:layout_marginRight=\"20dp\"\r\n                android:layout_marginBottom=\"15dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:orientation=\"horizontal\">\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView2\"\r\n                    android:layout_width=\"72dp\"\r\n                    android:layout_height=\"match_parent\"\r\n                    android:layout_weight=\"1\"\r\n                    android:gravity=\"center_vertical\"\r\n                    android:padding=\"15dp\"\r\n                    android:text=\"성별(Gender)\"\r\n                    android:textSize=\"15sp\" />\r\n\r\n                <RadioGroup\r\n                    android:layout_width=\"208dp\"\r\n                    android:layout_height=\"39dp\"\r\n                    android:orientation=\"horizontal\"\r\n                    android:paddingTop=\"13dp\">\r\n\r\n                    <RadioButton\r\n                        android:id=\"@+id/male_button\"\r\n                        android:layout_width=\"89dp\"\r\n                        android:layout_height=\"match_parent\"\r\n                        android:text=\"남성\"\r\n                        android:textSize=\"15sp\" />\r\n\r\n                    <RadioButton\r\n                        android:id=\"@+id/female_button\"\r\n                        android:layout_width=\"68dp\"\r\n                        android:layout_height=\"match_parent\"\r\n                        android:layout_weight=\"1\"\r\n                        android:text=\"여성\"\r\n                        android:textSize=\"15sp\" />\r\n                </RadioGroup>\r\n            </LinearLayout>\r\n\r\n            <RelativeLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"0dp\"\r\n                android:layout_weight=\"1\">\r\n\r\n                <Button\r\n                    android:id=\"@+id/btn_register\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_centerHorizontal=\"true\"\r\n                    android:layout_marginLeft=\"20dp\"\r\n\r\n\r\n                    android:layout_marginRight=\"20dp\"\r\n                    android:background=\"@drawable/btn_custom\"\r\n                    android:text=\"register\"\r\n                    android:textColor=\"@android:color/white\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/toLogin\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_alignParentBottom=\"true\"\r\n                    android:layout_centerHorizontal=\"true\"\r\n                    android:layout_marginBottom=\"20dp\"\r\n                    android:text=\"Already have an Account? Login Now\"\r\n                    android:textSize=\"15sp\" />\r\n\r\n            </RelativeLayout>\r\n        </LinearLayout>\r\n    </androidx.core.widget.NestedScrollView>\r\n\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_register.xml b/app/src/main/res/layout/activity_register.xml
+--- a/app/src/main/res/layout/activity_register.xml	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/app/src/main/res/layout/activity_register.xml	(date 1629362729463)
+@@ -125,14 +125,16 @@
+                 android:layout_height="50dp"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+-                android:layout_marginBottom="15dp"
++                android:layout_marginBottom="20dp"
+                 android:background="@drawable/et_custom"
+-                android:orientation="horizontal">
++                android:orientation="horizontal"
++                android:ems="10"
++                >
+ 
+                 <TextView
+                     android:id="@+id/textView2"
+                     android:layout_width="72dp"
+-                    android:layout_height="match_parent"
++                    android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:gravity="center_vertical"
+                     android:padding="15dp"
+@@ -141,9 +143,9 @@
+ 
+                 <RadioGroup
+                     android:layout_width="208dp"
+-                    android:layout_height="39dp"
++                    android:layout_height="50dp"
+                     android:orientation="horizontal"
+-                    android:paddingTop="13dp">
++                    android:paddingTop="0dp">
+ 
+                     <RadioButton
+                         android:id="@+id/male_button"
+@@ -173,10 +175,8 @@
+                     android:layout_height="wrap_content"
+                     android:layout_centerHorizontal="true"
+                     android:layout_marginLeft="20dp"
+-
+-
+                     android:layout_marginRight="20dp"
+-                    android:background="@drawable/btn_custom"
++                    android:background="@drawable/chip_selected"
+                     android:text="register"
+                     android:textColor="@android:color/white" />
+ 
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.coordinatorlayout.widget.CoordinatorLayout\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/coordinator\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\"edu.imtl.bluekare.Main.MainActivity\"\r\n    >\r\n\r\n    <androidx.drawerlayout.widget.DrawerLayout\r\n        android:id=\"@+id/drawerlayout\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:background=\"@android:color/transparent\"\r\n        android:fitsSystemWindows=\"false\">\r\n<!--        tools:openDrawer=\"start\"-->\r\n\r\n\r\n        <FrameLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:id=\"@+id/fragment_container\">\r\n        </FrameLayout>\r\n\r\n        <androidx.constraintlayout.widget.ConstraintLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            android:background=\"@android:color/transparent\"\r\n\r\n            >\r\n\r\n            <LinearLayout\r\n                android:id=\"@+id/layouttoolbar\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"?actionBarSize\"\r\n                android:background=\"@android:color/transparent\"\r\n                android:gravity=\"center_vertical\"\r\n                android:orientation=\"horizontal\"\r\n                android:paddingStart=\"15dp\"\r\n                android:paddingEnd=\"15dp\"\r\n                app:layout_constraintEnd_toEndOf=\"parent\"\r\n                app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n\r\n                <ImageView\r\n                    android:id=\"@+id/menu\"\r\n                    android:layout_width=\"30dp\"\r\n                    android:layout_height=\"30dp\"\r\n                    android:src=\"@drawable/ic_baseline_menu_24\" />\r\n\r\n                <ImageButton\r\n                    android:visibility=\"gone\"\r\n                    android:id=\"@+id/search_go_btn\"\r\n                    android:layout_width=\"30dp\"\r\n                    android:layout_height=\"30dp\"\r\n                    android:layout_marginLeft=\"10dp\"\r\n                    android:background=\"@android:color/transparent\"\r\n                    app:srcCompat=\"@drawable/ic_baseline_search_24\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/appname\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"match_parent\"\r\n                    android:gravity=\"right\"\r\n                    android:text=\"@string/app_name\"\r\n                    android:textColor=\"@color/filters_header\"\r\n                    android:textSize=\"40sp\"\r\n                    android:textStyle=\"bold\" />\r\n\r\n            </LinearLayout>\r\n        </androidx.constraintlayout.widget.ConstraintLayout>\r\n\r\n        <com.google.android.material.navigation.NavigationView\r\n            android:id=\"@+id/navigationlayout\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_gravity=\"start|left\"\r\n            app:menu=\"@menu/top_menu\"\r\n            app:headerLayout=\"@layout/drawerheader\"\r\n            >\r\n\r\n        </com.google.android.material.navigation.NavigationView>\r\n\r\n    </androidx.drawerlayout.widget.DrawerLayout>\r\n\r\n\r\n</androidx.coordinatorlayout.widget.CoordinatorLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+--- a/app/src/main/res/layout/activity_main.xml	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/app/src/main/res/layout/activity_main.xml	(date 1629342936135)
+@@ -35,13 +35,13 @@
+                 android:id="@+id/layouttoolbar"
+                 android:layout_width="match_parent"
+                 android:layout_height="?actionBarSize"
+-                android:background="@android:color/transparent"
+                 android:gravity="center_vertical"
+                 android:orientation="horizontal"
+                 android:paddingStart="15dp"
+-                android:paddingEnd="15dp"
++                android:paddingEnd="45dp"
+                 app:layout_constraintEnd_toEndOf="parent"
+-                app:layout_constraintTop_toTopOf="parent">
++                app:layout_constraintTop_toTopOf="parent"
++                >
+ 
+ 
+                 <ImageView
+@@ -57,17 +57,17 @@
+                     android:layout_height="30dp"
+                     android:layout_marginLeft="10dp"
+                     android:background="@android:color/transparent"
+-                    app:srcCompat="@drawable/ic_baseline_search_24" />
++                    />
+ 
+-                <TextView
+-                    android:id="@+id/appname"
+-                    android:layout_width="match_parent"
+-                    android:layout_height="match_parent"
+-                    android:gravity="right"
+-                    android:text="@string/app_name"
+-                    android:textColor="@color/filters_header"
+-                    android:textSize="40sp"
+-                    android:textStyle="bold" />
++                <ImageView
++                    android:id="@+id/imageView6"
++                    android:layout_width="100dp"
++                    android:layout_height="wrap_content"
++                    android:layout_weight="1"
++                    app:srcCompat="@mipmap/transparent_logo_foreground"
++                    android:layout_gravity="center"
++                    />
++
+ 
+             </LinearLayout>
+         </androidx.constraintlayout.widget.ConstraintLayout>
+Index: app/src/main/res/layout/activity_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\"edu.imtl.bluekare.Fragments.Login.LoginActivity\">\r\n\r\n    <TextView\r\n        android:id=\"@+id/tv_title\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"@string/app_name\"\r\n        android:textSize=\"50sp\"\r\n        android:layout_marginStart=\"25dp\"\r\n        android:layout_marginBottom=\"10dp\"\r\n        android:layout_above=\"@id/tv_subtitle\"/>\r\n\r\n    <TextView\r\n        android:id=\"@+id/tv_subtitle\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"당신의 일상에 누구보다 가까이\\n인공지능 기반 생활밀착형 우울증 치료 어플\"\r\n        android:textSize=\"14sp\"\r\n        android:layout_marginStart=\"25dp\"\r\n        android:layout_marginBottom=\"50dp\"\r\n        android:layout_above=\"@id/et_email_layout\"/>\r\n\r\n    <com.google.android.material.textfield.TextInputLayout\r\n        android:id=\"@+id/et_email_layout\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"50dp\"\r\n        android:layout_marginLeft=\"20dp\"\r\n        android:layout_marginRight=\"20dp\"\r\n        android:layout_above=\"@id/et_password_layout\"\r\n        >\r\n\r\n        <com.google.android.material.textfield.TextInputEditText\r\n            android:id=\"@+id/et_email\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:hint=\"email\"\r\n            android:inputType=\"textEmailAddress\"\r\n            android:padding=\"15dp\"\r\n            android:textSize=\"15sp\"\r\n            android:background=\"@drawable/et_custom\"\r\n            />\r\n\r\n    </com.google.android.material.textfield.TextInputLayout>\r\n\r\n\r\n    <com.google.android.material.textfield.TextInputLayout\r\n        android:id=\"@+id/et_password_layout\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"50dp\"\r\n        android:layout_marginLeft=\"20dp\"\r\n        android:layout_marginRight=\"20dp\"\r\n        android:layout_marginTop=\"10dp\"\r\n        android:layout_centerInParent=\"true\"\r\n\r\n        >\r\n\r\n        <com.google.android.material.textfield.TextInputEditText\r\n            android:id=\"@+id/et_password\"\r\n\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:hint=\"password\"\r\n            android:inputType=\"textPassword\"\r\n            android:padding=\"15dp\"\r\n            android:textSize=\"15sp\"\r\n            android:background=\"@drawable/et_custom\"\r\n            />\r\n\r\n    </com.google.android.material.textfield.TextInputLayout>\r\n\r\n\r\n\r\n    <RadioButton\r\n        android:id=\"@+id/rememBtn\"\r\n        android:layout_width=\"201dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_below=\"@+id/btn_login\"\r\n        android:layout_alignParentStart=\"true\"\r\n        android:layout_alignParentEnd=\"true\"\r\n        android:layout_marginStart=\"21dp\"\r\n        android:layout_marginTop=\"-115dp\"\r\n        android:layout_marginEnd=\"189dp\"\r\n        android:layout_marginBottom=\"405dp\"\r\n        android:checked=\"false\"\r\n        android:text=\"로그인 유지\"\r\n        android:textSize=\"15dp\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/btn_login\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_below=\"@id/et_password_layout\"\r\n        android:layout_marginLeft=\"20dp\"\r\n        android:layout_marginTop=\"73dp\"\r\n        android:layout_marginRight=\"20dp\"\r\n        android:background=\"@drawable/chip_selected\"\r\n        android:text=\"login\"\r\n        android:textColor=\"@android:color/white\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/toRegister\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"New to BlueKare? Register Now\"\r\n        android:textSize=\"15sp\"\r\n        android:layout_centerHorizontal=\"true\"\r\n        android:layout_alignParentBottom=\"true\"\r\n        android:layout_marginBottom=\"20dp\"/>\r\n\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_login.xml b/app/src/main/res/layout/activity_login.xml
+--- a/app/src/main/res/layout/activity_login.xml	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/app/src/main/res/layout/activity_login.xml	(date 1629362729477)
+@@ -9,41 +9,39 @@
+         android:id="@+id/tv_title"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:text="@string/app_name"
+-        android:textSize="50sp"
++        android:layout_above="@id/tv_subtitle"
+         android:layout_marginStart="25dp"
+         android:layout_marginBottom="10dp"
+-        android:layout_above="@id/tv_subtitle"/>
++        android:text="@string/app_name"
++        android:textSize="50sp" />
+ 
+     <TextView
+         android:id="@+id/tv_subtitle"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:text="당신의 일상에 누구보다 가까이\n인공지능 기반 생활밀착형 우울증 치료 어플"
+-        android:textSize="14sp"
++        android:layout_above="@id/et_email_layout"
+         android:layout_marginStart="25dp"
+         android:layout_marginBottom="50dp"
+-        android:layout_above="@id/et_email_layout"/>
++        android:text="당신의 일상에 누구보다 가까이\n인공지능 기반 생활밀착형 우울증 치료 어플"
++        android:textSize="14sp" />
+ 
+     <com.google.android.material.textfield.TextInputLayout
+         android:id="@+id/et_email_layout"
+         android:layout_width="match_parent"
+-        android:layout_height="50dp"
++        android:layout_height="60dp"
++        android:layout_above="@id/et_password_layout"
+         android:layout_marginLeft="20dp"
+-        android:layout_marginRight="20dp"
+-        android:layout_above="@id/et_password_layout"
+-        >
++        android:layout_marginRight="20dp">
+ 
+         <com.google.android.material.textfield.TextInputEditText
+             android:id="@+id/et_email"
+             android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
++            android:layout_height="match_parent"
++            android:background="@drawable/et_custom"
+             android:hint="email"
+             android:inputType="textEmailAddress"
+             android:padding="15dp"
+-            android:textSize="15sp"
+-            android:background="@drawable/et_custom"
+-            />
++            android:textSize="15sp" />
+ 
+     </com.google.android.material.textfield.TextInputLayout>
+ 
+@@ -51,11 +49,11 @@
+     <com.google.android.material.textfield.TextInputLayout
+         android:id="@+id/et_password_layout"
+         android:layout_width="match_parent"
+-        android:layout_height="50dp"
++        android:layout_height="60dp"
++        android:layout_centerInParent="true"
+         android:layout_marginLeft="20dp"
+-        android:layout_marginRight="20dp"
+         android:layout_marginTop="10dp"
+-        android:layout_centerInParent="true"
++        android:layout_marginRight="20dp"
+ 
+         >
+ 
+@@ -63,18 +61,16 @@
+             android:id="@+id/et_password"
+ 
+             android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
++            android:layout_height="match_parent"
++            android:background="@drawable/et_custom"
+             android:hint="password"
+             android:inputType="textPassword"
+             android:padding="15dp"
+-            android:textSize="15sp"
+-            android:background="@drawable/et_custom"
+-            />
++            android:textSize="15sp" />
+ 
+     </com.google.android.material.textfield.TextInputLayout>
+ 
+ 
+-
+     <RadioButton
+         android:id="@+id/rememBtn"
+         android:layout_width="201dp"
+@@ -99,6 +95,7 @@
+         android:layout_marginTop="73dp"
+         android:layout_marginRight="20dp"
+         android:background="@drawable/chip_selected"
++        android:theme="@style/myButtonDarkBlue"
+         android:text="login"
+         android:textColor="@android:color/white" />
+ 
+@@ -106,10 +103,10 @@
+         android:id="@+id/toRegister"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
++        android:layout_alignParentBottom="true"
++        android:layout_centerHorizontal="true"
++        android:layout_marginBottom="20dp"
+         android:text="New to BlueKare? Register Now"
+-        android:textSize="15sp"
+-        android:layout_centerHorizontal="true"
+-        android:layout_alignParentBottom="true"
+-        android:layout_marginBottom="20dp"/>
++        android:textSize="15sp" />
+ 
+ </RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_download.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:orientation=\"vertical\"\r\n    >\r\n\r\n\r\n    <androidx.core.widget.NestedScrollView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:layout_marginTop=\"?actionBarSize\">\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"vertical\"\r\n            >\r\n\r\n            <TextView\r\n                android:id=\"@+id/textView2\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"피험자 정보 다운로드\"\r\n                android:layout_margin=\"10dp\"\r\n                android:textSize=\"10pt\"\r\n                android:layout_gravity=\"center\"/>\r\n\r\n            <LinearLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:orientation=\"horizontal\"\r\n                android:layout_margin=\"10dp\"\r\n                android:paddingBottom=\"10dp\">\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView3\"\r\n                    android:layout_width=\"0dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_weight=\"1\"\r\n                    android:text=\"피험자\"\r\n                    android:textSize=\"7pt\" />\r\n\r\n                <EditText\r\n                    android:id=\"@+id/searchName\"\r\n                    android:layout_width=\"210dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_weight=\"1\"\r\n                    android:ems=\"10\"\r\n                    android:inputType=\"textPersonName\"\r\n                    android:hint=\"  Search Name...\"\r\n                    android:textSize=\"7pt\"\r\n                    android:drawableRight=\"@drawable/ic_baseline_search_24\"\r\n                    />\r\n\r\n            </LinearLayout>\r\n\r\n            <LinearLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:orientation=\"horizontal\"\r\n                android:layout_margin=\"10dp\"\r\n\r\n                >\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView4\"\r\n                    android:layout_width=\"0dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginRight=\"0dp\"\r\n                    android:layout_weight=\"1\"\r\n                    android:text=\"기간 설정\"\r\n                    android:textSize=\"7pt\" />\r\n\r\n                <Spinner\r\n                    android:id=\"@+id/spinner\"\r\n                    android:layout_width=\"100dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_weight=\"1\"\r\n                    android:spinnerMode=\"dropdown\"/>\r\n                <TextView\r\n                    android:id=\"@+id/DateText\"\r\n                    android:layout_width=\"100dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:text=\"\"\r\n                    android:textSize=\"7pt\"\r\n                    android:layout_marginLeft=\"10dp\"/>\r\n            </LinearLayout>\r\n\r\n\r\n\r\n            <LinearLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:orientation=\"horizontal\"\r\n                android:layout_margin=\"10dp\">\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView5\"\r\n                    android:layout_width=\"150dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_weight=\"1\"\r\n                    android:text=\"항목 선택\"\r\n                    android:textSize=\"7pt\"\r\n                    android:layout_marginTop=\"12dp\"/>\r\n\r\n                <LinearLayout\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_weight=\"1\"\r\n                    android:orientation=\"vertical\">\r\n\r\n                    <CheckBox\r\n                        android:id=\"@+id/checkBox\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:text=\"심박수(HeartRate)\"\r\n                        android:checked=\"true\"/>\r\n\r\n                    <CheckBox\r\n                        android:id=\"@+id/checkBox2\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:text=\"Electrocardiogram(ECG)\"\r\n                        android:checked=\"true\"/>\r\n\r\n                    <CheckBox\r\n                        android:id=\"@+id/checkBox3\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:text=\"걸음수(StepDailyTrend)\"\r\n                        android:checked=\"true\"/>\r\n\r\n                    <CheckBox\r\n                        android:id=\"@+id/checkBox4\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:text=\"혈압(Blood Pressure)\"\r\n                        android:checked=\"true\"/>\r\n\r\n                    <CheckBox\r\n                        android:id=\"@+id/checkBox5\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:text=\"산소포화도(Oxygen Saturation)\"\r\n                        android:checked=\"true\"/>\r\n\r\n                    <CheckBox\r\n                        android:id=\"@+id/checkBox6\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:text=\"수면(Sleep Stage)\"\r\n                        android:checked=\"true\"/>\r\n                    <CheckBox\r\n                        android:id=\"@+id/checkBox7\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:text=\"운동(Exercise)\"\r\n                        android:checked=\"true\"/>\r\n                </LinearLayout>\r\n\r\n            </LinearLayout>\r\n\r\n            <Button\r\n                android:id=\"@+id/button\"\r\n                android:layout_width=\"150dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"Download\"\r\n                android:layout_gravity=\"center\"/>\r\n\r\n        </LinearLayout>\r\n    </androidx.core.widget.NestedScrollView>\r\n\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_download.xml b/app/src/main/res/layout/fragment_download.xml
+--- a/app/src/main/res/layout/fragment_download.xml	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/app/src/main/res/layout/fragment_download.xml	(date 1629363043610)
+@@ -164,10 +164,15 @@
+ 
+             <Button
+                 android:id="@+id/button"
+-                android:layout_width="150dp"
++                android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:text="Download"
+-                android:layout_gravity="center"/>
++                android:text="다운로드"
++                android:layout_gravity="center|bottom"
++                android:layout_marginTop="30dp"
++                android:textSize="20dp"
++                android:padding="15dp"
++                android:layout_margin="10dp"
++                />
+ 
+         </LinearLayout>
+     </androidx.core.widget.NestedScrollView>
+Index: app/src/main/java/edu/imtl/bluekare/Fragments/Login/LoginActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.imtl.bluekare.Fragments.Login;\r\n\r\nimport android.content.Intent;\r\nimport android.content.SharedPreferences;\r\nimport android.os.Build;\r\nimport android.os.Bundle;\r\nimport android.provider.Settings;\r\nimport android.util.Log;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.RadioButton;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport edu.imtl.bluekare.Fragments.Register.RegisterActivity;\r\nimport edu.imtl.bluekare.R;\r\n\r\npublic class LoginActivity extends AppCompatActivity {\r\n    EditText id, password;\r\n    Button loginbtn;\r\n    TextView register;\r\n    DeviceInfo deviceInfo;\r\n    RadioButton rembtn;\r\n\r\n    String device_id;\r\n    String device_name;\r\n    int remember_flag;\r\n\r\n    String uid, upw;\r\n\r\n    final String tag=\"asdf\";\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_login);\r\n\r\n        id = findViewById(R.id.et_email);\r\n        password = findViewById(R.id.et_password);\r\n        loginbtn = findViewById(R.id.btn_login);\r\n        register = findViewById(R.id.toRegister);\r\n        rembtn=findViewById(R.id.rememBtn);\r\n\r\n        deviceInfo = new DeviceInfo(Build.BOARD, Build.BRAND, Build.CPU_ABI, Build.DEVICE, Build.DISPLAY,\r\n                Build.FINGERPRINT, Build.HOST, Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID), Build.MANUFACTURER, Build.MODEL, Build.PRODUCT,\r\n                Build.TAGS, Build.TYPE, Build.USER, Build.VERSION.RELEASE);\r\n        deviceInfo.logging();\r\n\r\n        device_id = deviceInfo.getId();\r\n        device_name = deviceInfo.fingerprint;\r\n\r\n        remember_flag=0; // remember login\r\n\r\n        rembtn.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                if(rembtn.isChecked()) remember_flag=1;\r\n                else remember_flag=0;\r\n\r\n                Log.d(\"asdflogin\",Integer.toString(remember_flag));\r\n            }\r\n        });\r\n\r\n        loginbtn.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                uid=id.getText().toString();\r\n                upw=password.getText().toString();\r\n                Log.e(tag, uid);\r\n                Log.e(tag, upw);\r\n                Async_login_task async_login_task = new Async_login_task(LoginActivity.this, uid, upw, device_id, device_name, remember_flag);\r\n                async_login_task.execute();\r\n\r\n            }\r\n        });\r\n        register.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent signup_intent = new Intent(getBaseContext(), RegisterActivity.class);\r\n                startActivity(signup_intent);\r\n                finish();\r\n            }\r\n        });\r\n\r\n        String temp_email = getIntent().getStringExtra(\"email\");\r\n        String temp_pw = getIntent().getStringExtra(\"pw\");\r\n\r\n        if(temp_email!=null && temp_email.length() > 2 && temp_pw.length() > 2)\r\n        {   Log.e(\"asdf\",\"async_login\");\r\n            Async_login_task async_login_task = new Async_login_task(LoginActivity.this, temp_email, temp_pw, device_id, device_name, remember_flag);\r\n            async_login_task.execute();\r\n\r\n        }\r\n\r\n\r\n        SharedPreferences remember_pref = getApplicationContext().getSharedPreferences(\"renewal_token_pref\", 0);\r\n        String temp_renewal_token = remember_pref.getString(\"auto_renew_token\", \"none\");\r\n        if(!temp_renewal_token.equals(\"none\"))\r\n        {   Log.e(\"asdf\",\"async_renew\");\r\n            Async_renew_session_task async_renew_session_task = new Async_renew_session_task(LoginActivity.this, temp_renewal_token, true);\r\n            async_renew_session_task.execute();\r\n        }\r\n\r\n\r\n    }\r\n\r\n\r\n    @Override\r\n    protected void onResume() {\r\n        super.onResume();\r\n\r\n        loginbtn.setEnabled(true);\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/imtl/bluekare/Fragments/Login/LoginActivity.java b/app/src/main/java/edu/imtl/bluekare/Fragments/Login/LoginActivity.java
+--- a/app/src/main/java/edu/imtl/bluekare/Fragments/Login/LoginActivity.java	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/app/src/main/java/edu/imtl/bluekare/Fragments/Login/LoginActivity.java	(date 1629358958739)
+@@ -91,7 +91,6 @@
+         {   Log.e("asdf","async_login");
+             Async_login_task async_login_task = new Async_login_task(LoginActivity.this, temp_email, temp_pw, device_id, device_name, remember_flag);
+             async_login_task.execute();
+-
+         }
+ 
+ 
+Index: app/src/main/res/layout/drawerheader.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\"\r\n    android:background=\"@color/colorPrimary\"\r\n    android:padding=\"20dp\">\r\n\r\n    <com.makeramen.roundedimageview.RoundedImageView\r\n        android:id=\"@+id/profileimage\"\r\n        android:layout_width=\"70dp\"\r\n        android:layout_height=\"70dp\"\r\n        android:scaleType=\"centerCrop\"\r\n        android:src=\"@drawable/ic_baseline_account_circle_24\"\r\n        app:riv_oval=\"true\" />\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\"\r\n        android:layout_marginStart=\"10dp\"\r\n        android:gravity=\"center_vertical\"\r\n        >\r\n\r\n        <TextView\r\n            android:id=\"@+id/userdrawername\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"5dp\"\r\n            android:text=\"@string/user_name\"\r\n            android:textColor=\"@color/colorWhite\"\r\n            android:textSize=\"18sp\"\r\n            android:textStyle=\"bold\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/userdraweremail\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"@string/user_email\"\r\n            android:textColor=\"@color/colorWhite\"\r\n            android:textSize=\"12sp\" />\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:id=\"@+id/userdrawerage\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"20세\"\r\n                android:textColor=\"@color/colorWhite\"\r\n                android:textSize=\"10sp\"\r\n                android:layout_marginRight=\"10dp\"/>\r\n\r\n            <TextView\r\n                android:id=\"@+id/userdrawergender\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"여성\"\r\n                android:textColor=\"@color/colorWhite\"\r\n                android:textSize=\"10sp\" />\r\n        </LinearLayout>\r\n\r\n    </LinearLayout>\r\n\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/drawerheader.xml b/app/src/main/res/layout/drawerheader.xml
+--- a/app/src/main/res/layout/drawerheader.xml	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/app/src/main/res/layout/drawerheader.xml	(date 1629342936120)
+@@ -4,7 +4,7 @@
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+-    android:background="@color/colorPrimary"
++    android:background="@color/maindarkColor"
+     android:padding="20dp">
+ 
+     <com.makeramen.roundedimageview.RoundedImageView
+@@ -19,7 +19,7 @@
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:orientation="vertical"
+-        android:layout_marginStart="10dp"
++        android:layout_marginStart="20dp"
+         android:gravity="center_vertical"
+         >
+ 
+Index: app/src/main/res/layout/fragment_survey_a.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.core.widget.NestedScrollView xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:layout_marginTop=\"30dp\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\">\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:fontFamily=\"sans-serif-smallcaps\"\r\n            android:text=\"피험자 정보 기입\"\r\n            android:textAlignment=\"center\"\r\n            android:textColor=\"#8FC838\"\r\n            android:textSize=\"36sp\"\r\n            android:textStyle=\"bold\"\r\n            android:layout_marginBottom=\"10dp\"/>\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"A.\\t기초정보 평가\"\r\n            android:textAlignment=\"center\"\r\n            android:textColor=\"@color/colorPrimary\"\r\n            android:textSize=\"15sp\"\r\n            android:layout_marginBottom=\"10dp\"/>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/patient_sex\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n\r\n            <Spinner\r\n                android:id=\"@+id/patient_sex\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/patient_age\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/patient_age\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/patient_age\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/patient_address\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/patient_address\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/patient_address\"\r\n                android:inputType=\"textPersonName\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/patient_socialstatus\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/patient_socialstatus\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/patient_job\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/patient_job\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/patient_marriage\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/patient_marriage\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/patient_education\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/patient_education\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/patient_education_total\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/patient_education_total\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/patient_education_total\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n\r\n        </LinearLayout>\r\n\r\n\r\n\r\n            <Button\r\n                android:id=\"@+id/nextButtonA\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"다음\"\r\n                android:textAlignment=\"center\"\r\n                android:textSize=\"24sp\"\r\n                android:layout_marginTop=\"10dp\"/>\r\n\r\n\r\n\r\n\r\n    </LinearLayout>\r\n</androidx.core.widget.NestedScrollView>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_survey_a.xml b/app/src/main/res/layout/fragment_survey_a.xml
+--- a/app/src/main/res/layout/fragment_survey_a.xml	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/app/src/main/res/layout/fragment_survey_a.xml	(date 1629362810391)
+@@ -279,7 +279,7 @@
+                 android:padding="15dp"
+                 android:text="다음"
+                 android:textAlignment="center"
+-                android:textSize="24sp"
++                android:textSize="20sp"
+                 android:layout_marginTop="10dp"/>
+ 
+ 
+Index: app/src/main/res/values/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <!-- Base application theme. -->\r\n    <style name=\"AppTheme\" parent=\"Theme.MaterialComponents.Light.NoActionBar\">\r\n        <!-- Customize your theme here. -->\r\n        <item name=\"colorPrimary\">@color/colorPrimary</item>\r\n        <item name=\"colorPrimaryDark\">@color/colorPrimaryDark</item>\r\n        <item name=\"colorAccent\">@color/colorAccent</item>\r\n  </style>\r\n\r\n    <style name=\"AppTheme.NoActionBar\" parent=\"Theme.MaterialComponents.Light.NoActionBar\">\r\n        <item name=\"android:windowBackground\">@color/colorWhite</item>\r\n        <item name=\"windowActionBar\">false</item>\r\n        <item name=\"android:windowContentOverlay\">@null</item>\r\n        <item name=\"windowNoTitle\">true</item>\r\n        <item name=\"android:windowDrawsSystemBarBackgrounds\">true</item>\r\n        <item name=\"android:windowLightStatusBar\">true</item>\r\n        <item name=\"android:statusBarColor\">@color/colorWhite</item>\r\n<!--        <item name=\"android:windowTranslucentStatus\">true</item>-->\r\n<!--        <item name=\"android:windowTranslucentNavigation\">true</item>-->\r\n    </style>\r\n\r\n    <style name=\"AppTheme.AppBarOverlay\" parent=\"ThemeOverlay.AppCompat.Dark.ActionBar\" />\r\n\r\n    <style name=\"AppTheme.PopupOverlay\" parent=\"ThemeOverlay.AppCompat.Light\" />\r\n\r\n    <style name=\"popupTheme\" parent=\"Theme.AppCompat.DayNight.Dialog\">\r\n        <item name=\"colorPrimary\">@color/colorPrimary</item>\r\n        <item name=\"colorPrimaryDark\">@color/colorPrimaryDark</item>\r\n        <item name=\"colorAccent\">@color/colorAccent</item>\r\n\r\n        <!-- remove titlebar -->\r\n        <item name=\"windowActionBar\">false</item>\r\n        <item name=\"windowNoTitle\">true</item>\r\n    </style>\r\n\r\n    <style name=\"BottomSheetDialogTheme\" parent=\"Theme.Design.Light.BottomSheetDialog\">\r\n        <item name=\"bottomSheetStyle\">@style/BottomSheetStyle</item>\r\n    </style>\r\n    <style name=\"BottomSheetStyle\" parent=\"Widget.Design.BottomSheet.Modal\">\r\n        <item name=\"android:background\">@android:color/transparent</item>\r\n        <item name=\"behavior_peekHeight\">200dp</item>\r\n    </style>\r\n\r\n    <style name=\"BottomSheetDialogTheme2\" parent=\"Theme.Design.Light.BottomSheetDialog\">\r\n        <item name=\"bottomSheetStyle\">@style/BottomSheetStyle</item>\r\n    </style>\r\n    <style name=\"BottomSheetStyle2\" parent=\"Widget.Design.BottomSheet.Modal\">\r\n        <item name=\"android:background\">@android:color/transparent</item>\r\n        <item name=\"behavior_peekHeight\">200dp</item>\r\n    </style>\r\n\r\n    <style name=\"tab_text\" parent=\"TextAppearance.Design.Tab\">\r\n        <item name=\"android:textSize\">18sp</item>\r\n    </style>\r\n\r\n    <style name=\"PopupTheme\" parent=\"Theme.AppCompat.DayNight.Dialog\">\r\n        <item name=\"colorPrimary\">@color/colorPrimary</item>\r\n        <item name=\"colorPrimaryDark\">@color/colorPrimaryDark</item>\r\n        <item name=\"colorAccent\">@color/colorAccent</item>\r\n\r\n        <item name=\"windowActionBar\">false</item>\r\n        <item name=\"android:windowNoTitle\">true</item>\r\n    </style>\r\n    <style name=\"myButton\">\r\n        <item name=\"colorPrimary\">@color/colorSecondaryText</item>\r\n    </style>\r\n\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/styles.xml b/app/src/main/res/values/styles.xml
+--- a/app/src/main/res/values/styles.xml	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/app/src/main/res/values/styles.xml	(date 1629362948552)
+@@ -2,9 +2,9 @@
+     <!-- Base application theme. -->
+     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+         <!-- Customize your theme here. -->
+-        <item name="colorPrimary">@color/colorPrimary</item>
+-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+-        <item name="colorAccent">@color/colorAccent</item>
++        <item name="colorPrimary">@color/mainColor</item>
++        <item name="colorPrimaryDark">@color/maindarkColor</item>
++        <item name="colorAccent">@color/colorSecondaryText</item>
+   </style>
+ 
+     <style name="AppTheme.NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
+@@ -15,6 +15,9 @@
+         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+         <item name="android:windowLightStatusBar">true</item>
+         <item name="android:statusBarColor">@color/colorWhite</item>
++        <item name="colorPrimary">@color/mainColor</item>
++        <item name="colorPrimaryDark">@color/maindarkColor</item>
++        <item name="colorAccent">@color/colorSecondaryText</item>
+ <!--        <item name="android:windowTranslucentStatus">true</item>-->
+ <!--        <item name="android:windowTranslucentNavigation">true</item>-->
+     </style>
+@@ -24,9 +27,9 @@
+     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+ 
+     <style name="popupTheme" parent="Theme.AppCompat.DayNight.Dialog">
+-        <item name="colorPrimary">@color/colorPrimary</item>
+-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+-        <item name="colorAccent">@color/colorAccent</item>
++        <item name="colorPrimary">@color/mainColor</item>
++        <item name="colorPrimaryDark">@color/maindarkColor</item>
++        <item name="colorAccent">@color/colorSecondaryText</item>
+ 
+         <!-- remove titlebar -->
+         <item name="windowActionBar">false</item>
+@@ -54,15 +57,19 @@
+     </style>
+ 
+     <style name="PopupTheme" parent="Theme.AppCompat.DayNight.Dialog">
+-        <item name="colorPrimary">@color/colorPrimary</item>
+-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+-        <item name="colorAccent">@color/colorAccent</item>
++        <item name="colorPrimary">@color/mainColor</item>
++        <item name="colorPrimaryDark">@color/maindarkColor</item>
++        <item name="colorAccent">@color/colorSecondaryText</item>
+ 
+         <item name="windowActionBar">false</item>
+         <item name="android:windowNoTitle">true</item>
+     </style>
+-    <style name="myButton">
++
++    <style name="myButtonGray">
+         <item name="colorPrimary">@color/colorSecondaryText</item>
+     </style>
++    <style name="myButtonDarkBlue"  >
++        <item name="colorPrimary">@color/maindarkColor</item>
++    </style>
+ 
+ </resources>
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_survey_c.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n<androidx.core.widget.NestedScrollView xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:layout_marginTop=\"30dp\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\"\r\n        >\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:fontFamily=\"sans-serif-smallcaps\"\r\n            android:text=\"피험자 정보 기입\"\r\n            android:textAlignment=\"center\"\r\n            android:textColor=\"#8FC838\"\r\n            android:textSize=\"36sp\"\r\n            android:textStyle=\"bold\"\r\n            android:layout_marginBottom=\"10dp\"/>\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"C.\\t정신과적 가족력 평가(4촌까지)\"\r\n            android:textAlignment=\"center\"\r\n            android:textColor=\"@color/colorPrimary\"\r\n            android:textSize=\"15sp\"\r\n            android:layout_marginBottom=\"10dp\"/>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questionc_1\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/record_questionc_1\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questionc_2_1_1\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/record_questionc_2_1_1\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/record_questionc_2_1_1\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questionc_2_1_2\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/record_questionc_2_1_2\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/record_questionc_2_1_2\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questionc_2_1_3\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/record_questionc_2_1_3\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questionc_2_2_1\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/record_questionc_2_2_1\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/record_questionc_2_2_1\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questionc_2_2_2\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/record_questionc_2_2_2\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/record_questionc_2_2_2\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questionc_2_2_3\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/record_questionc_2_2_3\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questionc_2_3_1\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/record_questionc_2_3_1\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/record_questionc_2_3_1\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questionc_2_3_2\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/record_questionc_2_3_2\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/record_questionc_2_3_2\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questionc_2_3_3\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/record_questionc_2_3_3\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\"\r\n            android:gravity=\"center_horizontal\"\r\n            android:layout_marginTop=\"10dp\">\r\n            <Button\r\n                android:id=\"@+id/preButtonC\"\r\n                android:layout_width=\"200dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"이전\"\r\n                android:textAlignment=\"center\"\r\n                android:textSize=\"20dp\"\r\n                android:theme=\"@style/myButton\"/>\r\n            <Button\r\n                android:id=\"@+id/nextButtonC\"\r\n                android:layout_width=\"200dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"다음\"\r\n                android:textAlignment=\"center\"\r\n                android:textSize=\"20sp\" />\r\n        </LinearLayout>\r\n\r\n\r\n    </LinearLayout>\r\n\r\n</androidx.core.widget.NestedScrollView>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_survey_c.xml b/app/src/main/res/layout/fragment_survey_c.xml
+--- a/app/src/main/res/layout/fragment_survey_c.xml	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/app/src/main/res/layout/fragment_survey_c.xml	(date 1629362810396)
+@@ -335,26 +335,24 @@
+             android:layout_height="wrap_content"
+             android:orientation="horizontal"
+             android:gravity="center_horizontal"
+-            android:layout_marginTop="10dp">
++            android:layout_marginTop="10dp"
++            android:layout_marginBottom="10dp"
++            android:paddingLeft="10dp"
++            android:paddingRight="10dp">
+             <Button
+                 android:id="@+id/preButtonC"
+-                android:layout_width="200dp"
++                android:layout_width="180dp"
+                 android:layout_height="wrap_content"
+-                android:layout_marginLeft="15dp"
+-                android:layout_marginRight="15dp"
+-                android:layout_marginBottom="10dp"
++                android:layout_marginRight="10dp"
+                 android:padding="15dp"
+                 android:text="이전"
+                 android:textAlignment="center"
+                 android:textSize="20dp"
+-                android:theme="@style/myButton"/>
++                android:theme="@style/myButtonGray"/>
+             <Button
+                 android:id="@+id/nextButtonC"
+-                android:layout_width="200dp"
++                android:layout_width="180dp"
+                 android:layout_height="wrap_content"
+-                android:layout_marginLeft="15dp"
+-                android:layout_marginRight="15dp"
+-                android:layout_marginBottom="10dp"
+                 android:padding="15dp"
+                 android:text="다음"
+                 android:textAlignment="center"
+Index: app/src/main/res/layout/fragment_survey_b.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n<androidx.core.widget.NestedScrollView\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:layout_marginTop=\"30dp\"\r\n    >\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\">\r\n    <TextView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:fontFamily=\"sans-serif-smallcaps\"\r\n        android:text=\"피험자 정보 기입\"\r\n        android:textAlignment=\"center\"\r\n        android:textColor=\"#8FC838\"\r\n        android:textSize=\"36sp\"\r\n        android:textStyle=\"bold\"\r\n        android:layout_marginBottom=\"10dp\"/>\r\n\r\n    <TextView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"B.\\t정신과적 병력 평가\"\r\n        android:textAlignment=\"center\"\r\n        android:textColor=\"@color/colorPrimary\"\r\n        android:textSize=\"15sp\"\r\n        android:layout_marginBottom=\"10dp\"/>\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <TextView\r\n            android:layout_width=\"140dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:autoSizeTextType=\"uniform\"\r\n            android:padding=\"15dp\"\r\n            android:text=\"@string/record_questionb_1\"\r\n            android:textAlignment=\"textStart\" />\r\n\r\n        <EditText\r\n            android:id=\"@+id/record_questionb_1\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:autofillHints=\"username\"\r\n            android:background=\"@drawable/et_custom\"\r\n            android:hint=\"@string/record_questionb_1\"\r\n            android:inputType=\"textPersonName\"\r\n            android:padding=\"15dp\"\r\n            android:textSize=\"15sp\" />\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <TextView\r\n            android:layout_width=\"140dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:autoSizeTextType=\"uniform\"\r\n            android:padding=\"15dp\"\r\n            android:text=\"@string/record_questionb_2\"\r\n            android:textAlignment=\"textStart\" />\r\n\r\n\r\n        <EditText\r\n            android:id=\"@+id/record_questionb_2\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:autofillHints=\"username\"\r\n            android:background=\"@drawable/et_custom\"\r\n            android:hint=\"@string/record_questionb_2\"\r\n            android:inputType=\"textPersonName\"\r\n            android:padding=\"15dp\"\r\n            android:textSize=\"15sp\" />\r\n\r\n    </LinearLayout>\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <TextView\r\n            android:layout_width=\"140dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:autoSizeTextType=\"uniform\"\r\n            android:padding=\"15dp\"\r\n            android:text=\"@string/record_questionb_3\"\r\n            android:textAlignment=\"textStart\" />\r\n\r\n\r\n        <EditText\r\n            android:id=\"@+id/record_questionb_3\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:autofillHints=\"username\"\r\n            android:background=\"@drawable/et_custom\"\r\n            android:hint=\"@string/record_questionb_3\"\r\n            android:inputType=\"textPersonName\"\r\n            android:padding=\"15dp\"\r\n            android:textSize=\"15sp\" />\r\n\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <TextView\r\n            android:layout_width=\"140dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:autoSizeTextType=\"uniform\"\r\n            android:padding=\"15dp\"\r\n            android:text=\"@string/record_questionb_4\"\r\n            android:textAlignment=\"textStart\" />\r\n\r\n        <EditText\r\n            android:id=\"@+id/record_questionb_4\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:autofillHints=\"\"\r\n            android:background=\"@drawable/et_custom\"\r\n            android:hint=\"@string/record_questionb_4\"\r\n            android:inputType=\"numberDecimal\"\r\n            android:padding=\"15dp\"\r\n            android:textSize=\"15sp\" />\r\n\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <TextView\r\n            android:layout_width=\"140dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:autoSizeTextType=\"uniform\"\r\n            android:padding=\"15dp\"\r\n            android:text=\"@string/record_questionb_5\"\r\n            android:textAlignment=\"textStart\" />\r\n\r\n        <Spinner\r\n            android:id=\"@+id/record_questionb_5\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:background=\"@drawable/et_custom\"\r\n            android:padding=\"15dp\"\r\n            android:textSize=\"15sp\" />\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <TextView\r\n            android:layout_width=\"140dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:autoSizeTextType=\"uniform\"\r\n            android:padding=\"15dp\"\r\n            android:text=\"@string/record_questionb_6\"\r\n            android:textAlignment=\"textStart\" />\r\n\r\n        <Spinner\r\n            android:id=\"@+id/record_questionb_6\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:background=\"@drawable/et_custom\"\r\n            android:padding=\"15dp\"\r\n            android:textSize=\"15sp\" />\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <TextView\r\n            android:layout_width=\"140dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:autoSizeTextType=\"uniform\"\r\n            android:padding=\"15dp\"\r\n            android:text=\"@string/record_questionb_7\"\r\n            android:textAlignment=\"textStart\" />\r\n\r\n        <EditText\r\n            android:id=\"@+id/record_questionb_7\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:autofillHints=\"\"\r\n            android:background=\"@drawable/et_custom\"\r\n            android:hint=\"@string/record_questionb_7\"\r\n            android:inputType=\"numberDecimal\"\r\n            android:padding=\"15dp\"\r\n            android:textSize=\"15sp\" />\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <TextView\r\n            android:layout_width=\"140dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:autoSizeTextType=\"uniform\"\r\n            android:padding=\"15dp\"\r\n            android:text=\"@string/record_questionb_8\"\r\n            android:textAlignment=\"textStart\" />\r\n\r\n        <Spinner\r\n            android:id=\"@+id/record_questionb_8\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:background=\"@drawable/et_custom\"\r\n            android:padding=\"15dp\"\r\n            android:textSize=\"15sp\" />\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <TextView\r\n            android:layout_width=\"140dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:autoSizeTextType=\"uniform\"\r\n            android:padding=\"15dp\"\r\n            android:text=\"@string/record_questionb_9\"\r\n            android:textAlignment=\"textStart\" />\r\n\r\n        <Spinner\r\n            android:id=\"@+id/record_questionb_9\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:background=\"@drawable/et_custom\"\r\n            android:padding=\"15dp\"\r\n            android:textSize=\"15sp\"\r\n            />\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\"\r\n        android:gravity=\"center_horizontal\"\r\n        android:layout_marginTop=\"10dp\">\r\n        <Button\r\n            android:id=\"@+id/preButtonB\"\r\n            android:layout_width=\"200dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:padding=\"15dp\"\r\n            android:text=\"이전\"\r\n            android:textAlignment=\"center\"\r\n            android:textSize=\"20sp\"\r\n            android:theme=\"@style/myButton\"\r\n            />\r\n        <Button\r\n            android:id=\"@+id/nextButtonB\"\r\n            android:layout_width=\"200dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:padding=\"15dp\"\r\n            android:text=\"다음\"\r\n            android:textAlignment=\"center\"\r\n            android:textSize=\"20sp\" />\r\n    </LinearLayout>\r\n\r\n\r\n    </LinearLayout>\r\n\r\n</androidx.core.widget.NestedScrollView>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_survey_b.xml b/app/src/main/res/layout/fragment_survey_b.xml
+--- a/app/src/main/res/layout/fragment_survey_b.xml	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/app/src/main/res/layout/fragment_survey_b.xml	(date 1629362836598)
+@@ -308,27 +308,27 @@
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:gravity="center_horizontal"
+-        android:layout_marginTop="10dp">
++        android:layout_marginTop="10dp"
++        android:paddingLeft="10dp"
++        android:paddingRight="10dp"
++        android:layout_marginBottom="10dp"
++        >
+         <Button
+             android:id="@+id/preButtonB"
+-            android:layout_width="200dp"
++            android:layout_width="180dp"
+             android:layout_height="wrap_content"
+-            android:layout_marginLeft="15dp"
+-            android:layout_marginRight="15dp"
+-            android:layout_marginBottom="10dp"
++            android:layout_marginRight="10dp"
+             android:padding="15dp"
+             android:text="이전"
+             android:textAlignment="center"
+             android:textSize="20sp"
+-            android:theme="@style/myButton"
++            android:theme="@style/myButtonGray"
+             />
+         <Button
+             android:id="@+id/nextButtonB"
+-            android:layout_width="200dp"
++            android:layout_width="180dp"
+             android:layout_height="wrap_content"
+-            android:layout_marginLeft="15dp"
+-            android:layout_marginRight="15dp"
+-            android:layout_marginBottom="10dp"
++
+             android:padding="15dp"
+             android:text="다음"
+             android:textAlignment="center"
+Index: app/src/main/res/mipmap-anydpi-v26/transparent_logo.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/mipmap-anydpi-v26/transparent_logo.xml b/app/src/main/res/mipmap-anydpi-v26/transparent_logo.xml
+new file mode 100644
+--- /dev/null	(date 1629342936151)
++++ b/app/src/main/res/mipmap-anydpi-v26/transparent_logo.xml	(date 1629342936151)
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="utf-8"?>
++<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
++    <background android:drawable="@drawable/transparent_logo_background"/>
++    <foreground android:drawable="@mipmap/transparent_logo_foreground"/>
++</adaptive-icon>
+\ No newline at end of file
+Index: app/src/main/res/mipmap-anydpi-v26/transparent_logo_round.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/mipmap-anydpi-v26/transparent_logo_round.xml b/app/src/main/res/mipmap-anydpi-v26/transparent_logo_round.xml
+new file mode 100644
+--- /dev/null	(date 1629342936144)
++++ b/app/src/main/res/mipmap-anydpi-v26/transparent_logo_round.xml	(date 1629342936144)
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="utf-8"?>
++<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
++    <background android:drawable="@drawable/transparent_logo_background"/>
++    <foreground android:drawable="@mipmap/transparent_logo_foreground"/>
++</adaptive-icon>
+\ No newline at end of file
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<resources>\r\n    <color name=\"colorWhite\">#FFFFFF</color>\r\n    <color name=\"colorPrimary\">#303f9f</color>\r\n    <color name=\"colorPrimaryDark\">#3f51b5</color>\r\n    <color name=\"colorPrimaryText\">#212121</color>\r\n    <color name=\"colorSecondaryText\">#757575</color>\r\n    <color name=\"colorAccent\">#FF4081</color>\r\n    <color name=\"colorDivider\">#ECECEC</color>\r\n    <color name=\"colorBlack\">#000000</color>\r\n\r\n    <color name=\"filtersfab\">#3f51b5</color>\r\n    <color name=\"filters_header\">#303f9f</color>\r\n    <color name=\"filters_buttons\">#008000</color>\r\n    <color name=\"filters_buttons_selected\">#0f6a08</color>\r\n    <color name=\"filters_chips\">#b3e5fc</color>\r\n\r\n    <color name=\"orange\">#ff5722</color>\r\n    <color name=\"brown\">#795548</color>\r\n    <color name=\"colorDarkBlue\">#3D4054</color>\r\n\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/colors.xml b/app/src/main/res/values/colors.xml
+--- a/app/src/main/res/values/colors.xml	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/app/src/main/res/values/colors.xml	(date 1629345099466)
+@@ -19,4 +19,9 @@
+     <color name="brown">#795548</color>
+     <color name="colorDarkBlue">#3D4054</color>
+ 
++    <color name="mainColor">#a2e6f4</color>
++    <color name="pointColor">#39fff1</color>
++    <color name="maindarkColor">#97daf3</color>
++
++
+ </resources>
+\ No newline at end of file
+Index: app/src/main/res/drawable-v24/chip_selected.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<shape xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:shape=\"rectangle\">\r\n    <corners android:radius=\"32dp\" />\r\n    <solid android:color=\"@color/filters_chips\" />\r\n    <stroke android:width=\"1dp\" android:color=\"@color/filters_chips\"/>\r\n</shape>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable-v24/chip_selected.xml b/app/src/main/res/drawable-v24/chip_selected.xml
+--- a/app/src/main/res/drawable-v24/chip_selected.xml	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/app/src/main/res/drawable-v24/chip_selected.xml	(date 1629347430039)
+@@ -2,6 +2,6 @@
+ <shape xmlns:android="http://schemas.android.com/apk/res/android"
+     android:shape="rectangle">
+     <corners android:radius="32dp" />
+-    <solid android:color="@color/filters_chips" />
+-    <stroke android:width="1dp" android:color="@color/filters_chips"/>
++    <solid android:color="@color/mainColor" />
++    <stroke android:width="10dp" android:color="@color/maindarkColor"/>
+ </shape>
+Index: app/src/main/res/layout/fragment_survey_d.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n<androidx.core.widget.NestedScrollView xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:layout_marginTop=\"30dp\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\">\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:fontFamily=\"sans-serif-smallcaps\"\r\n            android:text=\"피험자 정보 기입\"\r\n            android:textAlignment=\"center\"\r\n            android:textColor=\"#8FC838\"\r\n            android:textSize=\"36sp\"\r\n            android:textStyle=\"bold\"\r\n            android:layout_marginBottom=\"10dp\"/>\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"D. \\t의학적 병력 평가\"\r\n            android:textAlignment=\"center\"\r\n            android:textColor=\"@color/colorPrimary\"\r\n            android:textSize=\"15sp\"\r\n            android:layout_marginBottom=\"10dp\"/>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_1\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/record_questiond_1\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_2_1_1\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/record_questiond_2_1_1\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/record_questiond_2_1_1\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_2_1_2\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/record_questiond_2_1_2\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/record_questiond_2_1_2\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_2_1_3\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/record_questiond_2_1_3\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_2_2_1\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/record_questiond_2_2_1\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/record_questiond_2_2_1\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_2_2_2\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/record_questiond_2_2_2\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/record_questiond_2_2_2\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_2_2_3\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/record_questiond_2_2_3\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_2_3_1\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/record_questiond_2_3_1\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/record_questiond_2_3_1\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_2_3_2\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/record_questiond_2_3_2\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autofillHints=\"\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:hint=\"@string/record_questiond_2_3_2\"\r\n                android:inputType=\"numberDecimal\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:layout_width=\"140dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:autoSizeTextType=\"uniform\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"@string/record_questiond_2_3_3\"\r\n                android:textAlignment=\"textStart\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/record_questiond_2_3_3\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:background=\"@drawable/et_custom\"\r\n                android:padding=\"15dp\"\r\n                android:textSize=\"15sp\" />\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\"\r\n            android:gravity=\"center_horizontal\"\r\n            android:layout_marginTop=\"10dp\">\r\n            <Button\r\n                android:id=\"@+id/preButtonD\"\r\n                android:layout_width=\"200dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"이전\"\r\n                android:textAlignment=\"center\"\r\n                android:textSize=\"20sp\"\r\n                android:theme=\"@style/myButton\"/>\r\n            <Button\r\n                android:id=\"@+id/nextButtonD\"\r\n                android:layout_width=\"200dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:padding=\"15dp\"\r\n                android:text=\"제출\"\r\n                android:textAlignment=\"center\"\r\n                android:textSize=\"20sp\" />\r\n        </LinearLayout>\r\n\r\n    </LinearLayout>\r\n\r\n</androidx.core.widget.NestedScrollView>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_survey_d.xml b/app/src/main/res/layout/fragment_survey_d.xml
+--- a/app/src/main/res/layout/fragment_survey_d.xml	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/app/src/main/res/layout/fragment_survey_d.xml	(date 1629362810401)
+@@ -335,26 +335,27 @@
+             android:layout_height="wrap_content"
+             android:orientation="horizontal"
+             android:gravity="center_horizontal"
+-            android:layout_marginTop="10dp">
++            android:layout_marginTop="10dp"
++            android:layout_marginBottom="10dp"
++            android:paddingLeft="10dp"
++            android:paddingRight="10dp">
+             <Button
+                 android:id="@+id/preButtonD"
+-                android:layout_width="200dp"
++                android:layout_width="180dp"
+                 android:layout_height="wrap_content"
+-                android:layout_marginLeft="15dp"
+-                android:layout_marginRight="15dp"
+-                android:layout_marginBottom="10dp"
++
++                android:layout_marginRight="10dp"
++
+                 android:padding="15dp"
+                 android:text="이전"
+                 android:textAlignment="center"
+                 android:textSize="20sp"
+-                android:theme="@style/myButton"/>
++                android:theme="@style/myButtonGray"/>
+             <Button
+                 android:id="@+id/nextButtonD"
+-                android:layout_width="200dp"
++                android:layout_width="180dp"
+                 android:layout_height="wrap_content"
+-                android:layout_marginLeft="15dp"
+-                android:layout_marginRight="15dp"
+-                android:layout_marginBottom="10dp"
++                android:theme="@style/myButtonDarkBlue"
+                 android:padding="15dp"
+                 android:text="제출"
+                 android:textAlignment="center"
+Index: app/src/main/res/drawable-v24/chip_unselected.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<shape xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:shape=\"rectangle\">\r\n    <corners android:radius=\"32dp\" />\r\n    <stroke android:width=\"1dp\" android:color=\"@color/filters_chips\"/>\r\n</shape>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable-v24/chip_unselected.xml b/app/src/main/res/drawable-v24/chip_unselected.xml
+--- a/app/src/main/res/drawable-v24/chip_unselected.xml	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/app/src/main/res/drawable-v24/chip_unselected.xml	(date 1629344290799)
+@@ -2,5 +2,5 @@
+ <shape xmlns:android="http://schemas.android.com/apk/res/android"
+     android:shape="rectangle">
+     <corners android:radius="32dp" />
+-    <stroke android:width="1dp" android:color="@color/filters_chips"/>
++    <stroke android:width="1dp" android:color="@color/mainColor"/>
+ </shape>
+Index: app/src/main/java/edu/imtl/bluekare/Fragments/Register/Async_register_user_task.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.imtl.bluekare.Fragments.Register;\r\n\r\nimport android.app.Activity;\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.os.AsyncTask;\r\nimport android.util.Log;\r\nimport android.widget.Toast;\r\n\r\nimport org.json.JSONException;\r\nimport org.json.JSONObject;\r\n\r\nimport java.io.BufferedReader;\r\nimport java.io.IOException;\r\nimport java.io.InputStream;\r\nimport java.io.InputStreamReader;\r\nimport java.io.OutputStream;\r\nimport java.lang.ref.WeakReference;\r\nimport java.net.HttpURLConnection;\r\nimport java.net.URL;\r\n\r\nimport edu.imtl.bluekare.Fragments.Login.LoginActivity;\r\nimport edu.imtl.bluekare.R;\r\n\r\nimport static edu.imtl.bluekare.Fragments.Login.SaveUserData.getUserAccessToken;\r\nimport static edu.imtl.bluekare.Fragments.Login.SaveUserData.getUserRenewalToken;\r\nimport static edu.imtl.bluekare.Fragments.Login.utils.saveToken;\r\n\r\npublic class Async_register_user_task extends AsyncTask<Void, Void, String> {\r\n\r\n    private final WeakReference<Context> contextRef;\r\n    String name;\r\n    String email;\r\n    String pw;\r\n    String pwc;\r\n    int type;\r\n    String phone;\r\n    int gender;\r\n    String dob;\r\n\r\n    public Async_register_user_task(Context context, String name, String email, String pw, String pwc, int type, String phone, int gender, String dob)\r\n    {\r\n        contextRef = new WeakReference<>(context);\r\n        this.name = name;\r\n        this.email = email;\r\n        this.pw = pw;\r\n        this.pwc = pwc;\r\n        this.type = type;\r\n        this.phone = phone;\r\n        this.gender = gender;\r\n        this.dob = dob;\r\n\r\n\r\n    }\r\n\r\n    @Override\r\n    protected void onPreExecute() {\r\n        super.onPreExecute();\r\n    }\r\n\r\n    @Override\r\n    protected void onPostExecute(String s) {\r\n        super.onPostExecute(s);\r\n        Log.d(\"Async\", \"LOGINTASK: \"+s);\r\n\r\n        if(s.contains(\"data\")){\r\n            String accToken = getUserAccessToken(contextRef.get().getApplicationContext());\r\n            String renewalToken = getUserRenewalToken(contextRef.get().getApplicationContext());\r\n            try {\r\n                JSONObject jsonObject_parent = new JSONObject(s);\r\n                JSONObject jsonObject = jsonObject_parent.getJSONObject(\"data\");\r\n\r\n                String acc_token = jsonObject.getString(\"access_token\");\r\n                String renewal_token = jsonObject.getString(\"renewal_token\");\r\n\r\n                Log.d(\"acc token\", acc_token);\r\n                Log.d(\"renewal token\", renewal_token);\r\n\r\n                if(!acc_token.equals(accToken) || !renewal_token.equals(renewalToken)) {\r\n                    saveToken(acc_token, renewal_token, contextRef.get().getApplicationContext());\r\n                }\r\n                Intent intent_main = new Intent(contextRef.get(), LoginActivity.class);\r\n                intent_main.putExtra(\"email\", email);\r\n                intent_main.putExtra(\"pw\", pw);\r\n                intent_main.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);\r\n                contextRef.get().startActivity(intent_main);\r\n\r\n                ((Activity) contextRef.get()).finish();\r\n\r\n            }catch (JSONException e){\r\n                e.printStackTrace();\r\n            }\r\n        }else if(s.contains(\"Invalid id or password\") || s.contains(\"401\")){\r\n            Toast.makeText(contextRef.get(), \"아이디, 비밀번호가 일치하지 않습니다\", Toast.LENGTH_SHORT).show();\r\n        }\r\n    }\r\n\r\n\r\n    @Override\r\n    protected String doInBackground(Void... voids) {\r\n\r\n        String result =\"\";\r\n        InputStream inputStream = null;\r\n\r\n        try {\r\n            URL url = new URL(contextRef.get().getResources().getString(R.string.hippo_abs_server)+contextRef.get().getResources().getString(R.string.registration));\r\n            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();\r\n\r\n\r\n            String json;\r\n            JSONObject jsonObject = new JSONObject();\r\n            jsonObject.put(\"name\", name);\r\n            jsonObject.put(\"uid\", email);\r\n            jsonObject.put(\"password\", pw);\r\n            jsonObject.put(\"password_confirmation\", pwc);\r\n            jsonObject.put(\"type\", type);\r\n            jsonObject.put(\"phonenum\", phone);\r\n            jsonObject.put(\"gender\", gender);\r\n            jsonObject.put(\"birth\", dob);\r\n\r\n\r\n\r\n            JSONObject parent_js = new JSONObject();\r\n            parent_js.put(\"user\", jsonObject);\r\n\r\n            json = parent_js.toString();\r\n\r\n            Log.e(\"asdf\", json);\r\n\r\n            httpURLConnection.setRequestMethod(\"POST\");\r\n            httpURLConnection.setRequestProperty(\"content-type\", \"application/json\");\r\n\r\n            httpURLConnection.setDoOutput(true);\r\n            httpURLConnection.setDoInput(true);\r\n\r\n            OutputStream outputStream = httpURLConnection.getOutputStream();\r\n            outputStream.write(json.getBytes(\"UTF-8\"));\r\n            outputStream.flush();\r\n            outputStream.close();\r\n\r\n            int status_code = httpURLConnection.getResponseCode();\r\n            String status = httpURLConnection.getResponseMessage();\r\n            Log.d(\"Status\", status_code+\": \"+status+\"\");\r\n            String page = \"\";       String line;\r\n            if(status_code == HttpURLConnection.HTTP_OK){\r\n\r\n                BufferedReader reader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), \"UTF-8\"));\r\n                while((line = reader.readLine()) != null){                page += line+\"\\n\";                   }\r\n            }else{\r\n                BufferedReader reader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream(), \"UTF-8\"));\r\n                while((line = reader.readLine()) != null){                page += line+\"\\n\";                   }\r\n            }\r\n            Log.d(\"page\", page);\r\n            return page;\r\n\r\n        } catch (IOException | JSONException e){\r\n            e.printStackTrace();\r\n        } catch (Exception e){\r\n            Log.e(\"Error\", e.getMessage());\r\n        }\r\n        return null;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/imtl/bluekare/Fragments/Register/Async_register_user_task.java b/app/src/main/java/edu/imtl/bluekare/Fragments/Register/Async_register_user_task.java
+--- a/app/src/main/java/edu/imtl/bluekare/Fragments/Register/Async_register_user_task.java	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/app/src/main/java/edu/imtl/bluekare/Fragments/Register/Async_register_user_task.java	(date 1629358737552)
+@@ -50,7 +50,6 @@
+         this.gender = gender;
+         this.dob = dob;
+ 
+-
+     }
+ 
+     @Override
+Index: app/src/main/res/drawable/transparent_logo_background.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/transparent_logo_background.xml b/app/src/main/res/drawable/transparent_logo_background.xml
+new file mode 100644
+--- /dev/null	(date 1629342936157)
++++ b/app/src/main/res/drawable/transparent_logo_background.xml	(date 1629342936157)
+@@ -0,0 +1,74 @@
++<?xml version="1.0" encoding="utf-8"?>
++<vector
++    android:height="108dp"
++    android:width="108dp"
++    android:viewportHeight="108"
++    android:viewportWidth="108"
++    xmlns:android="http://schemas.android.com/apk/res/android">
++    <path android:fillColor="#3DDC84"
++          android:pathData="M0,0h108v108h-108z"/>
++    <path android:fillColor="#00000000" android:pathData="M9,0L9,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M19,0L19,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M29,0L29,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M39,0L39,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M49,0L49,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M59,0L59,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M69,0L69,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M79,0L79,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M89,0L89,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M99,0L99,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,9L108,9"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,19L108,19"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,29L108,29"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,39L108,39"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,49L108,49"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,59L108,59"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,69L108,69"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,79L108,79"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,89L108,89"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,99L108,99"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M19,29L89,29"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M19,39L89,39"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M19,49L89,49"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M19,59L89,59"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M19,69L89,69"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M19,79L89,79"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M29,19L29,89"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M39,19L39,89"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M49,19L49,89"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M59,19L59,89"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M69,19L69,89"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M79,19L79,89"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++</vector>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/drawable/edittext_frame.xml\" value=\"0.21354166666666666\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/drawable/media_header_bg.xml\" value=\"0.21354166666666666\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/activity_login.xml\" value=\"0.33016304347826086\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/activity_main.xml\" value=\"0.13500506585612967\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/activity_register.xml\" value=\"0.33016304347826086\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/drawerheader.xml\" value=\"0.21875\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_audio_list.xml\" value=\"0.10371376811594203\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_main.xml\" value=\"0.13500506585612967\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_record.xml\" value=\"0.1526268115942029\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_survey.xml\" value=\"0.13500506585612967\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_survey_a.xml\" value=\"0.9233870967741935\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_survey_final.xml\" value=\"0.1526268115942029\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_survey_pre.xml\" value=\"0.25\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/player_sheet.xml\" value=\"0.19739583333333333\" />\r\n        <entry key=\"..\\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/menu/top_menu.xml\" value=\"0.19739583333333333\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"NullableNotNullManager\">\r\n    <option name=\"myDefaultNullable\" value=\"org.jetbrains.annotations.Nullable\" />\r\n    <option name=\"myDefaultNotNull\" value=\"androidx.annotation.NonNull\" />\r\n    <option name=\"myNullables\">\r\n      <value>\r\n        <list size=\"15\">\r\n          <item index=\"0\" class=\"java.lang.String\" itemvalue=\"org.jetbrains.annotations.Nullable\" />\r\n          <item index=\"1\" class=\"java.lang.String\" itemvalue=\"javax.annotation.Nullable\" />\r\n          <item index=\"2\" class=\"java.lang.String\" itemvalue=\"javax.annotation.CheckForNull\" />\r\n          <item index=\"3\" class=\"java.lang.String\" itemvalue=\"edu.umd.cs.findbugs.annotations.Nullable\" />\r\n          <item index=\"4\" class=\"java.lang.String\" itemvalue=\"android.support.annotation.Nullable\" />\r\n          <item index=\"5\" class=\"java.lang.String\" itemvalue=\"androidx.annotation.Nullable\" />\r\n          <item index=\"6\" class=\"java.lang.String\" itemvalue=\"android.annotation.Nullable\" />\r\n          <item index=\"7\" class=\"java.lang.String\" itemvalue=\"androidx.annotation.RecentlyNullable\" />\r\n          <item index=\"8\" class=\"java.lang.String\" itemvalue=\"org.checkerframework.checker.nullness.qual.Nullable\" />\r\n          <item index=\"9\" class=\"java.lang.String\" itemvalue=\"org.checkerframework.checker.nullness.compatqual.NullableDecl\" />\r\n          <item index=\"10\" class=\"java.lang.String\" itemvalue=\"org.checkerframework.checker.nullness.compatqual.NullableType\" />\r\n          <item index=\"11\" class=\"java.lang.String\" itemvalue=\"com.android.annotations.Nullable\" />\r\n          <item index=\"12\" class=\"java.lang.String\" itemvalue=\"org.eclipse.jdt.annotation.Nullable\" />\r\n          <item index=\"13\" class=\"java.lang.String\" itemvalue=\"io.reactivex.annotations.Nullable\" />\r\n          <item index=\"14\" class=\"java.lang.String\" itemvalue=\"io.reactivex.rxjava3.annotations.Nullable\" />\r\n        </list>\r\n      </value>\r\n    </option>\r\n    <option name=\"myNotNulls\">\r\n      <value>\r\n        <list size=\"15\">\r\n          <item index=\"0\" class=\"java.lang.String\" itemvalue=\"org.jetbrains.annotations.NotNull\" />\r\n          <item index=\"1\" class=\"java.lang.String\" itemvalue=\"javax.annotation.Nonnull\" />\r\n          <item index=\"2\" class=\"java.lang.String\" itemvalue=\"edu.umd.cs.findbugs.annotations.NonNull\" />\r\n          <item index=\"3\" class=\"java.lang.String\" itemvalue=\"android.support.annotation.NonNull\" />\r\n          <item index=\"4\" class=\"java.lang.String\" itemvalue=\"androidx.annotation.NonNull\" />\r\n          <item index=\"5\" class=\"java.lang.String\" itemvalue=\"android.annotation.NonNull\" />\r\n          <item index=\"6\" class=\"java.lang.String\" itemvalue=\"androidx.annotation.RecentlyNonNull\" />\r\n          <item index=\"7\" class=\"java.lang.String\" itemvalue=\"org.checkerframework.checker.nullness.qual.NonNull\" />\r\n          <item index=\"8\" class=\"java.lang.String\" itemvalue=\"org.checkerframework.checker.nullness.compatqual.NonNullDecl\" />\r\n          <item index=\"9\" class=\"java.lang.String\" itemvalue=\"org.checkerframework.checker.nullness.compatqual.NonNullType\" />\r\n          <item index=\"10\" class=\"java.lang.String\" itemvalue=\"com.android.annotations.NonNull\" />\r\n          <item index=\"11\" class=\"java.lang.String\" itemvalue=\"org.eclipse.jdt.annotation.NonNull\" />\r\n          <item index=\"12\" class=\"java.lang.String\" itemvalue=\"io.reactivex.annotations.NonNull\" />\r\n          <item index=\"13\" class=\"java.lang.String\" itemvalue=\"io.reactivex.rxjava3.annotations.NonNull\" />\r\n          <item index=\"14\" class=\"java.lang.String\" itemvalue=\"lombok.NonNull\" />\r\n        </list>\r\n      </value>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" project-jdk-name=\"1.8\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 6d68bf99cae258fcb7dccfbd2be142bf8684f9d4)
++++ b/.idea/misc.xml	(date 1629361255259)
+@@ -3,21 +3,37 @@
+   <component name="DesignSurface">
+     <option name="filePathToZoomLevelMap">
+       <map>
+-        <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/drawable/edittext_frame.xml" value="0.21354166666666666" />
+-        <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/drawable/media_header_bg.xml" value="0.21354166666666666" />
+-        <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/activity_login.xml" value="0.33016304347826086" />
+         <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/activity_main.xml" value="0.13500506585612967" />
+-        <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/activity_register.xml" value="0.33016304347826086" />
+-        <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/drawerheader.xml" value="0.21875" />
+-        <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_audio_list.xml" value="0.10371376811594203" />
+         <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_main.xml" value="0.13500506585612967" />
+         <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_record.xml" value="0.1526268115942029" />
+         <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_survey.xml" value="0.13500506585612967" />
+-        <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_survey_a.xml" value="0.9233870967741935" />
+         <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_survey_final.xml" value="0.1526268115942029" />
+-        <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_survey_pre.xml" value="0.25" />
+-        <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/player_sheet.xml" value="0.19739583333333333" />
+-        <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/menu/top_menu.xml" value="0.19739583333333333" />
++        <entry key="..\:/Users/Brian/StudioProjects/BlueKare/app/src/main/res/layout/fragment_survey_pre.xml" value="0.1" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/drawable-v24/chip_selected.xml" value="0.3640625" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/drawable-v24/chip_unselected.xml" value="0.3640625" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/drawable-v24/done.xml" value="0.3640625" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/drawable/bottom_sheet.xml" value="0.3640625" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/drawable/btn_custom.xml" value="0.3640625" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/drawable/circle_background.xml" value="0.3640625" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/drawable/et_custom.xml" value="0.3640625" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.24635416666666668" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/drawable/player_bg.xml" value="0.3640625" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/activity_login.xml" value="0.29981884057971014" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/activity_main.xml" value="0.22" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/activity_register.xml" value="0.29981884057971014" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/drawerheader.xml" value="0.296195652173913" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/fragment_audio_list.xml" value="0.25" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/fragment_download.xml" value="0.33" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/fragment_main.xml" value="0.2390625" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/fragment_record.xml" value="0.25" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/fragment_survey.xml" value="0.19739583333333333" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/fragment_survey_final.xml" value="0.25" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/fragment_survey_pre.xml" value="0.25" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/player_sheet.xml" value="0.2921195652173913" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/single_list_item.xml" value="0.2390625" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/layout/switch_item.xml" value="0.2390625" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/menu/top_menu.xml" value="0.2390625" />
++        <entry key="..\:/Users/user/AndroidStudioProjects/BlueKare/app/src/main/res/mipmap-anydpi-v26/ic_launcher_grad_round.xml" value="0.24635416666666668" />
+       </map>
+     </option>
+   </component>
+@@ -67,7 +83,7 @@
+       </value>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
+   <component name="ProjectType">

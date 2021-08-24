@@ -3,14 +3,19 @@ package edu.imtl.bluekare.Fragments.Record;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.media.MediaRecorder;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -24,9 +29,13 @@ import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -82,7 +91,9 @@ public class Fragment_record_recordFrag extends Fragment implements View.OnClick
          */
         listBtn.setOnClickListener(this);
         recordBtn.setOnClickListener(this);
-
+        File file = new File(requireActivity().getFilesDir().getAbsolutePath() + File.separator + "record");
+        if (!file.exists())
+            file.mkdir();
 
     }
 
@@ -141,13 +152,33 @@ public class Fragment_record_recordFrag extends Fragment implements View.OnClick
         //Stop Timer, very obvious
         timer.stop();
 
-        //Change text on page to file saved
-        filenameText.setText("Recording Stopped, File Saved : " + recordFile);
-
         //Stop media recorder and set it to null for further use to record new audio
         mediaRecorder.stop();
         mediaRecorder.release();
         mediaRecorder = null;
+
+        //Change text on page to file saved
+        filenameText.setText("Recording Stopped, File Saved : " + recordFile);
+
+        File filelocation = new File(new File(requireActivity().getFilesDir().getAbsolutePath() + File.separator + "record"), recordFile);
+        Uri path = FileProvider.getUriForFile(requireActivity(),"edu.imtl.bluekare.fileprovider", filelocation);
+        Intent fileIntent = new Intent(Intent.ACTION_SEND);
+        fileIntent.setType("audio/*");
+        fileIntent.putExtra(Intent.EXTRA_SUBJECT, recordFile);
+        fileIntent.putExtra(Intent.EXTRA_STREAM, path);
+        fileIntent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION );
+
+        Intent chooser = Intent.createChooser(fileIntent, "Send Email");
+
+        List<ResolveInfo> resInfoList = requireActivity().getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
+
+        for (ResolveInfo resolveInfo : resInfoList) {
+            String packageName = resolveInfo.activityInfo.packageName;
+            requireActivity().grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        }
+
+        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        requireActivity().startActivity(chooser);
     }
 
     private void startRecording() {
@@ -156,22 +187,22 @@ public class Fragment_record_recordFrag extends Fragment implements View.OnClick
         timer.start();
 
         //Get app external directory path
-        String recordPath = getActivity().getExternalFilesDir("/").getAbsolutePath();
+        String recordPath = requireActivity().getFilesDir().getAbsolutePath() + File.separator + "record";
 
         //Get current date and time
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss", Locale.CANADA);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         Date now = new Date();
 
         //initialize filename variable with date and time at the end to ensure the new file wont overwrite previous file
-        recordFile = "Recording_" + formatter.format(now) + ".3gp";
+        recordFile = "Recording_" + formatter.format(now) + ".mp3";
 
         filenameText.setText("Recording, File Name : " + recordFile);
 
         //Setup Media Recorder for recording
         mediaRecorder = new MediaRecorder();
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        mediaRecorder.setOutputFile(recordPath + "/" + recordFile);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+        mediaRecorder.setOutputFile(recordPath + File.separator + recordFile);
         mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
         try {
@@ -202,5 +233,10 @@ public class Fragment_record_recordFrag extends Fragment implements View.OnClick
         if(isRecording){
             stopRecording();
         }
+        //            FileOutputStream out = requireActivity().openFileOutput(recordFile, Context.MODE_PRIVATE);
+//            out.write((survey.toString()).getBytes());
+//            out.close();
+
+
     }
 }

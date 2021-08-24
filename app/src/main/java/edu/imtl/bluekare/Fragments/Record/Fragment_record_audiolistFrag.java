@@ -98,8 +98,10 @@ public class Fragment_record_audiolistFrag extends Fragment implements Fragment_
         playerFilename = view.findViewById(R.id.player_filename);
 
         playerSeekbar = view.findViewById(R.id.player_seekbar);
-
-        String path = Objects.requireNonNull(requireActivity().getExternalFilesDir("/")).getAbsolutePath();
+        File file = new File(requireActivity().getFilesDir().getAbsolutePath() + File.separator + "record");
+        if (!file.exists())
+            file.mkdir();
+        String path = requireActivity().getFilesDir().getAbsolutePath() + File.separator + "record";
         File directory = new File(path);
         allFiles = directory.listFiles();
 
@@ -171,10 +173,8 @@ public class Fragment_record_audiolistFrag extends Fragment implements Fragment_
         fileToPlay = file;
         if(isPlaying){
             stopAudio();
-            playAudio(fileToPlay);
-        } else {
-            playAudio(fileToPlay);
         }
+        playAudio(fileToPlay);
     }
 
     private void pauseAudio() {

@@ -8,12 +8,13 @@
     <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <queries>
         <package android:name="com.sec.android.app.shealth" />
     </queries>
+
     <application
         android:fullBackupOnly="true"
         android:icon="@mipmap/ic_launcher_grad"
@@ -22,46 +23,52 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".Fragments.Register.RegisterActivity_developer"
+            android:exported="true" />
+
         <meta-data
             android:name="com.samsung.android.health.permission.read"
             android:value="com.samsung.health.user_profile;com.samsung.health.step_count;com.samsung.health.blood_pressure;com.samsung.health.exercise;com.samsung.health.heart_rate;com.samsung.health.oxygen_saturation;com.samsung.health.sleep;com.samsung.health.sleep_stage;com.samsung.shealth.step_daily_trend" />
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
+
         <service
-            android:name="edu.imtl.bluekare.Background.BackgroundService"
+            android:name=".Background.BackgroundService"
             android:enabled="true" />
-        <receiver android:name="edu.imtl.bluekare.Background.AlarmReceiver">
+
+        <receiver android:name=".Background.AlarmReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
         <activity
-            android:name="edu.imtl.bluekare.Fragments.Login.LoginActivity"
+            android:name=".Fragments.Login.LoginActivity"
             android:noHistory="true" />
-
         <activity
-            android:name="edu.imtl.bluekare.Main.MainActivity"
+            android:name=".Main.MainActivity"
             android:screenOrientation="portrait" />
-
-        <activity android:name="edu.imtl.bluekare.Fragments.Register.DatePickerActivity"
-            android:theme="@style/PopupTheme"
-            android:screenOrientation="portrait">
-        </activity>
+        <activity
+            android:name=".Fragments.Register.DatePickerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PopupTheme"></activity>
         <activity android:name=".Fragments.Register.RegisterActivity" />
-
-        <activity android:name="edu.imtl.bluekare.Fragments.Login.SplashActivity">
+        <activity android:name=".Fragments.Login.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+
         <provider
-            android:authorities="edu.imtl.bluekare.fileprovider"
             android:name="androidx.core.content.FileProvider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:authorities="edu.imtl.bluekare.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/root_paths" />

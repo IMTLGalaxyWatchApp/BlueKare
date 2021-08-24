@@ -37,6 +37,8 @@ public class RegisterActivity extends AppCompatActivity {
     Button register_button;
     TextView tologin_button;
 
+    TextView register_logo;
+
     String name;
     String email;
     String pw;
@@ -49,6 +51,8 @@ public class RegisterActivity extends AppCompatActivity {
     DeviceInfo deviceInfo;
 
     int mYear,mMonth,mDay;
+
+    private long btnPressTime=0;
 
     int type=3;
     int gender=0;
@@ -80,6 +84,22 @@ public class RegisterActivity extends AppCompatActivity {
         female_button = findViewById(R.id.female_button);
         register_button = findViewById(R.id.btn_register);
         tologin_button=findViewById(R.id.toLogin);
+        register_logo=findViewById(R.id.tv_logo);
+
+        register_logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (System.currentTimeMillis() > btnPressTime + 1000) {
+                    Toast.makeText(getApplicationContext(),"한 번 더 터치하면 개발자/연구원/의사 회원 가입 페이지로 이동합니다.", Toast.LENGTH_SHORT).show();
+                    btnPressTime = System.currentTimeMillis();
+                    return;
+                }
+                if (System.currentTimeMillis() <= btnPressTime + 1000) {
+                    Intent it = new Intent(RegisterActivity.this,RegisterActivity_developer.class);
+                    startActivity(it);
+                }
+            }
+        });
 
         dob_t.setOnClickListener(new View.OnClickListener() {
             @Override

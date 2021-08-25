@@ -61,9 +61,10 @@ public class RegisterActivity_developer extends AppCompatActivity {
                 if(type==3) Toast.makeText(getApplicationContext(),"회원 타입을 선택해주세요.",Toast.LENGTH_SHORT).show();
                 else{
                     if(code.equals("12345678imtl")==true){
-                        Intent it = new Intent(RegisterActivity_developer.this,RegisterActivity.class);
+                        Intent it = new Intent();
                         it.putExtra("type", type);
-                        startActivity(it);
+                        setResult(RESULT_OK, it);
+                        finish();
                     }
                     else{
                         Toast.makeText(getApplicationContext(),"인증 코드가 일치하지 않습니다.",Toast.LENGTH_SHORT).show();

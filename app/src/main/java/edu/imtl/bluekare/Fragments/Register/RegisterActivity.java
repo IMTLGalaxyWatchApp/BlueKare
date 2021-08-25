@@ -96,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 if (System.currentTimeMillis() <= btnPressTime + 1000) {
                     Intent it = new Intent(RegisterActivity.this,RegisterActivity_developer.class);
-                    startActivity(it);
+                    startActivityForResult(it,2);
                 }
             }
         });
@@ -163,6 +163,8 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please Check: "+ErrorMsg, Toast.LENGTH_SHORT).show();
                 else
                 {
+                    String msg="your type is "+String.valueOf(type);
+                    //Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
                     Async_register_user_task async_register_user_task = new Async_register_user_task(RegisterActivity.this, name, email, pw, pwc, type, phone, gender, dob);
                     async_register_user_task.execute();
 
@@ -188,6 +190,16 @@ public class RegisterActivity extends AppCompatActivity {
 
             String sendText = data.getExtras().getInt("mYear")+"-"+converted_month+"-"+converted_day;
             dob_t.setText(sendText);
+        }
+        else if(requestCode==2){
+            if(resultCode!=RESULT_OK){
+                Log.e("error", "intent error 2");
+                return;
+            }
+            type=data.getExtras().getInt("type");
+            if(type==0) Toast.makeText(getApplicationContext(),"개발자 인증이 완료되었습니다.",Toast.LENGTH_SHORT).show();
+            else if(type==1) Toast.makeText(getApplicationContext(),"연구원 인증이 완료되었습니다.",Toast.LENGTH_SHORT).show();
+            if(type==2) Toast.makeText(getApplicationContext(),"의사 인증이 완료되었습니다.",Toast.LENGTH_SHORT).show();
         }
     }
 }

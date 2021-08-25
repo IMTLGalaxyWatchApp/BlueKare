@@ -33,24 +33,24 @@ public class RegisterActivity_developer extends AppCompatActivity {
         researcher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                doctor.setEnabled(false);
-                developer.setEnabled(false);
+                doctor.setChecked(false);
+                developer.setChecked(false);
                 type=1;
             }
         });
         doctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                researcher.setEnabled(false);
-                developer.setEnabled(false);
+                researcher.setChecked(false);
+                developer.setChecked(false);
                 type=2;
             }
         });
         developer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                researcher.setEnabled(false);
-                doctor.setEnabled(false);
+                researcher.setChecked(false);
+                doctor.setChecked(false);
                 type=0;
             }
         });

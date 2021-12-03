@@ -76,8 +76,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     /*=======================================================*/
     FloatingActionButton btn;
     DrawerLayout drawerLayout;
-    String uid,name,dob,gender;
-    int age;
+    public String uid,name,dob,gender,phone;
+    String[] user_info;
+    int type;
     ImageButton mSearchBtn;
     public static String finalUserId;
     public static int datasize;
@@ -196,9 +197,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         name=getIntent().getStringExtra("name");
         uid=getIntent().getStringExtra("uid");
         dob=getIntent().getStringExtra("dob");
+        phone=getIntent().getStringExtra("phone");
+        type=getIntent().getIntExtra("type",0);
         if(getIntent().getStringExtra("gender")=="0") gender="남성";
         else gender="여성";
-
+        user_info= new String[]{name, uid, dob, gender};
 
 
         Log.e("setuserinfo",name+uid+dob+gender);
@@ -224,7 +227,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         @Override
         public void onConnected() {
             Log.d(APP_TAG, "Health data service is connected.");
-            mReporter = new StepCountReporter(mStore, mStepCountObserver, new Handler(Looper.getMainLooper()), getApplicationContext());
+            mReporter = new StepCountReporter(mStore, mStepCountObserver, new Handler(Looper.getMainLooper()), getApplicationContext(), user_info);
             if (isPermissionAcquired()) {
                 mReporter.start();
                 HealthUserProfile usrProfile = HealthUserProfile.getProfile(mStore);

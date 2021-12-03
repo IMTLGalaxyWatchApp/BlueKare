@@ -64,13 +64,17 @@ public class Async_get_service_log extends AsyncTask<Void, Void, String> {
             {
                 int d_id = arr.getJSONObject(i).getInt("device_id");
                 int id = arr.getJSONObject(i).getInt("id");
+                int farm_id=arr.getJSONObject(i).getInt("farm_id");
+                int service_cd=arr.getJSONObject(i).getInt("service_type_cd");
 
                 Log.e("asdf", String.valueOf(d_id));
                 Log.e("asdf", String.valueOf(id));
+                Log.e("asdf", String.valueOf(farm_id));
+                Log.e("asdf", String.valueOf(service_cd));
 
                 services.append(id).append(",");
 
-                if(device_id == d_id){
+                if(device_id == d_id && farm_id==14 && service_cd==10){
                     Log.e("asdf", "BREAK");
                     editor.putInt("cur_service_id", id);
                     editor.apply();

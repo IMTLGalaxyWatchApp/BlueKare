@@ -32,6 +32,8 @@ public class Async_get_registration extends AsyncTask<Void, Void, String> {
     String email;
     String dob;
     String gender;
+    String phone;
+    int type;
 
     public Async_get_registration(Context context) {
         contextRef = new WeakReference<>(context);
@@ -55,6 +57,8 @@ public class Async_get_registration extends AsyncTask<Void, Void, String> {
             email=arr.getString("uid");
             dob=arr.getString("birth");
             gender=arr.getString("gender");
+            phone=arr.getString("phonenum");
+            type=arr.getInt("type");
 
             Log.e("async_get_username", name);
             Log.e("async_get_username", email);
@@ -66,6 +70,8 @@ public class Async_get_registration extends AsyncTask<Void, Void, String> {
             intent_main.putExtra("uid", email);
             intent_main.putExtra("dob", dob);
             intent_main.putExtra("gender", gender);
+            intent_main.putExtra("phone",phone);
+            intent_main.putExtra("type",type);
             intent_main.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             contextRef.get().startActivity(intent_main);
 

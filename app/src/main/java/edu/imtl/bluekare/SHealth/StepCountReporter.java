@@ -38,6 +38,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -60,12 +63,15 @@ public class StepCountReporter {
     private final HealthDataObserver mHealthDataObserver;
     private final Context mContext;
 
+    String[] user_info;
+
     public StepCountReporter(@NonNull HealthDataStore store, @NonNull StepCountObserver listener,
-                             @Nullable Handler resultHandler, Context context) {
+                             @Nullable Handler resultHandler, Context context, String[] user_info) {
 
         mStore = store;
         mStepCountObserver = listener;
         mContext = context;
+        user_info=user_info;
         mHealthDataResolver = new HealthDataResolver(mStore, resultHandler);
         mHealthDataObserver = new HealthDataObserver(resultHandler) {
 
@@ -108,13 +114,14 @@ public class StepCountReporter {
                 .setLocalTimeRange(StepCount.START_TIME, StepCount.TIME_OFFSET, startTime, endTime)
                 .build();
 
+
         try {
             mHealthDataResolver.read(request_stepcount).setResultListener(readResult -> {
                 StringBuilder data = new StringBuilder();
                 data.append("Start Time,End Time,Step Count,Distance,Calorie,Speed");
 
 
-                String Filename = "Step_Count_" + todate.format(new Date(startTime)) + ".csv";
+                //String Filename = "Step_Count_" + todate.format(new Date(startTime)) + ".csv";
 
                 try (HealthDataResolver.ReadResult result = readResult) {
 
@@ -133,34 +140,34 @@ public class StepCountReporter {
                                 .append(",").append(healthData.getString(StepCount.SPEED));
                     }
 
-                    try{
-                        FileOutputStream out = mContext.openFileOutput(Filename,Context.MODE_PRIVATE);
-                        out.write((data.toString().getBytes()));
-                        out.close();
-
-                        File filelocation = new File(mContext.getFilesDir(), Filename);
-                        Uri path = FileProvider.getUriForFile(mContext,"edu.imtl.bluekare.fileprovider", filelocation);
-                        Intent fileIntent = new Intent(Intent.ACTION_SEND);
-                        fileIntent.setType("text/csv");
-                        fileIntent.putExtra(Intent.EXTRA_SUBJECT, Filename);
-                        fileIntent.putExtra(Intent.EXTRA_STREAM, path);
-                        fileIntent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION );
-
-                        Intent chooser = Intent.createChooser(fileIntent, "Send Email");
-
-                        List<ResolveInfo> resInfoList = mContext.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
-
-                        for (ResolveInfo resolveInfo : resInfoList) {
-                            String packageName = resolveInfo.activityInfo.packageName;
-                            mContext.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        }
-
-//                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        mContext.startActivity(chooser);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+//                    try{
+//                        FileOutputStream out = mContext.openFileOutput(Filename,Context.MODE_PRIVATE);
+//                        out.write((data.toString().getBytes()));
+//                        out.close();
+//
+//                        File filelocation = new File(mContext.getFilesDir(), Filename);
+//                        Uri path = FileProvider.getUriForFile(mContext,"edu.imtl.bluekare.fileprovider", filelocation);
+//                        Intent fileIntent = new Intent(Intent.ACTION_SEND);
+//                        fileIntent.setType("text/csv");
+//                        fileIntent.putExtra(Intent.EXTRA_SUBJECT, Filename);
+//                        fileIntent.putExtra(Intent.EXTRA_STREAM, path);
+//                        fileIntent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION );
+//
+//                        Intent chooser = Intent.createChooser(fileIntent, "Send Email");
+//
+//                        List<ResolveInfo> resInfoList = mContext.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
+//
+//                        for (ResolveInfo resolveInfo : resInfoList) {
+//                            String packageName = resolveInfo.activityInfo.packageName;
+//                            mContext.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        }
+//
+////                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+////                        mContext.startActivity(chooser);
+//
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
                 }
             });
         } catch (Exception e) {

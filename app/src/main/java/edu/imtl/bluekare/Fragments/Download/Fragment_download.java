@@ -36,21 +36,27 @@ import java.util.GregorianCalendar;
 
 import edu.imtl.bluekare.Fragments.Register.DatePickerActivity;
 import edu.imtl.bluekare.Fragments.Register.RegisterActivity;
+import edu.imtl.bluekare.Main.NDSpinner;
 import edu.imtl.bluekare.R;
 
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 
 public class Fragment_download extends Fragment {
-    private Spinner period;
+    private NDSpinner period;
     String[] periodArray=new String[]{"전체","3개월","1개월","직접설정"};
+    String[] genderArray=new String[]{"모름","남성","여성"};
 
     private Button btn;
     private CheckBox all, HR, ECG, Step, BP, OS, SS, Ex;
     private DatePickerDialog.OnDateSetListener callbackMethod;
     private TextView textView;
-    private EditText searchName;
+    private EditText searchName, phonenum;
     int mYear, mMonth, mDay;
+    int[] types=new int[7];
+    private Spinner gender;
+
+    String name,sex,phone;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,9 +67,15 @@ public class Fragment_download extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         period=view.findViewById(R.id.spinner);
+        gender=view.findViewById(R.id.spinner2);
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, periodArray);
+        ArrayAdapter<String> adapter2=new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, genderArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         period.setAdapter(adapter);
+        gender.setAdapter(adapter2);
+
+        phonenum=view.findViewById(R.id.phone);
 
         btn=view.findViewById(R.id.button);
 
@@ -74,35 +86,67 @@ public class Fragment_download extends Fragment {
         OS=view.findViewById(R.id.checkBox5);
         SS=view.findViewById(R.id.checkBox6);
         Ex=view.findViewById(R.id.checkBox7);
+
+        ECG.setEnabled(false);
+        ECG.setChecked(false);
+        types[0]=HR.isChecked()?1:0;
+        types[1]=ECG.isChecked()?1:0;
+        types[2]=Step.isChecked()?1:0;
+        types[3]=BP.isChecked()?1:0;
+        types[4]=OS.isChecked()?1:0;
+        types[5]=SS.isChecked()?1:0;
+        types[6]=Ex.isChecked()?1:0;
+
         textView=view.findViewById(R.id.DateText);
 
         searchName=view.findViewById(R.id.searchName);
+        name="";
+        phone="";
+
 
         Calendar calendar = new GregorianCalendar();
 
-        mYear = calendar.get(Calendar.YEAR);
-        mMonth = calendar.get(Calendar.MONTH)+1;
-        mDay = calendar.get(Calendar.DAY_OF_MONTH);
+//        mYear = calendar.get(Calendar.YEAR);
+//        mMonth = calendar.get(Calendar.MONTH)+1;
+//        mDay = calendar.get(Calendar.DAY_OF_MONTH);
 
         period.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                mYear = calendar.get(Calendar.YEAR);
+                mMonth = calendar.get(Calendar.MONTH)+1;
+                mDay = calendar.get(Calendar.DAY_OF_MONTH);
                 if(position==0){
                     //전체
                     System.out.println("0 clicked");
                     textView.setText("전체");
+                    mYear = 0;
+                    mMonth = 0;
+                    mDay = 0;
                 }
                 else if(position==1){
                     //3개월 전
                     System.out.println("1 clicked");
-                    String str=mYear+"-"+(mMonth-3)+"-"+mDay;
-                    textView.setText(str);
+                    String str;
+                    if(mMonth<=3){
+                        str=(mYear-1)+"-"+(mMonth+9)+"-"+mDay;
+                    }
+                    else{
+                        str=mYear+"-"+(mMonth-3)+"-"+mDay;
+                    }
+
+                    textView.setText(str+"부터");
                 }
                 else if(position==2){
                     //1개월전
-                    String str=mYear+"-"+(mMonth-1)+"-"+mDay;
-                    textView.setText(str);
+                    String str;
+                    if(mMonth<=1){
+                        str=(mYear-1)+"-"+(mMonth+11)+"-"+mDay;
+                    }
+                    else{
+                        str=mYear+"-"+(mMonth-1)+"-"+mDay;
+                    }
+                    textView.setText(str+"부터");
                     System.out.println("2 clicked");
                 }
                 else{
@@ -118,6 +162,36 @@ public class Fragment_download extends Fragment {
             }
         });
 
+        gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i==0){
+                    sex="";
+                }
+                else if(i==1) sex="남성";
+                else sex="여성";
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        Calendar dest_cal = new GregorianCalendar();
+        dest_cal.set(mYear, mMonth, mDay);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(int i:types) Log.d("download", String.valueOf(i));
+                Log.d("download",String.valueOf(dest_cal.getTimeInMillis()));
+                name=searchName.getText().toString();
+                phone=phonenum.getText().toString();
+                Async_fetch_mongodb fetch_mongodb=new Async_fetch_mongodb(getActivity().getApplicationContext(), new String[]{name, String.valueOf(dest_cal.getTimeInMillis()),sex,phone}, types);
+                fetch_mongodb.execute();
+            }
+        });
 
 
 
@@ -134,7 +208,7 @@ public class Fragment_download extends Fragment {
                 return;
             }
             String sendText = data.getExtras().getInt("mYear")+"-"+data.getExtras().getInt("mMonth")+"-"+data.getExtras().getInt("mDay");
-            textView.setText(sendText);
+            textView.setText(sendText+"부터");
         }
     }
 

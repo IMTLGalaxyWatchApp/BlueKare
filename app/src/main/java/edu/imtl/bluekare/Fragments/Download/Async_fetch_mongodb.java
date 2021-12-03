@@ -1,5 +1,5 @@
-package edu.imtl.bluekare.Fragments.Login;
-
+package edu.imtl.bluekare.Fragments.Download;
+import static edu.imtl.bluekare.Fragments.Login.SaveUserData.getUserAccessToken;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -10,30 +10,32 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import edu.imtl.bluekare.R;
 
-import static edu.imtl.bluekare.Fragments.Login.SaveUserData.getUserAccessToken;
-
-public class Async_register_service_task extends AsyncTask<Void, Void, String> {
-
+public class Async_fetch_mongodb extends AsyncTask<Void, Void, String>{
     private final WeakReference<Context> contextRef;
-    int device_num_id;
+    String name, date,sex,dob,phone;
+    int[] types;
+    Calendar cal=new GregorianCalendar();
 
 
-    public Async_register_service_task(Context context, int device_num_id)
-    {
+    public Async_fetch_mongodb(Context context, String[] info, int[] types) {
         contextRef = new WeakReference<>(context);
-        this.device_num_id = device_num_id;
+        name=info[0];
+        date=info[1];
+        sex=info[2];
+        phone=info[3];
 
+        this.types=types;
     }
-
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -42,33 +44,32 @@ public class Async_register_service_task extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        Log.d("Async", "RegisterServiceTask: "+s);
+        Log.d("Async", "Fetch MongoDB "+s);
     }
-
 
     @Override
     protected String doInBackground(Void... voids) {
-
-        String result ="";
-        InputStream inputStream = null;
-
         try {
-            URL url = new URL(contextRef.get().getResources().getString(R.string.hippo_abs_server)+contextRef.get().getResources().getString(R.string.register_service));
+            URL url = new URL(contextRef.get().getResources().getString(R.string.hippo_abs_server)+contextRef.get().getResources().getString(R.string.fetch_mongo));
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
 
             String json;
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("device_id", device_num_id);
-            jsonObject.put("farm_id", 14);
+            JSONObject payload=new JSONObject();
+
+            jsonObject.put("service_id", 14);
             jsonObject.put("service_type_cd", 10);
+            jsonObject.put("from_ts", Long.parseLong(date));
+            jsonObject.put("to_ts", cal.getTimeInMillis());
+            jsonObject.put("filter", payload);
+            jsonObject.put("skip", 0);
+            jsonObject.put("limit", 1000000000);
+            jsonObject.put("order", "asc");
+            if(!name.isEmpty()) payload.put("payload.user_name",name);
+            if(!sex.isEmpty()) payload.put("payload.user_gender",sex);
+            if(!phone.isEmpty()) payload.put("payload.user_phone",phone);
 
-
-
-            JSONObject parent_js = new JSONObject();
-            parent_js.put("service", jsonObject);
-
-            json = parent_js.toString();
+            json = jsonObject.toString();
 
             Log.e("asdf", json);
 
@@ -88,6 +89,7 @@ public class Async_register_service_task extends AsyncTask<Void, Void, String> {
             String status = httpURLConnection.getResponseMessage();
             Log.d("Status", status_code+": "+status+"");
             String page = "";       String line;
+
             if(status_code == HttpURLConnection.HTTP_OK){
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), "UTF-8"));
@@ -104,7 +106,7 @@ public class Async_register_service_task extends AsyncTask<Void, Void, String> {
         } catch (Exception e){
             Log.e("Error", e.getMessage());
         }
+
         return null;
     }
 }
-

@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_grad_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:name=".Main.userINFO">
         <activity
             android:name=".Fragments.Register.RegisterActivity_developer"
             android:exported="true" />

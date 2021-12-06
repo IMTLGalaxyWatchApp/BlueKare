@@ -20,14 +20,14 @@ import java.util.GregorianCalendar;
 
 import edu.imtl.bluekare.R;
 
-public class Async_fetch_mongodb extends AsyncTask<Void, Void, String>{
+public class Async_fetch_mongodb_health extends AsyncTask<Void, Void, String>{
     private final WeakReference<Context> contextRef;
     String name, date,sex,dob,phone;
     int[] types;
     Calendar cal=new GregorianCalendar();
 
 
-    public Async_fetch_mongodb(Context context, String[] info, int[] types) {
+    public Async_fetch_mongodb_health(Context context, String[] info, int[] types) {
         contextRef = new WeakReference<>(context);
         name=info[0];
         date=info[1];

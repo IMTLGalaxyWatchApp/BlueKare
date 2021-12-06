@@ -202,6 +202,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(getIntent().getStringExtra("gender")=="0") gender="남성";
         else gender="여성";
         user_info= new String[]{name, uid, dob, gender};
+        ((userINFO)getApplication()).setUid(uid);
+        ((userINFO)getApplication()).setName(name);
+        ((userINFO)getApplication()).setDob(dob);
+        ((userINFO)getApplication()).setPhone(phone);
 
 
         Log.e("setuserinfo",name+uid+dob+gender);

@@ -2,7 +2,6 @@ package edu.imtl.bluekare.Fragments.Download;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,9 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.SearchView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -23,30 +21,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import edu.imtl.bluekare.Fragments.Register.DatePickerActivity;
-import edu.imtl.bluekare.Fragments.Register.RegisterActivity;
+import edu.imtl.bluekare.Fragments.Survey.Async_post_mqtt_survey;
 import edu.imtl.bluekare.Main.NDSpinner;
 import edu.imtl.bluekare.R;
-
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 
 public class Fragment_download extends Fragment {
     private NDSpinner period;
     String[] periodArray=new String[]{"전체","3개월","1개월","직접설정"};
     String[] genderArray=new String[]{"모름","남성","여성"};
-
+    String[] typeArray=new String[]{"설문조사 결과","헬스 데이터"};
+    Spinner downloadtype;
     private Button btn;
     private CheckBox all, HR, ECG, Step, BP, OS, SS, Ex;
     private DatePickerDialog.OnDateSetListener callbackMethod;
@@ -56,7 +47,11 @@ public class Fragment_download extends Fragment {
     int[] types=new int[7];
     private Spinner gender;
 
+    LinearLayout check;
+
     String name,sex,phone;
+
+    int download;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -68,12 +63,18 @@ public class Fragment_download extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         period=view.findViewById(R.id.spinner);
         gender=view.findViewById(R.id.spinner2);
+        check=view.findViewById(R.id.checks);
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, periodArray);
         ArrayAdapter<String> adapter2=new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, genderArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         period.setAdapter(adapter);
         gender.setAdapter(adapter2);
+
+        downloadtype=view.findViewById(R.id.spinner4);
+        ArrayAdapter<String> adapter3=new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, typeArray);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        downloadtype.setAdapter(adapter3);
 
         phonenum=view.findViewById(R.id.phone);
 
@@ -86,6 +87,8 @@ public class Fragment_download extends Fragment {
         OS=view.findViewById(R.id.checkBox5);
         SS=view.findViewById(R.id.checkBox6);
         Ex=view.findViewById(R.id.checkBox7);
+
+        CheckBox[] checks=new CheckBox[]{HR,ECG,Step,BP,OS,SS,Ex};
 
         ECG.setEnabled(false);
         ECG.setChecked(false);
@@ -140,6 +143,7 @@ public class Fragment_download extends Fragment {
                 else if(position==2){
                     //1개월전
                     String str;
+
                     if(mMonth<=1){
                         str=(mYear-1)+"-"+(mMonth+11)+"-"+mDay;
                     }
@@ -178,6 +182,24 @@ public class Fragment_download extends Fragment {
             }
         });
 
+        downloadtype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i==0){
+                    download=0;
+                    check.setVisibility(View.INVISIBLE);
+                }
+                else{
+                    download=1;
+                    check.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         Calendar dest_cal = new GregorianCalendar();
         dest_cal.set(mYear, mMonth, mDay);
 
@@ -188,8 +210,13 @@ public class Fragment_download extends Fragment {
                 Log.d("download",String.valueOf(dest_cal.getTimeInMillis()));
                 name=searchName.getText().toString();
                 phone=phonenum.getText().toString();
-                Async_fetch_mongodb fetch_mongodb=new Async_fetch_mongodb(getActivity().getApplicationContext(), new String[]{name, String.valueOf(dest_cal.getTimeInMillis()),sex,phone}, types);
-                fetch_mongodb.execute();
+                if(download==1) {
+                    Async_fetch_mongodb_health fetch_mongodb=new Async_fetch_mongodb_health(getActivity().getApplicationContext(), new String[]{name, String.valueOf(dest_cal.getTimeInMillis()),sex,phone}, types);
+                    fetch_mongodb.execute();}
+                else{
+                    Async_fetch_mongodb_survey async_fetch_mongodb_survey=new Async_fetch_mongodb_survey(getActivity().getApplicationContext(), new String[]{name, String.valueOf(dest_cal.getTimeInMillis()),sex,phone});
+                    async_fetch_mongodb_survey.execute();
+                }
             }
         });
 

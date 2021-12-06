@@ -1,4 +1,6 @@
-package edu.imtl.bluekare.SHealth;
+package edu.imtl.bluekare.Fragments.Download;
+import static edu.imtl.bluekare.Fragments.Login.SaveUserData.getUserAccessToken;
+
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -8,32 +10,30 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import edu.imtl.bluekare.R;
 
-import static edu.imtl.bluekare.Fragments.Login.SaveUserData.getUserAccessToken;
-
-public class Async_post_mqtt extends AsyncTask<Void, Void, String>{
+public class Async_fetch_mongodb_survey extends AsyncTask<Void, Void, String>{
     private final WeakReference<Context> contextRef;
-    String uid, name, dob, gender,phone;
-    int type;
-    JSONObject health;
+    String name, date,sex,dob,phone;
 
-    public Async_post_mqtt(Context context, String[] user_info,int type, JSONObject health) {
+    Calendar cal=new GregorianCalendar();
+
+
+    public Async_fetch_mongodb_survey(Context context, String[] info) {
         contextRef = new WeakReference<>(context);
-        this.uid = user_info[0];
-        this.name=user_info[1];
-        this.dob=user_info[2];
-        this.gender=user_info[3];
-        this.phone=user_info[4];
-        this.type=type;
-        this.health=health;
+        name=info[0];
+        date=info[1];
+        sex=info[2];
+        phone=info[3];
+
     }
     @Override
     protected void onPreExecute() {
@@ -43,28 +43,29 @@ public class Async_post_mqtt extends AsyncTask<Void, Void, String>{
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        Log.d("Async", "Post MQTT "+s);
+        Log.d("Async", "Fetch MongoDB Survey"+s);
     }
+
     @Override
     protected String doInBackground(Void... voids) {
-
         try {
-            URL url = new URL(contextRef.get().getResources().getString(R.string.hippo_abs_server)+contextRef.get().getResources().getString(R.string.post_mqtt));
+            URL url = new URL(contextRef.get().getResources().getString(R.string.hippo_abs_server)+contextRef.get().getResources().getString(R.string.fetch_mongo));
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
-
             String json;
-            String topic="UP."+uid+"|dtx|14|10";
             JSONObject jsonObject = new JSONObject();
             JSONObject payload=new JSONObject();
-            jsonObject.put("topic", topic);
-            jsonObject.put("payload", payload);
 
-            payload.put("user_name", name);
-            payload.put("user_phone", phone);
-            payload.put("user_gender", gender);
-            payload.put("user_type",type);
-            payload.put("health_content", health);
+            jsonObject.put("service_id", 14);
+            jsonObject.put("service_type_cd", 10);
+            jsonObject.put("from_ts", Long.parseLong(date));
+            jsonObject.put("to_ts", cal.getTimeInMillis());
+            jsonObject.put("filter", payload);
+            jsonObject.put("skip", 0);
+            jsonObject.put("limit", 1000000000);
+            jsonObject.put("order", "asc");
+            if(!name.isEmpty()) payload.put("payload.patient_name",name);
+            if(!phone.isEmpty()) payload.put("payload.patient_phone",phone);
 
             json = jsonObject.toString();
 
@@ -104,8 +105,7 @@ public class Async_post_mqtt extends AsyncTask<Void, Void, String>{
             Log.e("Error", e.getMessage());
         }
 
-
-
         return null;
     }
 }
+

@@ -148,66 +148,86 @@
 
                 <TextView
                     android:id="@+id/textView6"
-                    android:layout_width="150dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:text="항목 선택"
-                    android:textSize="7pt"
-                    android:layout_marginTop="12dp"/>
+                    android:textSize="7pt" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <CheckBox
-                        android:id="@+id/checkBox"
-                        android:layout_width="match_parent"
+                    <Spinner
+                        android:id="@+id/spinner4"
+                        android:layout_width="210dp"
                         android:layout_height="wrap_content"
-                        android:text="심박수(HeartRate)"
-                        android:checked="true"/>
+                        android:layout_weight="1"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="7pt"
+                        />
 
-                    <CheckBox
-                        android:id="@+id/checkBox2"
+                    <LinearLayout
+                        android:id="@+id/checks"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Electrocardiogram(ECG)"
-                        android:checked="true"/>
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:visibility="invisible">
 
-                    <CheckBox
-                        android:id="@+id/checkBox3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="걸음수(StepDailyTrend)"
-                        android:checked="true"/>
+                        <CheckBox
+                            android:id="@+id/checkBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="심박수(HeartRate)" />
 
-                    <CheckBox
-                        android:id="@+id/checkBox4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="혈압(Blood Pressure)"
-                        android:checked="true"/>
+                        <CheckBox
+                            android:id="@+id/checkBox2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Electrocardiogram(ECG)" />
 
-                    <CheckBox
-                        android:id="@+id/checkBox5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="산소포화도(Oxygen Saturation)"
-                        android:checked="true"/>
+                        <CheckBox
+                            android:id="@+id/checkBox3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="걸음수(StepDailyTrend)" />
 
-                    <CheckBox
-                        android:id="@+id/checkBox6"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="수면(Sleep Stage)"
-                        android:checked="true"/>
-                    <CheckBox
-                        android:id="@+id/checkBox7"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="운동(Exercise)"
-                        android:checked="true"/>
+                        <CheckBox
+                            android:id="@+id/checkBox4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="혈압(Blood Pressure)" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="산소포화도(Oxygen Saturation)" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="수면(Sleep Stage)" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="운동(Exercise)" />
+                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>

@@ -207,34 +207,34 @@ public class StepCountReporter {
                                 .append(",").append(healthData.getString(HealthConstants.Exercise.MAX_HEART_RATE));
                     }
 
-                    try{
-                        FileOutputStream out = mContext.openFileOutput(Filename,Context.MODE_PRIVATE);
-                        out.write((data.toString().getBytes()));
-                        out.close();
-
-                        File filelocation = new File(mContext.getFilesDir(), Filename);
-                        Uri path = FileProvider.getUriForFile(mContext,"edu.imtl.bluekare.fileprovider", filelocation);
-                        Intent fileIntent = new Intent(Intent.ACTION_SEND);
-                        fileIntent.setType("text/csv");
-                        fileIntent.putExtra(Intent.EXTRA_SUBJECT, Filename);
-                        fileIntent.putExtra(Intent.EXTRA_STREAM, path);
-                        fileIntent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION );
-
-                        Intent chooser = Intent.createChooser(fileIntent, "Send Email");
-
-                        List<ResolveInfo> resInfoList = mContext.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
-
-                        for (ResolveInfo resolveInfo : resInfoList) {
-                            String packageName = resolveInfo.activityInfo.packageName;
-                            mContext.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        }
-
-//                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        mContext.startActivity(chooser);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+//                    try{
+//                        FileOutputStream out = mContext.openFileOutput(Filename,Context.MODE_PRIVATE);
+//                        out.write((data.toString().getBytes()));
+//                        out.close();
+//
+//                        File filelocation = new File(mContext.getFilesDir(), Filename);
+//                        Uri path = FileProvider.getUriForFile(mContext,"edu.imtl.bluekare.fileprovider", filelocation);
+//                        Intent fileIntent = new Intent(Intent.ACTION_SEND);
+//                        fileIntent.setType("text/csv");
+//                        fileIntent.putExtra(Intent.EXTRA_SUBJECT, Filename);
+//                        fileIntent.putExtra(Intent.EXTRA_STREAM, path);
+//                        fileIntent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION );
+//
+//                        Intent chooser = Intent.createChooser(fileIntent, "Send Email");
+//
+//                        List<ResolveInfo> resInfoList = mContext.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
+//
+//                        for (ResolveInfo resolveInfo : resInfoList) {
+//                            String packageName = resolveInfo.activityInfo.packageName;
+//                            mContext.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        }
+//
+////                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+////                        mContext.startActivity(chooser);
+//
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
                 }
             });
         } catch (Exception e) {
@@ -286,34 +286,34 @@ public class StepCountReporter {
                         }
                     }
 
-                    try{
-                        FileOutputStream out = mContext.openFileOutput(Filename,Context.MODE_PRIVATE);
-                        out.write((data.toString().getBytes()));
-                        out.close();
-
-                        File filelocation = new File(mContext.getFilesDir(), Filename);
-                        Uri path = FileProvider.getUriForFile(mContext,"edu.imtl.bluekare.fileprovider", filelocation);
-                        Intent fileIntent = new Intent(Intent.ACTION_SEND);
-                        fileIntent.setType("text/csv");
-                        fileIntent.putExtra(Intent.EXTRA_SUBJECT, Filename);
-                        fileIntent.putExtra(Intent.EXTRA_STREAM, path);
-                        fileIntent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION );
-
-                        Intent chooser = Intent.createChooser(fileIntent, "Send Email");
-
-                        List<ResolveInfo> resInfoList = mContext.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
-
-                        for (ResolveInfo resolveInfo : resInfoList) {
-                            String packageName = resolveInfo.activityInfo.packageName;
-                            mContext.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        }
-
-                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        mContext.startActivity(chooser);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+//                    try{
+//                        FileOutputStream out = mContext.openFileOutput(Filename,Context.MODE_PRIVATE);
+//                        out.write((data.toString().getBytes()));
+//                        out.close();
+//
+//                        File filelocation = new File(mContext.getFilesDir(), Filename);
+//                        Uri path = FileProvider.getUriForFile(mContext,"edu.imtl.bluekare.fileprovider", filelocation);
+//                        Intent fileIntent = new Intent(Intent.ACTION_SEND);
+//                        fileIntent.setType("text/csv");
+//                        fileIntent.putExtra(Intent.EXTRA_SUBJECT, Filename);
+//                        fileIntent.putExtra(Intent.EXTRA_STREAM, path);
+//                        fileIntent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION );
+//
+//                        Intent chooser = Intent.createChooser(fileIntent, "Send Email");
+//
+//                        List<ResolveInfo> resInfoList = mContext.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
+//
+//                        for (ResolveInfo resolveInfo : resInfoList) {
+//                            String packageName = resolveInfo.activityInfo.packageName;
+//                            mContext.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        }
+//
+//                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        mContext.startActivity(chooser);
+//
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
                 }
             });
         } catch (Exception e) {
@@ -350,34 +350,34 @@ public class StepCountReporter {
 
                     }
 
-                    try{
-                        FileOutputStream out = mContext.openFileOutput(Filename,Context.MODE_PRIVATE);
-                        out.write((data.toString().getBytes()));
-                        out.close();
-
-                        File filelocation = new File(mContext.getFilesDir(), Filename);
-                        Uri path = FileProvider.getUriForFile(mContext,"edu.imtl.bluekare.fileprovider", filelocation);
-                        Intent fileIntent = new Intent(Intent.ACTION_SEND);
-                        fileIntent.setType("text/csv");
-                        fileIntent.putExtra(Intent.EXTRA_SUBJECT, Filename);
-                        fileIntent.putExtra(Intent.EXTRA_STREAM, path);
-                        fileIntent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION );
-
-                        Intent chooser = Intent.createChooser(fileIntent, "Send Email");
-
-                        List<ResolveInfo> resInfoList = mContext.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
-
-                        for (ResolveInfo resolveInfo : resInfoList) {
-                            String packageName = resolveInfo.activityInfo.packageName;
-                            mContext.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        }
-
-//                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        mContext.startActivity(chooser);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+//                    try{
+//                        FileOutputStream out = mContext.openFileOutput(Filename,Context.MODE_PRIVATE);
+//                        out.write((data.toString().getBytes()));
+//                        out.close();
+//
+//                        File filelocation = new File(mContext.getFilesDir(), Filename);
+//                        Uri path = FileProvider.getUriForFile(mContext,"edu.imtl.bluekare.fileprovider", filelocation);
+//                        Intent fileIntent = new Intent(Intent.ACTION_SEND);
+//                        fileIntent.setType("text/csv");
+//                        fileIntent.putExtra(Intent.EXTRA_SUBJECT, Filename);
+//                        fileIntent.putExtra(Intent.EXTRA_STREAM, path);
+//                        fileIntent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION );
+//
+//                        Intent chooser = Intent.createChooser(fileIntent, "Send Email");
+//
+//                        List<ResolveInfo> resInfoList = mContext.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
+//
+//                        for (ResolveInfo resolveInfo : resInfoList) {
+//                            String packageName = resolveInfo.activityInfo.packageName;
+//                            mContext.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        }
+//
+////                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+////                        mContext.startActivity(chooser);
+//
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
                 }
             });
         } catch (Exception e) {
@@ -413,34 +413,34 @@ public class StepCountReporter {
 
                     }
 
-                    try{
-                        FileOutputStream out = mContext.openFileOutput(Filename,Context.MODE_PRIVATE);
-                        out.write((data.toString().getBytes()));
-                        out.close();
-
-                        File filelocation = new File(mContext.getFilesDir(), Filename);
-                        Uri path = FileProvider.getUriForFile(mContext,"edu.imtl.bluekare.fileprovider", filelocation);
-                        Intent fileIntent = new Intent(Intent.ACTION_SEND);
-                        fileIntent.setType("text/csv");
-                        fileIntent.putExtra(Intent.EXTRA_SUBJECT, Filename);
-                        fileIntent.putExtra(Intent.EXTRA_STREAM, path);
-                        fileIntent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION );
-
-                        Intent chooser = Intent.createChooser(fileIntent, "Send Email");
-
-                        List<ResolveInfo> resInfoList = mContext.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
-
-                        for (ResolveInfo resolveInfo : resInfoList) {
-                            String packageName = resolveInfo.activityInfo.packageName;
-                            mContext.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        }
-
-//                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        mContext.startActivity(chooser);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+//                    try{
+//                        FileOutputStream out = mContext.openFileOutput(Filename,Context.MODE_PRIVATE);
+//                        out.write((data.toString().getBytes()));
+//                        out.close();
+//
+//                        File filelocation = new File(mContext.getFilesDir(), Filename);
+//                        Uri path = FileProvider.getUriForFile(mContext,"edu.imtl.bluekare.fileprovider", filelocation);
+//                        Intent fileIntent = new Intent(Intent.ACTION_SEND);
+//                        fileIntent.setType("text/csv");
+//                        fileIntent.putExtra(Intent.EXTRA_SUBJECT, Filename);
+//                        fileIntent.putExtra(Intent.EXTRA_STREAM, path);
+//                        fileIntent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION );
+//
+//                        Intent chooser = Intent.createChooser(fileIntent, "Send Email");
+//
+//                        List<ResolveInfo> resInfoList = mContext.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
+//
+//                        for (ResolveInfo resolveInfo : resInfoList) {
+//                            String packageName = resolveInfo.activityInfo.packageName;
+//                            mContext.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        }
+//
+////                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+////                        mContext.startActivity(chooser);
+//
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
                 }
             });
         } catch (Exception e) {
@@ -475,34 +475,34 @@ public class StepCountReporter {
 
                     }
 
-                    try{
-                        FileOutputStream out = mContext.openFileOutput(Filename,Context.MODE_PRIVATE);
-                        out.write((data.toString().getBytes()));
-                        out.close();
-
-                        File filelocation = new File(mContext.getFilesDir(), Filename);
-                        Uri path = FileProvider.getUriForFile(mContext,"edu.imtl.bluekare.fileprovider", filelocation);
-                        Intent fileIntent = new Intent(Intent.ACTION_SEND);
-                        fileIntent.setType("text/csv");
-                        fileIntent.putExtra(Intent.EXTRA_SUBJECT, Filename);
-                        fileIntent.putExtra(Intent.EXTRA_STREAM, path);
-                        fileIntent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION );
-
-                        Intent chooser = Intent.createChooser(fileIntent, "Send Email");
-
-                        List<ResolveInfo> resInfoList = mContext.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
-
-                        for (ResolveInfo resolveInfo : resInfoList) {
-                            String packageName = resolveInfo.activityInfo.packageName;
-                            mContext.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        }
-
-                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        mContext.startActivity(chooser);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+//                    try{
+//                        FileOutputStream out = mContext.openFileOutput(Filename,Context.MODE_PRIVATE);
+//                        out.write((data.toString().getBytes()));
+//                        out.close();
+//
+//                        File filelocation = new File(mContext.getFilesDir(), Filename);
+//                        Uri path = FileProvider.getUriForFile(mContext,"edu.imtl.bluekare.fileprovider", filelocation);
+//                        Intent fileIntent = new Intent(Intent.ACTION_SEND);
+//                        fileIntent.setType("text/csv");
+//                        fileIntent.putExtra(Intent.EXTRA_SUBJECT, Filename);
+//                        fileIntent.putExtra(Intent.EXTRA_STREAM, path);
+//                        fileIntent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION );
+//
+//                        Intent chooser = Intent.createChooser(fileIntent, "Send Email");
+//
+//                        List<ResolveInfo> resInfoList = mContext.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
+//
+//                        for (ResolveInfo resolveInfo : resInfoList) {
+//                            String packageName = resolveInfo.activityInfo.packageName;
+//                            mContext.grantUriPermission(packageName, path, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        }
+//
+//                        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        mContext.startActivity(chooser);
+//
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
                 }
             });
         } catch (Exception e) {

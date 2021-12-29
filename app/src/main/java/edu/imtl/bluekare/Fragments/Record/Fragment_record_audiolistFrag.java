@@ -69,13 +69,13 @@ public class Fragment_record_audiolistFrag extends Fragment implements Fragment_
         super.onCreate(savedInstanceState);
 
         // This callback will only be called when MyFragment is at least Started.
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-                navController.navigate(R.id.action_audioListFragment_to_recordFragment);
-            }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+//        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+//            @Override
+//            public void handleOnBackPressed() {
+//                navController.navigate(R.id.action_audioListFragment_to_recordFragment);
+//            }
+//        };
+//        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
     }
     @Override
@@ -158,13 +158,13 @@ public class Fragment_record_audiolistFrag extends Fragment implements Fragment_
             }
         });
 
-//        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-//            @Override
-//            public void handleOnBackPressed() {
-//                navController.navigate(R.id.action_recordFragment_to_audioListFragment);
-//            }
-//        };
-//        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                navController.navigate(R.id.action_audioListFragment_to_recordFragment);
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
 
     }
 
@@ -251,6 +251,9 @@ public class Fragment_record_audiolistFrag extends Fragment implements Fragment_
         if(isPlaying) {
             stopAudio();
         }
+    }
+    public void changeView(){
+        navController.navigate(R.id.action_audioListFragment_to_recordFragment);
     }
 
 }

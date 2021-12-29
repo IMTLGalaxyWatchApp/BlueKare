@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -45,6 +46,17 @@ public class Async_fetch_mongodb_health extends AsyncTask<Void, Void, String>{
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         Log.d("Async", "Fetch MongoDB "+s);
+        File file = new File(contextRef.get().getFilesDir().getAbsolutePath() + File.separator + "health");
+        if (!file.exists())
+            file.mkdir();
+        try {
+            JSONObject obj=new JSONObject(s);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     @Override
@@ -65,6 +77,9 @@ public class Async_fetch_mongodb_health extends AsyncTask<Void, Void, String>{
             jsonObject.put("skip", 0);
             jsonObject.put("limit", 1000000000);
             jsonObject.put("order", "asc");
+
+            payload.put("payload.content","health");
+
             if(!name.isEmpty()) payload.put("payload.user_name",name);
             if(!sex.isEmpty()) payload.put("payload.user_gender",sex);
             if(!phone.isEmpty()) payload.put("payload.user_phone",phone);
@@ -88,7 +103,8 @@ public class Async_fetch_mongodb_health extends AsyncTask<Void, Void, String>{
             int status_code = httpURLConnection.getResponseCode();
             String status = httpURLConnection.getResponseMessage();
             Log.d("Status", status_code+": "+status+"");
-            String page = "";       String line;
+            String page = "";
+            String line;
 
             if(status_code == HttpURLConnection.HTTP_OK){
 

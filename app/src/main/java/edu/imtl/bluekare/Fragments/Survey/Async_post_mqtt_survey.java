@@ -64,6 +64,7 @@ public class Async_post_mqtt_survey extends AsyncTask<Void, Void, String>{
             JSONObject payload=new JSONObject();
             jsonObject.put("topic", topic);
             jsonObject.put("payload", payload);
+            payload.put("content","survey");
 
             payload.put("patient_name", patient_name);
             payload.put("patient_phone", patient_phone);

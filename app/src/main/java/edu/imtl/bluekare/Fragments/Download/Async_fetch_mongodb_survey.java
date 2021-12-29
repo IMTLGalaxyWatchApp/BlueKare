@@ -4,6 +4,7 @@ import static edu.imtl.bluekare.Fragments.Login.SaveUserData.getUserAccessToken;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,6 +19,7 @@ import java.net.URL;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import edu.imtl.bluekare.Main.MainActivity;
 import edu.imtl.bluekare.R;
 
 public class Async_fetch_mongodb_survey extends AsyncTask<Void, Void, String>{
@@ -44,6 +46,7 @@ public class Async_fetch_mongodb_survey extends AsyncTask<Void, Void, String>{
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         Log.d("Async", "Fetch MongoDB Survey"+s);
+        Toast.makeText(contextRef.get(), "다운로드 완료", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -64,6 +67,7 @@ public class Async_fetch_mongodb_survey extends AsyncTask<Void, Void, String>{
             jsonObject.put("skip", 0);
             jsonObject.put("limit", 1000000000);
             jsonObject.put("order", "asc");
+            payload.put("payload.content", "survey");
             if(!name.isEmpty()) payload.put("payload.patient_name",name);
             if(!phone.isEmpty()) payload.put("payload.patient_phone",phone);
 

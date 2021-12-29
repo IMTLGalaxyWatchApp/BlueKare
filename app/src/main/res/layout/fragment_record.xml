@@ -12,7 +12,7 @@
         android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="이름"
+        android:hint="환자 이름"
 
         android:background="@drawable/et_custom"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,6 +21,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
@@ -33,11 +34,12 @@
         android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="전화번호"
+        android:hint="담당 의사 이름"
         app:layout_constraintTop_toBottomOf="@+id/textField1"
         app:layout_constraintBottom_toTopOf="@id/record_filename">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/et_custom"/>
@@ -54,7 +56,7 @@
         android:layout_marginEnd="32dp"
         android:fontFamily="@font/open_sans_semibold"
         android:lineHeight="32dp"
-        android:text="성함과 전화번호를 누른 후 \n 녹음버튼을 눌러주세요"
+        android:text="환자, 의사 이름을 입력 후 \n 녹음버튼을 눌러주세요"
         android:textAlignment="center"
         android:textColor="@color/colorDarkBlue"
         android:textSize="18sp"

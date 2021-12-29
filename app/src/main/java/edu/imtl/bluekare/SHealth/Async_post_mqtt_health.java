@@ -74,6 +74,8 @@ public class Async_post_mqtt_health extends AsyncTask<Void, Void, String>{
             payload.put("date",getTime );
             payload.put("health_content", health);
 
+            payload.put("content","health");
+
             json = jsonObject.toString();
 
             Log.e("asdf", json);

@@ -3,7 +3,6 @@ package edu.imtl.bluekare.Fragments.Record;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -22,22 +21,23 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 import edu.imtl.bluekare.R;
 
@@ -53,6 +53,8 @@ public class Fragment_record_recordFrag extends Fragment implements View.OnClick
     private ImageButton recordBtn;
     private TextView filenameText;
 
+    private TextInputEditText name, phone;
+
     private boolean isRecording = false;
 
     private String recordPermission = Manifest.permission.RECORD_AUDIO;
@@ -62,6 +64,8 @@ public class Fragment_record_recordFrag extends Fragment implements View.OnClick
     private String recordFile;
 
     private Chronometer timer;
+
+    private String p_name, d_name;
 
     public Fragment_record_recordFrag() {
         // Required empty public constructor
@@ -85,6 +89,8 @@ public class Fragment_record_recordFrag extends Fragment implements View.OnClick
         recordBtn = view.findViewById(R.id.record_btn);
         timer = view.findViewById(R.id.record_timer);
         filenameText = view.findViewById(R.id.record_filename);
+        name=view.findViewById(R.id.name);
+        phone=view.findViewById(R.id.phone);
 
         /* Setting up on click listener
            - Class must implement 'View.OnClickListener' and override 'onClick' method
@@ -99,6 +105,8 @@ public class Fragment_record_recordFrag extends Fragment implements View.OnClick
 
     @Override
     public void onClick(View v) {
+        p_name =name.getText().toString();
+        d_name =phone.getText().toString();
         /*  Check, which button is pressed and do the task accordingly
          */
         switch (v.getId()) {
@@ -126,22 +134,27 @@ public class Fragment_record_recordFrag extends Fragment implements View.OnClick
                 break;
 
             case R.id.record_btn:
-                if(isRecording) {
-                    //Stop Recording
-                    stopRecording();
-
-                    // Change button image and set Recording state to false
-                    recordBtn.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.record_btn_stopped, null));
-                    isRecording = false;
-                } else {
-                    //Check permission to record audio
-                    if(checkPermissions()) {
-                        //Start Recording
-                        startRecording();
+                if(p_name.isEmpty()|| d_name.isEmpty()){
+                    Toast.makeText(getContext(), "환자의 이름과 전화번호를 입력해주세요.",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    if (isRecording) {
+                        //Stop Recording
+                        stopRecording();
 
                         // Change button image and set Recording state to false
-                        recordBtn.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.record_btn_recording, null));
-                        isRecording = true;
+                        recordBtn.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.record_btn_stopped, null));
+                        isRecording = false;
+                    } else {
+                        //Check permission to record audio
+                        if (checkPermissions()) {
+                            //Start Recording
+                            startRecording();
+
+                            // Change button image and set Recording state to false
+                            recordBtn.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.record_btn_recording, null));
+                            isRecording = true;
+                        }
                     }
                 }
                 break;
@@ -179,6 +192,9 @@ public class Fragment_record_recordFrag extends Fragment implements View.OnClick
 
         chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         requireActivity().startActivity(chooser);
+        Log.e("filelocation", filelocation.toString());
+        Async_post_mp3 async_post_mp3=new Async_post_mp3(getActivity().getApplicationContext(), new String[]{p_name, d_name},filelocation.toString(),recordFile);
+        async_post_mp3.execute();
     }
 
     private void startRecording() {
@@ -190,11 +206,11 @@ public class Fragment_record_recordFrag extends Fragment implements View.OnClick
         String recordPath = requireActivity().getFilesDir().getAbsolutePath() + File.separator + "record";
 
         //Get current date and time
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyMMdd_HHmmss", Locale.getDefault());
         Date now = new Date();
 
         //initialize filename variable with date and time at the end to ensure the new file wont overwrite previous file
-        recordFile = "Recording_" + formatter.format(now) + ".mp3";
+        recordFile = "Recording_" + p_name +"_"+ formatter.format(now) + ".mp3";
 
         filenameText.setText("Recording, File Name : " + recordFile);
 

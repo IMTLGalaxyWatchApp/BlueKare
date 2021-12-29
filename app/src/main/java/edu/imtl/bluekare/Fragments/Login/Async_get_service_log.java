@@ -52,13 +52,15 @@ public class Async_get_service_log extends AsyncTask<Void, Void, String> {
             Log.e("asdf", String.valueOf(arr));
 
             StringBuilder services= new StringBuilder();
-            SharedPreferences pref;
-            SharedPreferences.Editor editor;
+            SharedPreferences pref, pref_ser;
+            SharedPreferences.Editor editor,editor2;
 
             pref = contextRef.get().getApplicationContext().getSharedPreferences("current_device_info", 0);
 
             int device_id = pref.getInt("cur_device_id", -1);
+            Log.e("asdfs", String.valueOf(device_id));
             editor = pref.edit();
+
             int counter=0;
             for(int i=0; i<arr.length(); i++)
             {
@@ -67,18 +69,20 @@ public class Async_get_service_log extends AsyncTask<Void, Void, String> {
                 int farm_id=arr.getJSONObject(i).getInt("farm_id");
                 int service_cd=arr.getJSONObject(i).getInt("service_type_cd");
 
-                Log.e("asdf", String.valueOf(d_id));
                 Log.e("asdf", String.valueOf(id));
+                Log.e("asdf", String.valueOf(d_id));
+
                 Log.e("asdf", String.valueOf(farm_id));
                 Log.e("asdf", String.valueOf(service_cd));
 
-                services.append(id).append(",");
-
-                if(device_id == d_id && farm_id==14 && service_cd==10){
+                if((device_id == d_id) && (farm_id==14) && (service_cd==10)){
                     Log.e("asdf", "BREAK");
+                    Log.e("asdf0",String.valueOf(id));
+
                     editor.putInt("cur_service_id", id);
                     editor.apply();
                 }
+                services.append(id).append(",");
                 counter++;
 
             }

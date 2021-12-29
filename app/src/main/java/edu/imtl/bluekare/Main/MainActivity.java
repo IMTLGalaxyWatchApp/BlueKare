@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -28,6 +29,8 @@ import edu.imtl.bluekare.Background.AlarmReceiver;
 import edu.imtl.bluekare.Fragments.Download.Fragment_download;
 import edu.imtl.bluekare.Fragments.Login.DeviceInfo;
 import edu.imtl.bluekare.Fragments.MainMenu.Fragment_main;
+import edu.imtl.bluekare.Fragments.Record.Fragment_record_audiolistFrag;
+import edu.imtl.bluekare.Fragments.Record.Fragment_record_recordFrag;
 import edu.imtl.bluekare.Fragments.Survey.Fragment_survey;
 import edu.imtl.bluekare.Fragments.Record.Fragment_record;
 import edu.imtl.bluekare.Fragments.Login.LoginActivity;
@@ -132,6 +135,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        async_get_registration.execute();
         setUserInfo();
         setAlarm();
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                drawerLayout = findViewById(R.id.drawerlayout);
+
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
+                else {
+
+                    if (System.currentTimeMillis() - lastTimeBackPressed < 2000) {
+                        finish();
+                        return;
+                    }
+                    Toast.makeText(getApplicationContext(), "'뒤로' 버튼을 한번 더 누르시면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show();
+                    lastTimeBackPressed = System.currentTimeMillis();
+
+                }
+            }
+        });
 
     }
 
@@ -168,24 +191,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private onKeyBackPressedListener mOnKeyBackPressedListener;
     public void setOnKeyBackPressedListener(onKeyBackPressedListener listener) { mOnKeyBackPressedListener = listener; }
 
-    @Override
-    public void onBackPressed() {
-        drawerLayout = findViewById(R.id.drawerlayout);
-
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else {
-
-                if (System.currentTimeMillis() - lastTimeBackPressed < 2000) {
-                    finish();
-                    return;
-                }
-                Toast.makeText(this, "'뒤로' 버튼을 한번 더 누르시면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show();
-                lastTimeBackPressed = System.currentTimeMillis();
-
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        drawerLayout = findViewById(R.id.drawerlayout);
+//        Fragment_record record=(Fragment_record) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+//
+//        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//        }
+//        else if(record.isAdded()){
+//            Fragment_record_audiolistFrag frg=(Fragment_record_audiolistFrag) getSupportFragmentManager().findFragmentById(R.id.audioListFragment);
+//            frg.changeView();
+//        }
+//        else if(!record.isAdded()){
+//
+//                if (System.currentTimeMillis() - lastTimeBackPressed < 2000) {
+//                    finish();
+//                    return;
+//                }
+//                Toast.makeText(this, "'뒤로' 버튼을 한번 더 누르시면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show();
+//                lastTimeBackPressed = System.currentTimeMillis();
+//
+//        }
+//    }
 
     private void setNavigationViewListener() {
         NavigationView navigationView = findViewById(R.id.navigationlayout);

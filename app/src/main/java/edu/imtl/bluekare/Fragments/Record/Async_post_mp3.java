@@ -7,6 +7,7 @@ import android.util.Log;
 import java.io.File;
 import java.lang.ref.WeakReference;
 
+import edu.imtl.bluekare.Main.userINFO;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;

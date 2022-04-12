@@ -6,4 +6,4 @@ Samsung Health 앱에서 우측 상단 점세개 메뉴 -> 설정 -> 하단의 �
 
 *App package name(ID): edu.imtl.bluekare
 
-*Developer Mode Access Code: 392l1L9q
+*Developer Mode Access Code: 392l1L9q (392 다음 소문자 L)
